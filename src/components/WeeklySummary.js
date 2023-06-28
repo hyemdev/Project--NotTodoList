@@ -1,76 +1,226 @@
-import { ResponsiveBar } from '@nivo/bar'
-import React from 'react'
+import { ResponsiveBar } from "@nivo/bar";
+import React, { useState } from "react";
 
 const WeeklySummary = () => {
-  const dataBar = [
-    { behavior: "첫째주", tobacco: 1, drink: 1, drug: 3 },
-    { behavior: "둘째주", tobacco: 2, drink: 2, drug: 4 },
-    { behavior: "셋째주", tobacco: 3, drink: 3, drug: 5 },
+  // 초기 상단 데이터
+  const weekDataInit = [
+    {
+      country: "AD",
+      "hot dog": 23,
+      "hot dogColor": "hsl(56, 70%, 50%)",
+      burger: 131,
+      burgerColor: "hsl(15, 70%, 50%)",
+      sandwich: 127,
+      sandwichColor: "hsl(102, 70%, 50%)",
+      kebab: 46,
+      kebabColor: "hsl(319, 70%, 50%)",
+      fries: 35,
+      friesColor: "hsl(39, 70%, 50%)",
+      donut: 129,
+      donutColor: "hsl(18, 70%, 50%)",
+    },
+    {
+      country: "AE",
+      "hot dog": 114,
+      "hot dogColor": "hsl(17, 70%, 50%)",
+      burger: 86,
+      burgerColor: "hsl(21, 70%, 50%)",
+      sandwich: 101,
+      sandwichColor: "hsl(191, 70%, 50%)",
+      kebab: 68,
+      kebabColor: "hsl(102, 70%, 50%)",
+      fries: 65,
+      friesColor: "hsl(48, 70%, 50%)",
+      donut: 186,
+      donutColor: "hsl(90, 70%, 50%)",
+    },
+    {
+      country: "AF",
+      "hot dog": 45,
+      "hot dogColor": "hsl(72, 70%, 50%)",
+      burger: 6,
+      burgerColor: "hsl(278, 70%, 50%)",
+      sandwich: 57,
+      sandwichColor: "hsl(19, 70%, 50%)",
+      kebab: 125,
+      kebabColor: "hsl(133, 70%, 50%)",
+      fries: 134,
+      friesColor: "hsl(359, 70%, 50%)",
+      donut: 133,
+      donutColor: "hsl(232, 70%, 50%)",
+    },
+    {
+      country: "AG",
+      "hot dog": 88,
+      "hot dogColor": "hsl(325, 70%, 50%)",
+      burger: 25,
+      burgerColor: "hsl(55, 70%, 50%)",
+      sandwich: 108,
+      sandwichColor: "hsl(81, 70%, 50%)",
+      kebab: 102,
+      kebabColor: "hsl(313, 70%, 50%)",
+      fries: 154,
+      friesColor: "hsl(230, 70%, 50%)",
+      donut: 134,
+      donutColor: "hsl(210, 70%, 50%)",
+    },
+    {
+      country: "AI",
+      "hot dog": 66,
+      "hot dogColor": "hsl(62, 70%, 50%)",
+      burger: 60,
+      burgerColor: "hsl(125, 70%, 50%)",
+      sandwich: 25,
+      sandwichColor: "hsl(249, 70%, 50%)",
+      kebab: 171,
+      kebabColor: "hsl(279, 70%, 50%)",
+      fries: 34,
+      friesColor: "hsl(273, 70%, 50%)",
+      donut: 34,
+      donutColor: "hsl(114, 70%, 50%)",
+    },
+    {
+      country: "AL",
+      "hot dog": 112,
+      "hot dogColor": "hsl(329, 70%, 50%)",
+      burger: 12,
+      burgerColor: "hsl(227, 70%, 50%)",
+      sandwich: 82,
+      sandwichColor: "hsl(115, 70%, 50%)",
+      kebab: 44,
+      kebabColor: "hsl(69, 70%, 50%)",
+      fries: 199,
+      friesColor: "hsl(37, 70%, 50%)",
+      donut: 121,
+      donutColor: "hsl(17, 70%, 50%)",
+    },
+    {
+      country: "AM",
+      "hot dog": 199,
+      "hot dogColor": "hsl(210, 70%, 50%)",
+      burger: 127,
+      burgerColor: "hsl(80, 70%, 50%)",
+      sandwich: 62,
+      sandwichColor: "hsl(168, 70%, 50%)",
+      kebab: 167,
+      kebabColor: "hsl(126, 70%, 50%)",
+      fries: 78,
+      friesColor: "hsl(204, 70%, 50%)",
+      donut: 49,
+      donutColor: "hsl(60, 70%, 50%)",
+    },
   ];
+  const [weekData, setWeekData] = useState(weekDataInit);
   return (
-    <>
-    <div>WeeklySummary</div>
-    <div className="p-6 mt-5 shadow rounded bg-white  w-2/5">
-        <div style={{ height: "200px" ,width:"360px"}}>
+    <div className="flex flex-col">
+      <div>
+        <h2>Weekly 시간</h2>
+        <div style={{ height: 400 }}>
           <ResponsiveBar
-            data={dataBar}
-            // chart에서 보여질 데이터 key (측정되는 값)
-            keys={["tobacco", "drink", "drug"]}
-            // keys를 그룹화하는 index key (분류)
-            indexBy="behavior"
-            // 차트 간의 여백 (bar간의 여백)
-            padding={0.3}
-            // 차트의 색상
-            colors={["olive", "brown", "orange"]}
-            // 색상을 적용함
-            colorBy="id"
-            // 테마 설정
-            theme={[
+            data={weekData}
+            keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
+            indexBy="country"
+            margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+            padding={0.2}
+            valueScale={{ type: "linear" }}
+            indexScale={{ type: "band", round: true }}
+            colors={{ scheme: "nivo" }}
+            defs={[
               {
-                // label 스타일(bar에 표현되는 글씨)
-                labels: {
-                  text: {
-                    fontSize: 14,
-                    fill: "#000000",
-                  },
-                },
-                // legend 스타일(우측하단에 있는 색상별 key 표시)
-                legends: {
-                  text: {
-                    fontSize: 10,
-                    fill: "#ff0000",
-                  },
-                },
-                // axios legend 스타일(bottom, left 글씨)
-                axios: {
-                  legend: {
-                    text: {
-                      fontSize: 20,
-                      fill: "#ffff00",
-                    },
-                  },
-                  ticks: {
-                    text: {
-                      fontSize: 16,
-                      fill: "#0000ff",
-                    },
-                  },
-                },
+                id: "dots",
+                type: "patternDots",
+                background: "inherit",
+                color: "#38bcb2",
+                size: 4,
+                padding: 1,
+                stagger: true,
+              },
+              {
+                id: "lines",
+                type: "patternLines",
+                background: "inherit",
+                color: "#eed312",
+                rotation: -45,
+                lineWidth: 6,
+                spacing: 10,
               },
             ]}
-            // axis Bottom 설정
-            axisBottom={{
-              tickSize: 5, // 값 설명하기 위해 보여지는 점 크기
-              tickPadding: 5,
-              tickRotation: 0, // 점의 기울기
+            fill={[
+              {
+                match: {
+                  id: "fries",
+                },
+                id: "dots",
+              },
+              {
+                match: {
+                  id: "sandwich",
+                },
+                id: "lines",
+              },
+            ]}
+            borderColor={{
+              from: "color",
+              modifiers: [["darker", 1.6]],
             }}
-            enableGridY={true}
-            enableLabel={false}
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend: "country",
+              legendPosition: "middle",
+              legendOffset: 32,
+            }}
+            axisLeft={{
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend: "food",
+              legendPosition: "middle",
+              legendOffset: -40,
+            }}
+            labelSkipWidth={12}
+            labelSkipHeight={12}
+            labelTextColor={{
+              from: "color",
+              modifiers: [["darker", 1.6]],
+            }}
+            legends={[
+              {
+                dataFrom: "keys",
+                anchor: "bottom-right",
+                direction: "column",
+                justify: false,
+                translateX: 120,
+                translateY: 0,
+                itemsSpacing: 2,
+                itemWidth: 100,
+                itemHeight: 20,
+                itemDirection: "left-to-right",
+                itemOpacity: 0.85,
+                symbolSize: 20,
+                effects: [
+                  {
+                    on: "hover",
+                    style: {
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
+            ]}
+            role="application"
+            ariaLabel="Nivo bar chart demo"
+            barAriaLabel={e =>
+              e.id + ": " + e.formattedValue + " in country: " + e.indexValue
+            }
           />
         </div>
       </div>
-      </>
-  )
-}
+    </div>
+  );
+};
 
-export default WeeklySummary
+export default WeeklySummary;

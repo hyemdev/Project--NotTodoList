@@ -1,5 +1,4 @@
 import axios from "axios";
-
 //  axios test
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5000",

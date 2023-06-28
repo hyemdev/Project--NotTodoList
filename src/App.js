@@ -15,8 +15,8 @@ import { Footer } from "antd/es/layout/layout";
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-blue-300 overflow-x-hidden float-left">
-      <div className="container mx-auto h-full">
+    <div className="w-screen h-screen overflow-x-hidden float-left">
+      <div className="p-5 h-full">
         <Routes>
           <Route path="/" element={<Enterance />} />
           <Route element={<Header />}>
@@ -27,9 +27,9 @@ function App() {
             ></Route>
             <Route path="/summary" element={<Summary />}></Route>
             <Route path="*" element={<NotFound />}></Route>
-            <Route path="/memosection" element={<MemoSection/>} />
-            <Route path="/briefsection" element={<BriefSection/>} />
-            <Route path="/dailysection" element={<DailySection/>} />
+            <Route path="/memosection" element={<MemoSection />} />
+            <Route path="/briefsection" element={<BriefSection />} />
+            <Route path="/dailysection" element={<DailySection />} />
           </Route>
           <Route element={<Footer />} />
         </Routes>

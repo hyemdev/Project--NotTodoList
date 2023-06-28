@@ -4,31 +4,45 @@ import Footer from "./Footer";
 
 const Header = () => {
   return (
-    <><header>
-    <div className="bg-gray-800 text-center">
-      <h2 className="text-gray-100 text-lg"> !todo list</h2>
-          <ul className="flex space-x-4 items-center justify-around h-32">
+    <>
+      <h2 className="text-center font-bold text-4xl">!todo list</h2>
+      <header
+        className="bg-[#d9d9d9] h-14 w-auto
+    mx-auto"
+      >
+        <div className="">
+          <ul className="flex item-center justify-around">
             <li>
-              <Link to="/main" className="text-gray-300  hover:text-blue-300 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                main
+              <Link
+                to="/main"
+                className="text-black hover:text-red-600 text-lg "
+              >
+                {" "}
+                [main]{" "}
               </Link>
             </li>
             <li>
               <Link
                 to="/monthlycalendar"
-                className="text-gray-300  hover:text-blue-300 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="text-black hover:text-red-600 text-lg "
               >
-                calendar
+                {" "}
+                [calendar]{" "}
               </Link>
             </li>
             <li>
-              <Link to="/summary"  className="text-gray-300  hover:text-blue-300 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                summary
+              <Link
+                to="/summary"
+                className="text-black hover:text-red-600 text-lg"
+              >
+                {" "}
+                [summary]{" "}
               </Link>
             </li>
           </ul>
         </div>
       </header>
+      <hr className="my-3 border-2 border-black"></hr>
       <Outlet />
       <Footer />
     </>
