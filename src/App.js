@@ -12,24 +12,28 @@ import Enterance from "./pages/Enterance";
 import "./App.css";
 import { Route, Routes } from "react-router";
 import { Footer } from "antd/es/layout/layout";
+import { useState } from "react";
 
-function App() {
+function App() {  
+  const initTodoData = [];
+  const [todoData, setTodoData] = useState(initTodoData);
+
   return (
     <div className="w-screen h-screen overflow-x-hidden float-left">
       <div className="p-5 h-full">
         <Routes>
           <Route path="/" element={<Enterance />} />
           <Route element={<Header />}>
-            <Route index path="/main" element={<Main />}></Route>
+            <Route index path="/main" element={<Main todoData={todoData} setTodoData={setTodoData}/>}></Route>
             <Route
               path="/monthlycalendar"
-              element={<MonthlyCalendar />}
+              element={<MonthlyCalendar todoData={todoData} setTodoData={setTodoData}/>}
             ></Route>
             <Route path="/summary" element={<Summary />}></Route>
             <Route path="*" element={<NotFound />}></Route>
             <Route path="/memosection" element={<MemoSection />} />
             <Route path="/briefsection" element={<BriefSection />} />
-            <Route path="/dailysection" element={<DailySection />} />
+            <Route path="/dailysection" element={<DailySection todoData={todoData} setTodoData={setTodoData}/>} />
           </Route>
           <Route element={<Footer />} />
         </Routes>

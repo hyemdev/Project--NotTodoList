@@ -9,6 +9,36 @@ const axiosInstance = axios.create({
   },
 });
 
+// data get
+const getTodo = async setTodoData => {
+  try {
+    const res = await axiosInstance.get("/todos");
+    const result = res.data;
+
+    const todosArr = result.map(item => {
+      item.completed = JSON.parse(item.completed);
+      item.id = JSON.parse(item.id);
+    });
+    console.log("todosArr", todosArr);
+    // setTodoData(todosArr);
+    console.log(result);
+    setTodoData(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//data post
+const postTodo = async newTodo => {
+  try {
+    const res = await axiosInstance.post("/todos", newTodo);
+    const data = res.data;
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // 메모 내용 post
 const postOneMemo = async newTodo => {
   try {
@@ -33,4 +63,4 @@ const putOneMemo = async (_id, OneMemo) => {
   }
 };
 
-export { axiosInstance, putOneMemo, postOneMemo };
+export { axiosInstance, putOneMemo, postOneMemo, getTodo, postTodo };
