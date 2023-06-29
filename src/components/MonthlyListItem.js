@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "react-modal";
 import Select from "react-select";
 import { deleteTodo, patchTitleTodo } from "../api/api";
 

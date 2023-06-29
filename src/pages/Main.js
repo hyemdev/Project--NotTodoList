@@ -3,7 +3,7 @@ import MemoSection from "../components/MemoSection";
 import BriefSection from "../components/BriefSection";
 import DailySection from "../components/DailySection";
 
-const Main = () => {
+const Main = ({ todoData, setTodoData }) => {
   return (
     <>
       <div className="grid grid-rows-3 grid-flow-col gap-1 mt-2 ml-10">
@@ -14,7 +14,7 @@ const Main = () => {
           <BriefSection />
         </div>
         <div className="row-span-3 box-border h-full p-4">
-          <DailySection />
+          <DailySection todoData={todoData} setTodoData={setTodoData} />
         </div>
       </div>
     </>

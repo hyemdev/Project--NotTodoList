@@ -13,6 +13,7 @@ import "./App.css";
 import { Route, Routes } from "react-router";
 import { Footer } from "antd/es/layout/layout";
 import { useState } from "react";
+import MonthlyAdd from "./pages/MonthlyAdd";
 
 function App() {  
   const initTodoData = [];
@@ -34,6 +35,7 @@ function App() {
             <Route path="/memosection" element={<MemoSection />} />
             <Route path="/briefsection" element={<BriefSection />} />
             <Route path="/dailysection" element={<DailySection todoData={todoData} setTodoData={setTodoData}/>} />
+            <Route path="/monthlyadd" element={<MonthlyAdd />} />
           </Route>
           <Route element={<Footer />} />
         </Routes>

@@ -2,10 +2,11 @@ import React from "react";
 import MonthlyListItem from "./MonthlyListItem";
 
 const MonthlyList = ({ todoData, setTodoData }) => {
+  console.log(todoData);
   return (
     <div>
       {/* not todo list 출력 */}
-      {todoData.map(item => (
+      {/* {todoData.map(item => (
         <MonthlyListItem
           key={item.id}
           item={item}
@@ -15,7 +16,7 @@ const MonthlyList = ({ todoData, setTodoData }) => {
           todoData={todoData}
           setTodoData={setTodoData}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

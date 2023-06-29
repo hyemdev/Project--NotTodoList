@@ -4,7 +4,8 @@ import MonthlyForm from "../components/MonthlyForm";
 import { getTodo } from "../api/api";
 
 const MonthlyAdd = ({ todoData, setTodoData }) => {
-
+  console.log("MonthlyAdd.js");
+  console.log(todoData);
   // axios get호출 todolist data 받기
   useEffect(() => {
     getTodo(setTodoData);

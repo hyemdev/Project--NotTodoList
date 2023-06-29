@@ -82,7 +82,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
   };
 
   // ant form 전송
-  const onFinish = (values: any) => {
+  const onFinish = (values) => {
     console.log("Success:", values);
 
     const newTodo = {
@@ -123,7 +123,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
       return false;
     }
   };
-  const onFinishFailed = (errorInfo: any) => {
+  const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
