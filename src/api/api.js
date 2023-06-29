@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
   },
 });
 
-// data get
+// todo data get
 const getTodo = async setTodoData => {
   try {
     const res = await axiosInstance.get("/todos");
@@ -28,7 +28,7 @@ const getTodo = async setTodoData => {
   }
 };
 
-//data post
+//todo data post
 const postTodo = async newTodo => {
   try {
     const res = await axiosInstance.post("/todos", newTodo);
@@ -50,6 +50,22 @@ const postOneMemo = async newTodo => {
   }
 };
 
+//patch
+//todo data 수정기능
+const patchTitleTodo = async (_id, item) => {
+  try {
+    const res = await axiosInstance.patch(`/todos/${_id}`, {
+      title: item.title,
+      options: item.options,
+      number: item.number,
+      completed: item.completed,
+    });
+    const data = res.data;
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 // 메모 수정기능(덮어씌우기)
 const putOneMemo = async (_id, OneMemo) => {
   try {
@@ -63,4 +79,23 @@ const putOneMemo = async (_id, OneMemo) => {
   }
 };
 
-export { axiosInstance, putOneMemo, postOneMemo, getTodo, postTodo };
+//todo date delete
+const deleteTodo = async _id => {
+  try {
+    const res = await axiosInstance.delete(`/todos/${_id}`);
+    const result = res.data;
+    console.log("del,result", result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  axiosInstance,
+  putOneMemo,
+  postOneMemo,
+  getTodo,
+  postTodo,
+  patchTitleTodo,
+  deleteTodo,
+};
