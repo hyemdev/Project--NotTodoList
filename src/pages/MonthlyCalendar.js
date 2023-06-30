@@ -4,6 +4,8 @@ import moment from "moment/moment";
 import { Calendar } from "react-calendar";
 import { Modal } from "antd";
 
+import "../style/Calendar.css";
+
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [day, setDay] = useState(new Date());
