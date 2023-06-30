@@ -16,7 +16,7 @@ import { Footer } from "antd/es/layout/layout";
 function App() {
   return (
     <div className="w-screen h-screen overflow-x-hidden float-left">
-      <div className="p-5 h-full">
+      <div className="h-full">
         <Routes>
           <Route path="/" element={<Enterance />} />
           <Route element={<Header />}>

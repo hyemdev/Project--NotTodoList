@@ -6,7 +6,7 @@ import DailySection from "../components/DailySection";
 const Main = () => {
   return (
     <>
-      <div className="grid grid-rows-3 grid-flow-col gap-1 mt-2 ml-10">
+      <div className="grid grid-rows-3 grid-flow-col gap-1 mt-2 ">
         <div className="box-border h-full p-4">
           <MemoSection />
         </div>

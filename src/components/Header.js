@@ -7,42 +7,42 @@ const Header = () => {
     <>
       <h2 className="text-center font-bold text-4xl">!todo list</h2>
       <header
-        className="bg-[#d9d9d9] h-14 w-auto
+        className="bg-gray-800 h-14 w-11/12
     mx-auto"
       >
         <div className="">
-          <ul className="flex item-center justify-around">
-            <li>
+          <ul className="flex item-center justify-around mt-2">
+            <li className="pt-3">
               <Link
                 to="/main"
-                className="text-black hover:text-red-600 text-lg "
+                className="text-white hover:text-red-600 text-lg "
               >
                 {" "}
                 [main]{" "}
               </Link>
             </li>
-            <li>
+            <li className="pt-3">
               <Link
                 to="/monthlycalendar"
-                className="text-black hover:text-red-600 text-lg "
+                className="text-white hover:text-red-600 text-lg "
               >
                 {" "}
                 [calendar]{" "}
               </Link>
             </li>
-            <li>
+            <li className="pt-3">
               <Link
                 to="/summary"
-                className="text-black hover:text-red-600 text-lg"
+                className="text-white hover:text-red-600 text-lg"
               >
                 {" "}
-                [summary]{" "}
+                [statistic]{" "}
               </Link>
             </li>
           </ul>
         </div>
       </header>
-      <hr className="my-3 border-2 border-black"></hr>
+      <hr className="my-8 border-2 border-black w-screen"></hr>
       <Outlet />
       <Footer />
     </>
