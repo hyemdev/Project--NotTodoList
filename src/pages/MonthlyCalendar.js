@@ -43,8 +43,11 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     });
     if (results.length > 0) {
       return results.map(result => (
-        <div key={result.id}>
-          <div>{result.title}</div>
+        <div
+          key={result.id}
+          className="bg-slate-500 border-dotted rounded-md my-1"
+        >
+          <div className="text-slate-50">{result.title}</div>
           {/* <div>{result.options}</div> */}
           {/* <div>{result.goalNumber}</div> */}
         </div>
@@ -53,7 +56,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
   };
 
   return (
-    <>
+    <div className="m-10">
       <div className="mt-10">
         <Modal
           title="상세보기"
@@ -72,7 +75,6 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
 
       <div>
         <div className="container w-1200 mx-auto">
-          <label>목표 달력:</label>
           <Calendar
             //날짜 클릭했을 때 이벤트핸들러
             onClickDay={(value, event) => handleClickDay(value, event)}
@@ -86,7 +88,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           <div>{moment(day).format("YYYY-MM-DD")}</div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
