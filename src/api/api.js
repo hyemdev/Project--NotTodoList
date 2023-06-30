@@ -1,5 +1,6 @@
 import axios from "axios";
-//  axios test
+
+//  axios
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5000",
   timeout: 1000,
@@ -8,6 +9,39 @@ const axiosInstance = axios.create({
     Accept: "*/*",
   },
 });
+
+// todo data get
+const getTodo = async setTodoData => {
+  try {
+    const res = await axiosInstance.get("/todos");
+    const result = res.data;
+
+    const todosArr = result.map(item => {
+      item.completed = JSON.parse(item.completed);
+      item.id = JSON.parse(item.id);
+    });
+    console.log("todosArr", todosArr);
+    setTodoData(todosArr);
+
+    console.log("result", result);
+
+    setTodoData(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//post
+//todo data post
+const postTodo = async newTodo => {
+  try {
+    const res = await axiosInstance.post("/todos", newTodo);
+    const data = res.data;
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // 메모 내용 post
 const postOneMemo = async newTodo => {
@@ -20,6 +54,22 @@ const postOneMemo = async newTodo => {
   }
 };
 
+//patch
+//todo data 수정기능
+const patchTitleTodo = async (_id, item) => {
+  try {
+    const res = await axiosInstance.patch(`/todos/${_id}`, {
+      title: item.title,
+      options: item.options,
+      number: item.goalNumber,
+      completed: item.completed,
+    });
+    const data = res.data;
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 // 메모 수정기능(덮어씌우기)
 const putOneMemo = async (_id, OneMemo) => {
   try {
@@ -33,4 +83,23 @@ const putOneMemo = async (_id, OneMemo) => {
   }
 };
 
-export { axiosInstance, putOneMemo, postOneMemo };
+//todo date delete
+const deleteTodo = async _id => {
+  try {
+    const res = await axiosInstance.delete(`/todos/${_id}`);
+    const result = res.data;
+    console.log("del,result", result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  axiosInstance,
+  putOneMemo,
+  postOneMemo,
+  getTodo,
+  postTodo,
+  patchTitleTodo,
+  deleteTodo,
+};
