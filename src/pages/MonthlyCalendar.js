@@ -4,7 +4,11 @@ import moment from "moment/moment";
 import { Calendar } from "react-calendar";
 import { Modal } from "antd";
 
-import "../style/Calendar.css";
+import "../style/CalendarCSS.css";
+import {
+  MonthlyCalendarDiv,
+  MonthlyCalendarWrap,
+} from "../style/MonthlyCalendarCSS";
 
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,8 +60,8 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
   };
 
   return (
-    <div className="m-10">
-      <div className="mt-10">
+    <div>
+      <div>
         <Modal
           title="상세보기"
           open={isModalOpen}
@@ -73,8 +77,8 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
         </Modal>
       </div>
 
-      <div>
-        <div className="container w-1200 mx-auto">
+      <MonthlyCalendarWrap>
+        <MonthlyCalendarDiv>
           <Calendar
             //날짜 클릭했을 때 이벤트핸들러
             onClickDay={(value, event) => handleClickDay(value, event)}
@@ -85,9 +89,8 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
             formatDay={(locale, date) => moment(date).format("D")}
             tileContent={showScheduleJSX}
           />
-          <div>{moment(day).format("YYYY-MM-DD")}</div>
-        </div>
-      </div>
+        </MonthlyCalendarDiv>
+      </MonthlyCalendarWrap>
     </div>
   );
 };

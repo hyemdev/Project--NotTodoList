@@ -4,26 +4,30 @@ import Footer from "./Footer";
 import {
   HeaderNav,
   HeaderNavLi,
+  HeaderSubtitle,
   HeaderTitle,
   HeaderWrap,
-} from "../style/Header";
+} from "../style/HeaderCSS";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendar, faChartColumn, faHouse,  } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   return (
     <div>
       <HeaderWrap>
         <HeaderTitle>!todo list</HeaderTitle>
+        <HeaderSubtitle>Write your bad things.</HeaderSubtitle>
         <header>
-          <div className="">
+          <div>
             <HeaderNav>
               <HeaderNavLi>
-                <Link to="/main"> [main] </Link>
+                <Link to="/main"> <FontAwesomeIcon icon={faHouse} className="text-lg"/> <p>MAIN</p></Link>
               </HeaderNavLi>
               <HeaderNavLi>
-                <Link to="/monthlycalendar"> [calendar] </Link>
+                <Link to="/monthlycalendar"> <FontAwesomeIcon icon={faCalendar} className="text-lg"/> <p>CALENDAR</p> </Link>
               </HeaderNavLi>
               <HeaderNavLi>
-                <Link to="/summary"> [statistic] </Link>
+                <Link to="/summary"> <FontAwesomeIcon icon={faChartColumn} className="text-lg"/> <p>STATISTICS</p></Link>
               </HeaderNavLi>
             </HeaderNav>
           </div>

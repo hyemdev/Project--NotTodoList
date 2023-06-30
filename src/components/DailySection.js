@@ -95,8 +95,8 @@ const DailySection = ({ initTodoData, todoData, setTodoData }) => {
   if (dailyEdit) {
     // 수정중인 상태
     return (
-      <div className="flex justify-around items-center text-center w-full p-2 bg-blue-100 rounded-lg dark:bg-white my-2">
-        <div className="w-1/2">{todoData.title}</div>
+      <div>
+        <div>{todoData.title}</div>
         <div>누적숫자</div>
         <div>{todoData.options}</div>
         <div>{todoData.goalNumber}</div>
@@ -124,7 +124,7 @@ const DailySection = ({ initTodoData, todoData, setTodoData }) => {
     //  평소상태
     return (
       <>
-        <div className="h-full  bg-slate-100 rounded-md p-10">
+        <div>
           <h2>DailyNotTodo</h2>
           <span> today :{isToday}</span>
           <div>
