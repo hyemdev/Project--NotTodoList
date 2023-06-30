@@ -3,29 +3,33 @@ import MonthlyList from "../components/MonthlyList";
 import MonthlyForm from "../components/MonthlyForm";
 import {
   AddTable,
-  AddTableTh,
   AddTableTr,
   AddTableThead,
   AddTitle,
   MonthlyAddWrap,
+  AddTableThDate,
+  AddTableThTitle,
+  AddTableThNumber,
+  AddTableThBtn,
+  AddTitleDiv,
 } from "../style/MonthlyAddCSS";
 
 const MonthlyAdd = ({ todoData, setTodoData }) => {
   return (
     <div>
       <MonthlyAddWrap>
-        <div>
+        <AddTitleDiv>
           <AddTitle>한달목표 설정하기</AddTitle>
-        </div>
+        </AddTitleDiv>
         <AddTable>
           <AddTableThead>
             <AddTableTr>
-              <AddTableTh className="w-2/12">기간</AddTableTh>
-              <AddTableTh className="w-3/12">월간목표</AddTableTh>
-              <AddTableTh className="w-1/12">단위</AddTableTh>
-              <AddTableTh className="w-1/12">수량</AddTableTh>
-              <AddTableTh className="w-1/12"></AddTableTh>
-              <AddTableTh className="w-1/12"></AddTableTh>
+              <AddTableThDate>기간</AddTableThDate>
+              <AddTableThTitle>월간목표</AddTableThTitle>
+              <AddTableThNumber>단위</AddTableThNumber>
+              <AddTableThNumber>수량</AddTableThNumber>
+              <AddTableThBtn></AddTableThBtn>
+              <AddTableThBtn></AddTableThBtn>
             </AddTableTr>
           </AddTableThead>
         </AddTable>

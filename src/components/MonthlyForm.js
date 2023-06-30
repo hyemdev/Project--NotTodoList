@@ -172,7 +172,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
             value={strValue}
             onChange={handleStrChange}
             style={{
-              width: "300px",
+              width: "250px",
               display: "inline-block",
             }}
           >
@@ -207,7 +207,11 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
             // onSubmit={handleSummit}
             style={{ margin: "0 auto" }}
           >
-            <Button style={{}} htmlType="submit" size="large">
+            {" "}
+            <Button
+              htmlType="submit"
+              size="large"
+            >
               Submit
             </Button>
           </Form.Item>

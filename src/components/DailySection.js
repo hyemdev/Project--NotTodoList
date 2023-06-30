@@ -131,7 +131,7 @@ const DailySection = ({ initTodoData, todoData, setTodoData }) => {
             {/* today not todo list 출력창 */}
             {showNotTodoList()}
           </div>
-          <div className="flex justify-center items-end mt-20">
+          <div>
             <Modal
               isOpen={isModalOpen}
               onRequestClose={closeModal}
@@ -141,7 +141,6 @@ const DailySection = ({ initTodoData, todoData, setTodoData }) => {
                   width: "70%",
                   height: "50%",
                   margin: "auto",
-                  textAlign: "center",
                 },
               }}
             >
