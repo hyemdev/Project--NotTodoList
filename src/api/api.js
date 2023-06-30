@@ -1,5 +1,6 @@
 import axios from "axios";
-//  axios test
+
+//  axios
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5000",
   timeout: 1000,
@@ -20,14 +21,17 @@ const getTodo = async setTodoData => {
       item.id = JSON.parse(item.id);
     });
     console.log("todosArr", todosArr);
-    // setTodoData(todosArr);
-    console.log(result);
+    setTodoData(todosArr);
+
+    console.log("result", result);
+
     setTodoData(result);
   } catch (error) {
     console.log(error);
   }
 };
 
+//post
 //todo data post
 const postTodo = async newTodo => {
   try {
@@ -57,7 +61,7 @@ const patchTitleTodo = async (_id, item) => {
     const res = await axiosInstance.patch(`/todos/${_id}`, {
       title: item.title,
       options: item.options,
-      number: item.number,
+      number: item.goalNumber,
       completed: item.completed,
     });
     const data = res.data;
