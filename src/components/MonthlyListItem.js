@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
 import Select from "react-select";
 import { deleteTodo, patchTitleTodo } from "../api/api";
 
@@ -31,6 +30,7 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     });
     setTodoData(newTodoData);
   };
+
   // 선택삭제
   const handleDeleteClick = _id => {
     // tododata중 id가 겹치지않는것만 담는다.
@@ -38,11 +38,13 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     setTodoData(newTodoData);
     deleteTodo(_id);
   };
+
   //선택편집(버튼활성화하기)
   const handleEditClick = _id => {
     console.log("handleEdit_id", _id);
     setIsEdit(true);
   };
+
   //수정 입력창 생성하기
   const handleStrEditChange = e => {
     setEditTitle(e.target.value);
@@ -81,25 +83,37 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     //수정중인 상태
     return (
       <div>
-        <div>
+        <div className="flex justify-around items-center text-center w-full p-2 bg-blue-100 rounded-lg dark:bg-white my-2">
           <input
+            className="font-bold text-indigo-950"
             type="text"
             defaultValue={editTitle}
             onChange={handleStrEditChange}
           />
           <Select
+            className="font-bold text-indigo-950 w-24"
             defaultValue={editSelect}
             onChange={handleSelectEditChange}
             options={selectTimePrice}
-            className="w-24"
           />
           <input
+            className="font-bold text-indigo-950"
             type="number"
             defaultValue={editGoalNumber}
             onChange={handleNumEditChange}
           />
-          <button onClick={handleCancelClick}> cancel </button>
-          <button onClick={() => handleSaveClick(item.id)}>save</button>
+          <button
+            onClick={() => handleSaveClick(item.id)}
+            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            save
+          </button>
+          <button
+            onClick={handleCancelClick}
+            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            cancel
+          </button>
         </div>
       </div>
     );
@@ -107,22 +121,34 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     // 평소상태
     return (
       <div>
-        <div className="flex justify-around my-5 mx-5">
+        <div className="flex justify-around items-center text-center w-full p-2 bg-blue-100 rounded-lg dark:bg-white my-2">
           <input
             type="checkbox"
             defaultChecked={item.completed}
             value={item.completed}
             onChange={() => handleCompleteChange(item.id)}
           />
-          <p>
+          <p className="font-bold text-indigo-950">
             {item.startDate}~{item.endDate}
           </p>
-          <span className="rounded-lg mx-2 mt-3">{item.title}</span>
-          <span className="rounded-lg mx-2 mt-3">{item.options}</span>
-          <span className="rounded-lg mx-2 mt-3">{item.goalNumber}</span>
+          <span className="font-bold text-indigo-950">{item.title}</span>
+          <span className="font-bold text-indigo-950">{item.options}</span>
+          <span className="font-bold text-indigo-950">{item.goalNumber}</span>
           {/* 편집/ 삭제 버튼 만들기 */}
-          <button onClick={handleEditClick}> edit </button>
-          <button onClick={() => handleDeleteClick(item.id)}>del</button>
+          <button
+            onClick={handleEditClick}
+            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            {" "}
+            edit
+          </button>
+          <button
+            onClick={() => handleDeleteClick(item.id)}
+            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            {" "}
+            del
+          </button>
         </div>
       </div>
     );

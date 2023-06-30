@@ -12,13 +12,14 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
   const [goalNumValue, setGoalNumValue] = useState("");
   const [selectedOption, setSelectedOption] = useState([0]);
   const [selectedMonth, setSelectedMonth] = useState(new Date());
+  const [dailyAddNumber, setDailyAddNumber] = useState(0);
 
-  //모달관련
+  //모달관련 state
   const [modalMessage, setModalMessage] = useState(""); // 메세지
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // 모달창
   const showModal = () => {
-    //modal의 state를 바꿔주는 곳임
     setIsModalOpen(true);
   };
   const handleOk = () => {
@@ -82,7 +83,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
   };
 
   // ant form 전송
-  const onFinish = (values) => {
+  const onFinish = values => {
     console.log("Success:", values);
 
     const newTodo = {
@@ -94,6 +95,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
       startDate: startDate,
       endDate: endDate,
       dateArray: datesInRange,
+      dailyAddNumber: dailyAddNumber,
     };
     console.log("selectedOption.value", selectedOption.value);
     console.log("newTodo", newTodo);
@@ -123,14 +125,13 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
       return false;
     }
   };
-  const onFinishFailed = (errorInfo) => {
+  const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
   };
 
   return (
     <div>
-      <h2>MonthlyForm</h2>
-      <div className="flex justify-between items-center mx-10 my-10">
+      <div className="flex justify-between items-center gap-2">
         <Form
           name="goal input"
           style={{ maxWidth: 1000 }}
@@ -200,6 +201,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           </Form.Item>
         </Form>
 
+        {/* 경고모달 */}
         {/* 경고모달 */}
         <Modal
           // title="로그인 실패..."

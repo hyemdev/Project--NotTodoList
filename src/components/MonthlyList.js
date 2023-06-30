@@ -6,7 +6,7 @@ const MonthlyList = ({ todoData, setTodoData }) => {
   return (
     <div>
       {/* not todo list 출력 */}
-      {/* {todoData.map(item => (
+      {todoData.map(item => (
         <MonthlyListItem
           key={item.id}
           item={item}
@@ -16,7 +16,7 @@ const MonthlyList = ({ todoData, setTodoData }) => {
           todoData={todoData}
           setTodoData={setTodoData}
         />
-      ))} */}
+      ))}
     </div>
   );
 };
