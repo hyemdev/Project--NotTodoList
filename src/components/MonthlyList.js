@@ -11,8 +11,8 @@ const MonthlyList = ({ todoData, setTodoData }) => {
           key={item.id}
           item={item}
           options={item.options}
-          startDate={item.startDate}
-          endDate={item.endDate}
+          startDate={item.startDateFormat}
+          endDate={item.startDateFormat}
           todoData={todoData}
           setTodoData={setTodoData}
         />

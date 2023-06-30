@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { postTodo } from "../api/api";
-import ReactDatePicker from "react-datepicker";
+import ReactDatePicker, { registerLocale } from "react-datepicker";
 import ko from "date-fns/locale/ko";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment/moment";
 import { Button, Input, InputNumber, Radio, Form, Modal } from "antd";
+import getYear from "date-fns/getYear";
+import getMonth from "date-fns/getMonth";
+import { format, parseISO } from "date-fns";
 
 const MonthlyForm = ({ todoData, setTodoData }) => {
   // state 변수
@@ -38,20 +41,27 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
 
   // 만약 당월이라면 현재날짜부터 말일까지
   // 만약 다음달이라면 1일부터 말일까지(제대로 구현안됨. 수정필요)
-  const startDate = moment(new Date()).format("YYYY-MM-DD");
+  // const startDate = moment(new Date()).format("YYYY-MM-DD");
+  const startDate = parseISO(moment(new Date()).format("YYYY-MM-DD"));
+  const startDateFormat = format(startDate, "yyyy-MM-dd");
 
   console.log(startDate);
+  console.log(startDateFormat);
 
-  const endDate = moment(
-    new Date(selectedMonth.getFullYear(), selectedMonth.getMonth() + 1, 0),
-  ).format("YYYY-MM-DD");
+  const endDate = parseISO(
+    moment(
+      new Date(selectedMonth.getFullYear(), selectedMonth.getMonth() + 1, 0),
+    ).format("YYYY-MM-DD"),
+  );
+  const EndDateFormat = format(endDate, "yyyy-MM-dd");
   console.log(endDate);
+  console.log(EndDateFormat);
 
-  // 시작날짜에서 끝날짜까지 배열로 담기
-  const getDatesInRange = (startDate, endDate) => {
+  // 시작날짜~끝날짜 배열로 담기
+  const getDatesInRange = (startDateFormat, EndDateFormat) => {
     const dates = [];
-    const currentDay = moment(startDate);
-    const lastDay = moment(endDate);
+    const currentDay = moment(startDateFormat);
+    const lastDay = moment(EndDateFormat);
 
     while (currentDay <= lastDay) {
       dates.push(currentDay.format("YYYY-MM-DD"));
@@ -61,8 +71,8 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     return dates;
   };
 
-  const datesInRange = getDatesInRange(startDate, endDate);
-  console.log(datesInRange);
+  const datesInRange = getDatesInRange(startDateFormat, EndDateFormat);
+  // console.log(datesInRange);
 
   // 목표명
   const handleStrChange = e => {
@@ -92,8 +102,8 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
       options: selectedOption,
       goalNumber: goalNumValue,
       completed: false,
-      startDate: startDate,
-      endDate: endDate,
+      startDate: startDateFormat,
+      endDate: EndDateFormat,
       dateArray: datesInRange,
       dailyAddNumber: dailyAddNumber,
     };
@@ -129,6 +139,8 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     console.log("Failed:", errorInfo);
   };
 
+  registerLocale("ko", ko);
+
   return (
     <div>
       <div className="flex justify-between items-center gap-2">
@@ -147,7 +159,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           <ReactDatePicker
             selected={selectedMonth}
             onChange={date => setSelectedMonth(date)}
-            locale={ko}
+            locale="ko"
             dateFormat="MM/yyyy"
             minDate={new Date()} // 오늘날짜 이전은 선택못하게
             showMonthYearPicker
