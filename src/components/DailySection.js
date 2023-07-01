@@ -2,8 +2,16 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import moment from "moment";
 import MonthlyAdd from "../pages/MonthlyAdd";
+import {
+  DailyTable,
+  DailyTableThBtn,
+  DailyTableThNumber,
+  DailyTableThTitle,
+  DailyTableThead,
+  DailyTableTr,
+} from "../style/DailySectionCSS";
 
-const DailySection = ({ initTodoData, todoData, setTodoData }) => {
+const DailySection = ({ todoData, setTodoData }) => {
   //월간목표 추가하기용 모달창
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,6 +40,7 @@ const DailySection = ({ initTodoData, todoData, setTodoData }) => {
       // 오늘날짜와 일치하는 자료만 찾아서 배열로 만들자
       const matchingDates = todoData.filter(
         item => item["dateArray[]"] == todayDate,
+        console.log("[]", todoData["dateArray[]"]),
       );
       // todayDate()
       console.log("matchingDates", matchingDates); // 오늘과 일치하는 날짜를 포함하는 배열 출력
@@ -128,7 +137,18 @@ const DailySection = ({ initTodoData, todoData, setTodoData }) => {
           <h2>DailyNotTodo</h2>
           <span> today :{isToday}</span>
           <div>
-            {/* today not todo list 출력창 */}
+            <DailyTable>
+              <DailyTableThead>
+                <DailyTableTr>
+                  <DailyTableThTitle>목표</DailyTableThTitle>
+                  <DailyTableThNumber>목표수량</DailyTableThNumber>
+                  <DailyTableThNumber>누적수량</DailyTableThNumber>
+                  <DailyTableThNumber>오늘수량</DailyTableThNumber>
+                  <DailyTableThBtn></DailyTableThBtn>
+                  {/* today not todo list 출력창 */}
+                </DailyTableTr>
+              </DailyTableThead>
+            </DailyTable>
             {showNotTodoList()}
           </div>
           <div>

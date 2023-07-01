@@ -44,30 +44,30 @@ export const AddListTr = styled.div`
   height: 50px;
 `;
 
-export const AddTableThBtn = styled.span`
-  font-weight: 500;
-  padding: 12px 3px;
-  width: 10%;
-`;
 
 export const AddTableThDate = styled.span`
   font-weight: 500;
   padding: 12px 3px;
   width: 20%;
   text-align: center;
-`;
+  `;
 export const AddTableThTitle = styled.span`
   font-weight: 500;
   padding: 12px 3px;
   width: 30%;
   text-align: center;
-`;
+  `;
 export const AddTableThNumber = styled.span`
   font-weight: 500;
   padding: 12px 3px;
   width: 15%;
   text-align: center;
-`;
+  `;
+  export const AddTableThBtn = styled.span`
+    font-weight: 500;
+    padding: 12px 3px;
+    width: 10%;
+  `;
 
 export const AddTableThContent = styled.span`
   padding: 5px 3px;

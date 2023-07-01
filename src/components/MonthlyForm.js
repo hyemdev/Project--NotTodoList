@@ -143,10 +143,8 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
 
   return (
     <div>
-      <div className="flex justify-between items-center gap-2">
         <Form
-          name="goal input"
-          style={{ maxWidth: 1000 }}
+          name="goalInput"
           // 초기값 설정하기. { label : "원하는 초기값" }
           initialValues={""}
           // 실제로 post하는 자리
@@ -200,18 +198,12 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
               display: "inline-block",
             }}
           >
-            <InputNumber size="large" />
+            <Input size="large" />
           </Form.Item>
           <Form.Item
-            wrapperCol={{ offset: 8, span: 16 }}
-            // onSubmit={handleSummit}
-            style={{ margin: "0 auto" }}
+          // wrapperCol={{ offset: 8, span: 16 }}
           >
-            {" "}
-            <Button
-              htmlType="submit"
-              size="large"
-            >
+            <Button htmlType="submit" size="large">
               Submit
             </Button>
           </Form.Item>
@@ -235,7 +227,6 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           <p>{modalMessage}</p>
         </Modal>
       </div>
-    </div>
   );
 };
 
