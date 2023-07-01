@@ -19,7 +19,7 @@ const BriefSection = () => {
   },[])
 
   return (
-    <div className="h-auto bg-slate-50 rounded-md p-10">
+    <div>
       <div className="text-3xl">
         <form>
           <input type="text" className="w-12 h-7 text-xlindent-0.5 float-left" />

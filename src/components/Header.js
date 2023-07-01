@@ -1,51 +1,41 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import Footer from "./Footer";
+import {
+  HeaderNav,
+  HeaderNavLi,
+  HeaderSubtitle,
+  HeaderTitle,
+  HeaderWrap,
+} from "../style/HeaderCSS";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendar, faChartColumn, faHouse,  } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   return (
-    <>
-      <h2 className="text-center font-bold text-4xl">!todo list</h2>
-      <header
-        className="bg-gray-800 h-14 w-11/12
-    mx-auto"
-      >
-        <div className="">
-          <ul className="flex item-center justify-around mt-2">
-            <li className="pt-3">
-              <Link
-                to="/main"
-                className="text-white hover:text-red-600 text-lg "
-              >
-                {" "}
-                [main]{" "}
-              </Link>
-            </li>
-            <li className="pt-3">
-              <Link
-                to="/monthlycalendar"
-                className="text-white hover:text-red-600 text-lg "
-              >
-                {" "}
-                [calendar]{" "}
-              </Link>
-            </li>
-            <li className="pt-3">
-              <Link
-                to="/summary"
-                className="text-white hover:text-red-600 text-lg"
-              >
-                {" "}
-                [statistic]{" "}
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </header>
-      <hr className="my-8 border-2 border-black w-screen"></hr>
+    <div>
+      <HeaderWrap>
+        <HeaderTitle>!Todo List</HeaderTitle>
+        <HeaderSubtitle>Record your bad things.</HeaderSubtitle>
+        <header>
+          <div>
+            <HeaderNav>
+              <HeaderNavLi>
+                <Link to="/main"> <FontAwesomeIcon icon={faHouse} className="text-lg"/> <p>MAIN</p></Link>
+              </HeaderNavLi>
+              <HeaderNavLi>
+                <Link to="/monthlycalendar"> <FontAwesomeIcon icon={faCalendar} className="text-lg"/> <p>CALENDAR</p> </Link>
+              </HeaderNavLi>
+              <HeaderNavLi>
+                <Link to="/summary"> <FontAwesomeIcon icon={faChartColumn} className="text-lg"/> <p>STATISTICS</p></Link>
+              </HeaderNavLi>
+            </HeaderNav>
+          </div>
+        </header>
+      </HeaderWrap>
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import { deleteTodo, patchTitleTodo } from "../api/api";
+import {
+  AddListTr,
+  AddTableButton,
+  AddTableThBtn,
+  AddTableThContent,
+  AddTableThDate,
+  AddTableThNumber,
+  AddTableThTitle,
+  AddTableTr,
+} from "../style/MonthlyAddCSS";
 
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
   //state
@@ -17,20 +27,21 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
   // 이벤트핸들러
   // complete변경
-  const handleCompleteChange = _id => {
-    console.log("_id", _id);
+  // const handleCompleteChange = _id => {
+  //   console.log("_id", _id);
 
-    // newTodoData에 배열(map)을 담아라. id가 동일하면 completed를 false로
-    let newTodoData = todoData.map(item => {
-      if (item.id === _id) {
-        // id값이 일치하다면 complete값을 반대로 돌리자
-        item.completed = !item.completed;
-      }
-      return item;
-    });
-    setTodoData(newTodoData);
-  };
+  //   // newTodoData에 배열(map)을 담아라. id가 동일하면 completed를 false로
+  //   let newTodoData = todoData.map(item => {
+  //     if (item.id === _id) {
+  //       // id값이 일치하다면 complete값을 반대로 돌리자
+  //       item.completed = !item.completed;
+  //     }
+  //     return item;
+  //   });
+  //   setTodoData(newTodoData);
+  // };
 
+  
   // 선택삭제
   const handleDeleteClick = _id => {
     // tododata중 id가 겹치지않는것만 담는다.
@@ -83,74 +94,80 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     //수정중인 상태
     return (
       <div>
-        <div className="flex justify-around items-center text-center w-full p-2 bg-blue-100 rounded-lg dark:bg-white my-2">
-          <input
-            className="font-bold text-indigo-950"
-            type="text"
-            defaultValue={editTitle}
-            onChange={handleStrEditChange}
-          />
-          <Select
-            className="font-bold text-indigo-950 w-24"
-            defaultValue={editSelect}
-            onChange={handleSelectEditChange}
-            options={selectTimePrice}
-          />
-          <input
-            className="font-bold text-indigo-950"
-            type="number"
-            defaultValue={editGoalNumber}
-            onChange={handleNumEditChange}
-          />
-          <button
+        <AddListTr>
+          <AddTableThDate className="w-10">
+            {item.startDate}~{item.endDate}
+          </AddTableThDate>
+          <AddTableThTitle>
+            <input
+              type="text"
+              defaultValue={editTitle}
+              onChange={handleStrEditChange}
+            />
+          </AddTableThTitle>
+          <AddTableThNumber>
+            <Select
+              defaultValue={editSelect}
+              onChange={handleSelectEditChange}
+              options={selectTimePrice}
+            />
+          </AddTableThNumber>
+          <AddTableThNumber>
+            <input
+              type="number"
+              defaultValue={editGoalNumber}
+              onChange={handleNumEditChange}
+            />
+          </AddTableThNumber>
+          <AddTableButton
             onClick={() => handleSaveClick(item.id)}
-            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           >
             save
-          </button>
-          <button
+          </AddTableButton>
+          <AddTableButton
             onClick={handleCancelClick}
-            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           >
             cancel
-          </button>
-        </div>
+          </AddTableButton>
+        </AddListTr>
       </div>
     );
   } else {
     // 평소상태
     return (
-      <div>
-        <div className="flex justify-around items-center text-center w-full p-2 bg-blue-100 rounded-lg dark:bg-white my-2">
-          <input
+      <AddListTr>
+        {/* <input
             type="checkbox"
             defaultChecked={item.completed}
             value={item.completed}
             onChange={() => handleCompleteChange(item.id)}
-          />
-          <p className="font-bold text-indigo-950">
-            {item.startDate}~{item.endDate}
-          </p>
-          <span className="font-bold text-indigo-950">{item.title}</span>
-          <span className="font-bold text-indigo-950">{item.options}</span>
-          <span className="font-bold text-indigo-950">{item.goalNumber}</span>
-          {/* 편집/ 삭제 버튼 만들기 */}
-          <button
-            onClick={handleEditClick}
-            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-          >
-            {" "}
-            edit
-          </button>
-          <button
-            onClick={() => handleDeleteClick(item.id)}
-            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-          >
-            {" "}
-            del
-          </button>
-        </div>
-      </div>
+          /> */}
+        <AddTableThDate>
+          {item.startDate}~{item.endDate}
+        </AddTableThDate>
+        <AddTableThTitle>{item.title}</AddTableThTitle>
+        <AddTableThNumber>{item.options}</AddTableThNumber>
+        <AddTableThNumber>
+          {item.goalNumber}
+        </AddTableThNumber>
+        {/* 편집/ 삭제 버튼 만들기 */}
+        <AddTableButton
+          onClick={handleEditClick}
+          className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+        >
+          {" "}
+          edit
+        </AddTableButton>
+        <AddTableButton
+          onClick={() => handleDeleteClick(item.id)}
+          className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+        >
+          {" "}
+          del
+        </AddTableButton>
+      </AddListTr>
     );
   }
 };

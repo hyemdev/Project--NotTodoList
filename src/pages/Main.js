@@ -2,22 +2,36 @@ import React from "react";
 import MemoSection from "../components/MemoSection";
 import BriefSection from "../components/BriefSection";
 import DailySection from "../components/DailySection";
+import {
+  MainFlex,
+  MainRight,
+  MainWrap,
+  MainLeft,
+  BriefData,
+  Memo,
+} from "../style/MainCSS";
 
 const Main = ({ todoData, setTodoData }) => {
   return (
-    <>
-      <div className="grid grid-rows-3 grid-flow-col gap-1 mt-2 ">
-        <div className="box-border h-full p-4">
-          <MemoSection />
-        </div>
-        <div className="row-span-2 box-border h-full p-4">
+    <MainWrap>
+      <MainFlex>
+        <MainLeft>
+          <Memo>
+            {/* 컴포넌트 */}
+            <MemoSection />
+          </Memo>
+          <BriefData>
+          {/* 컴포넌트 */}
           <BriefSection />
-        </div>
-        <div className="row-span-3 box-border h-full p-4">
-          <DailySection todoData={todoData} setTodoData={setTodoData} />
-        </div>
-      </div>
-    </>
+          </BriefData>
+        </MainLeft>
+        <MainRight>
+            {/*  컴포넌트 */}
+            <DailySection todoData={todoData} setTodoData={setTodoData} />
+
+        </MainRight>
+      </MainFlex>
+    </MainWrap>
   );
 };
 
