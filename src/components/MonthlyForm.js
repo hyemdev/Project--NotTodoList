@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { postTodo } from "../api/api";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
+import "../style/CustomDatePicker.css";
 import ko from "date-fns/locale/ko";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment/moment";
@@ -8,6 +9,7 @@ import { Button, Input, InputNumber, Radio, Form, Modal } from "antd";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 import { format, parseISO } from "date-fns";
+import { AddFormWrap, FormLabel, SaveBtn } from "../style/MonthlyAddCSS";
 
 const MonthlyForm = ({ todoData, setTodoData }) => {
   // state 변수
@@ -119,21 +121,21 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     setStrValue("");
     setGoalNumValue("");
 
-    if (!values.title) {
-      showModal();
-      setModalMessage("목표를 입력해야 합니다");
-      return false;
-    }
+    // if (!values.title) {
+    //   showModal();
+    //   setModalMessage("목표를 입력해야 합니다");
+    //   return false;
+    // }
     if (!values.options) {
       showModal();
       setModalMessage("단위를 입력해야 합니다");
       return false;
     }
-    if (!values.goalNumber) {
-      showModal();
-      setModalMessage("목표수량을 선택해야 합니다");
-      return false;
-    }
+    // if (!values.goalNumber) {
+    //   showModal();
+    //   setModalMessage("목표수량을 선택해야 합니다");
+    //   return false;
+    // }
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
@@ -143,6 +145,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
 
   return (
     <div>
+      <AddFormWrap>
         <Form
           name="goalInput"
           // 초기값 설정하기. { label : "원하는 초기값" }
@@ -153,80 +156,97 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           autoComplete="off"
           layout="vertical"
         >
-          <label>월 선택:</label>
-          <ReactDatePicker
-            selected={selectedMonth}
-            onChange={date => setSelectedMonth(date)}
-            locale="ko"
-            dateFormat="MM/yyyy"
-            minDate={new Date()} // 오늘날짜 이전은 선택못하게
-            showMonthYearPicker
-            startDate={startDate}
-            endDate={endDate}
-          />
-          <Form.Item
-            label="한달 목표"
-            name="title"
-            value={strValue}
-            onChange={handleStrChange}
-            style={{
-              width: "250px",
-              display: "inline-block",
-            }}
-          >
-            <Input size="large" />
-          </Form.Item>
-          <Form.Item
-            label="목표 단위"
-            name="options"
-            options={selectTimePrice}
-            onChange={handleSelectedOption}
-            style={{ display: "inline-block" }}
-          >
-            <Radio.Group style={{ display: "inline-block" }} size="large">
-              <Radio.Button value="TIME">TIME</Radio.Button>
-              <Radio.Button value="PRICE">PRICE</Radio.Button>
-            </Radio.Group>
-          </Form.Item>
-          <Form.Item
-            label="목표수량"
-            name="goalNumber"
-            value={goalNumValue}
-            onChange={handleNumChange}
-            style={{
-              width: "120px",
-              display: "inline-block",
-            }}
-          >
-            <Input size="large" />
-          </Form.Item>
-          <Form.Item
-          // wrapperCol={{ offset: 8, span: 16 }}
-          >
-            <Button htmlType="submit" size="large">
-              Submit
-            </Button>
-          </Form.Item>
+          <div>
+            <FormLabel>월 선택</FormLabel>
+            <ReactDatePicker
+              className="custom-datepicker"
+              selected={selectedMonth}
+              onChange={date => setSelectedMonth(date)}
+              locale="ko"
+              dateFormat="yyyy/MM"
+              minDate={new Date()} // 오늘날짜 이전은 선택못하게
+              showMonthYearPicker
+              startDate={startDate}
+              endDate={endDate}
+            />
+          </div>
+          <div>
+            <Form.Item
+              // label="한달 목표"
+              name="title"
+              value={strValue}
+              onChange={handleStrChange}
+              rules={[
+                {
+                  required: true,
+                  message: "목표를 입력하세요",
+                },
+              ]}
+            >
+              <FormLabel>한달목표</FormLabel>
+              <Input size="large" />
+            </Form.Item>
+          </div>
+          <div>
+            <Form.Item
+              // label="목표 단위"
+              name="options"
+              options={selectTimePrice}
+              onChange={handleSelectedOption}
+            >
+              <FormLabel>단위</FormLabel>
+              <Radio.Group style={{ display: "inline-block" }} size="large">
+                <Radio.Button value="TIME">TIME</Radio.Button>
+                <Radio.Button value="PRICE">PRICE</Radio.Button>
+              </Radio.Group>
+            </Form.Item>
+          </div>
+          <div>
+            <Form.Item
+              // label="목표수량"
+              name="goalNumber"
+              value={goalNumValue}
+              onChange={handleNumChange}
+              rules={[
+                {
+                  required: true,
+                  message: "수량을 입력하세요",
+                },
+              ]}
+            >
+              <FormLabel>목표수량</FormLabel>
+              <Input size="large" />
+            </Form.Item>
+          </div>
+          <div>
+            <Form.Item>
+              <SaveBtn>
+                <Button htmlType="submit" size="large">
+                  SAVE
+                </Button>
+              </SaveBtn>
+            </Form.Item>
+          </div>
         </Form>
-
-        {/* 경고모달 */}
-        {/* 경고모달 */}
-        <Modal
-          // title="로그인 실패..."
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          centered
-          footer={
-            <Button key="back" onClick={handleOk}>
-              Return
-            </Button>
-          }
-        >
-          <p>안내!</p>
-          <p>{modalMessage}</p>
-        </Modal>
-      </div>
+      </AddFormWrap>
+      {/* 경고모달 */}
+      {/* 경고모달 */}
+      <Modal
+        // title="로그인 실패..."
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        centered
+        footer={
+          <Button key="back" onClick={handleOk}>
+            Return
+          </Button>
+        }
+      >
+        <p>안내!</p>
+        <p>{modalMessage}</p>
+      </Modal>
+    </div>
   );
 };
 

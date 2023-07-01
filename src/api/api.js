@@ -70,6 +70,17 @@ const patchTitleTodo = async (_id, item) => {
     console.log(error);
   }
 };
+
+//daily추가수량 수정기능
+const patchDailyAddNum = async (_id, item) => {
+  try {
+    const res = await axiosInstance.patch(`/todos/${_id}`, item);
+    const data = res.data;
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 // 메모 수정기능(덮어씌우기)
 const putOneMemo = async (_id, OneMemo) => {
   try {
@@ -100,6 +111,7 @@ export {
   postOneMemo,
   getTodo,
   postTodo,
-  patchTitleTodo,
   deleteTodo,
+  patchDailyAddNum,
+  patchTitleTodo,
 };

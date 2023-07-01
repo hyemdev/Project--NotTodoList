@@ -15,8 +15,8 @@ const Header = () => {
   return (
     <div>
       <HeaderWrap>
-        <HeaderTitle>!todo list</HeaderTitle>
-        <HeaderSubtitle>Write your bad things.</HeaderSubtitle>
+        <HeaderTitle>!Todo List</HeaderTitle>
+        <HeaderSubtitle>Record your bad things.</HeaderSubtitle>
         <header>
           <div>
             <HeaderNav>

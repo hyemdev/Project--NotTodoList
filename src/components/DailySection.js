@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import moment from "moment";
 import MonthlyAdd from "../pages/MonthlyAdd";
 import {
+  DailyListDiv,
   DailyTable,
   DailyTableThBtn,
   DailyTableThNumber,
@@ -10,14 +11,12 @@ import {
   DailyTableThead,
   DailyTableTr,
 } from "../style/DailySectionCSS";
+import DailyList from "./DailyList";
+import { Dddd } from "../style/MonthlyAddCSS";
 
 const DailySection = ({ todoData, setTodoData }) => {
   //월간목표 추가하기용 모달창
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // 데일리낫투두 수정 관련 state
-  const [dailyEdit, setDailyEdit] = useState(false);
-  const [dailyEditAddNum, setDailyEditAddNum] = useState(false);
 
   // 오늘의 날짜
   const isToday = moment().format("YYYY-MM-DD");
@@ -31,165 +30,66 @@ const DailySection = ({ todoData, setTodoData }) => {
     setIsModalOpen(false);
   };
 
-  // Daily not todo list 출력
-  const showNotTodoList = () => {
-    if (todoData) {
-      // 오늘날짜 포맷에 맞게 출력하기
-      const todayDate = moment().format("YYYY-MM-DD");
-      console.log("todayDate", todayDate);
-      // 오늘날짜와 일치하는 자료만 찾아서 배열로 만들자
-      const matchingDates = todoData.filter(
-        item => item["dateArray[]"] == todayDate,
-        console.log("[]", todoData["dateArray[]"]),
-      );
-      // todayDate()
-      console.log("matchingDates", matchingDates); // 오늘과 일치하는 날짜를 포함하는 배열 출력
-      // matchingDates();
-
-      console.log(todoData["dateArray[]"]);
-
-      if (matchingDates.length > 0) {
-        return matchingDates.map(item => (
-          <div key={item.id}>
-            <div className="flex justify-around items-center text-center w-full p-2 bg-blue-100 rounded-lg dark:bg-white my-2">
-              <div className="w-1/2">{item.title}</div>
-              <div>{item.options}</div>
-              <button
-                onClick={handleEditClick}
-                className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-              >
-                수정
-              </button>
-            </div>
-          </div>
-        ));
-      }
-    }
-  };
-
-  // 이벤트 핸들러
-  //선택편집(버튼활성화하기)
-  const handleEditClick = _id => {
-    console.log("handleEdit_id", _id);
-    setDailyEdit(true);
-  };
-  const handleDailySaveClick = _id => {
-    let newTodoData = todoData.map(item => {
-      if (item.id === _id) {
-        item.dailyAddNumber = dailyEditAddNum;
-      }
-      return item;
-    });
-    setTodoData(newTodoData);
-
-    // patchDailyAddNum(_id, { ...item });
-    setDailyEdit(false);
-  };
-
-  // 일일수량 변경
-  const handleDailyNumEditChange = e => {
-    setDailyEditAddNum(e.target.value);
-  };
-
-  // 일일수량 변경 취소
-  const handleDailyCancelClick = () => {
-    setDailyEdit(false);
-  };
-
-  //
-  useEffect(() => {
-    showNotTodoList();
-  }, []);
-
-  if (dailyEdit) {
-    // 수정중인 상태
-    return (
+  //  평소상태
+  return (
+    <>
       <div>
-        <div>{todoData.title}</div>
-        <div>누적숫자</div>
-        <div>{todoData.options}</div>
-        <div>{todoData.goalNumber}</div>
-        <input
-          className="font-bold text-indigo-950"
-          type="number"
-          defaultValue={dailyEditAddNum}
-          onChange={handleDailyNumEditChange}
-        />
-        <button
-          onClick={() => handleDailySaveClick(todoData.id)}
-          className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-        >
-          저장
-        </button>
-        <button
-          onClick={handleDailyCancelClick}
-          className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-        >
-          취소
-        </button>
-      </div>
-    );
-  } else {
-    //  평소상태
-    return (
-      <>
+        <h2>DailyNotTodo</h2>
+        <span> today :{isToday}</span>
         <div>
-          <h2>DailyNotTodo</h2>
-          <span> today :{isToday}</span>
-          <div>
-            <DailyTable>
-              <DailyTableThead>
-                <DailyTableTr>
-                  <DailyTableThTitle>목표</DailyTableThTitle>
-                  <DailyTableThNumber>목표수량</DailyTableThNumber>
-                  <DailyTableThNumber>누적수량</DailyTableThNumber>
-                  <DailyTableThNumber>오늘수량</DailyTableThNumber>
-                  <DailyTableThBtn></DailyTableThBtn>
-                  {/* today not todo list 출력창 */}
-                </DailyTableTr>
-              </DailyTableThead>
-            </DailyTable>
-            {showNotTodoList()}
-          </div>
-          <div>
-            <Modal
-              isOpen={isModalOpen}
-              onRequestClose={closeModal}
-              contentLabel="모달"
-              style={{
-                content: {
-                  width: "70%",
-                  height: "50%",
-                  margin: "auto",
-                },
-              }}
-            >
-              <h1>
-                <MonthlyAdd todoData={todoData} setTodoData={setTodoData} />
-              </h1>
-              <div className="flex justify-center mt-10">
+          <DailyTable>
+            <DailyTableThead>
+              <DailyTableTr>
+                <DailyTableThTitle>목표</DailyTableThTitle>
+                <DailyTableThNumber>목표수량</DailyTableThNumber>
+                <DailyTableThNumber>누적수량</DailyTableThNumber>
+                <DailyTableThNumber>오늘수량</DailyTableThNumber>
+                <DailyTableThBtn></DailyTableThBtn>
+              </DailyTableTr>
+            </DailyTableThead>
+          </DailyTable>
+          {/* today list 출력창 */}
+          <DailyListDiv>
+            <DailyList todoData={todoData} setTodoData={setTodoData} />
+          </DailyListDiv>
+        </div>
+        <div>
+          <Modal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="모달"
+            style={{
+              content: {
+                width: "70%",
+                height: "60%",
+                margin: "auto",
+                borderRadius: "20px",
+              },
+            }}
+          >
+            <h1>
+              <MonthlyAdd todoData={todoData} setTodoData={setTodoData} />
+            </h1>
                 <button
                   type="button"
                   className="mt-10 py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                   onClick={closeModal}
                 >
-                  닫기
+                  CLOSE
                 </button>
-              </div>
-            </Modal>
-          </div>
-          <div className="flex flex-col items-center justify-end mt-10">
-            <button
-              onClick={openModal}
-              className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-            >
-              월간목표 설정하기
-            </button>
-          </div>
+          </Modal>
         </div>
-      </>
-    );
-  }
+        <div className="flex flex-col items-center justify-end mt-10">
+          <button
+            onClick={openModal}
+            className="w-80 py-4 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold text-xl shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            월간목표 설정하기
+          </button>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default DailySection;

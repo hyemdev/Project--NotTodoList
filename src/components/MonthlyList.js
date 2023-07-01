@@ -1,7 +1,5 @@
 import React from "react";
 import MonthlyListItem from "./MonthlyListItem";
-import { AddTableTr } from "../style/MonthlyAddCSS";
-
 const MonthlyList = ({ todoData, setTodoData }) => {
   console.log(todoData);
   return (

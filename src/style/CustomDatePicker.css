@@ -1,0 +1,125 @@
+.custom-datepicker {
+  /* Custom styles for date picker */
+  /* background-color: #f2f2f2; */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  color: #333;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+}
+.react-datepicker--open {
+  /* Custom styles when datepicker is open */
+  z-index: 9999;
+}
+  .react-datepicker__portal {
+  /* Custom styles for portal container (when datepicker is outside of root element) */
+  position: fixed;
+  background-color: #eff6ff;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.react-datepicker__input-container {
+  /* Custom styles for input container */
+  position: relative;
+}
+.react-datepicker__input-container:hover {
+  /* Custom styles for input container */
+  /* border: 1px solid #4096ff;
+  border-radius: 12px;
+  box-sizing: border-box; */
+}
+
+.custom-datepicker .react-datepicker__input-container input {
+  /* Custom styles for input element */
+  width: 100%;
+  height: 36px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+}
+
+.custom-datepicker .react-datepicker__month-container {
+  /* Custom styles for month container */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.react-datepicker__month {
+  /* Custom styles for month container */
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.react-datepicker__month--selected {
+  /* Custom styles for selected month */
+  background-color: #ccc;
+  color: #fff;
+}
+
+.react-datepicker__month--disabled {
+  /* Custom styles for disabled month */
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.react-datepicker__header.react-datepicker-year-header {
+  background: #fff;
+}
+.react-datepicker__navigation-icon--next {
+  top: 5px;
+}
+.react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow,
+.react-datepicker__navigation-icon::before {
+  top: 14px;
+}
+
+.react-datepicker__month-text {
+  /* Custom styles for month text */
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.custom-datepicker .react-datepicker__day-names {
+  /* Custom styles for day names */
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.custom-datepicker .react-datepicker__day {
+  /* Custom styles for days */
+  padding: 5px;
+  font-size: 14px;
+}
+
+.custom-datepicker .react-datepicker__day--today {
+  /* Custom styles for today's date */
+  font-weight: bold;
+  color: #333;
+}
+
+.custom-datepicker .react-datepicker__day--selected {
+  /* Custom styles for selected date */
+  background-color: #ccc;
+  color: #fff;
+}
+.react-datepicker__month {
+  background: #fff;
+  border: 0;
+}
