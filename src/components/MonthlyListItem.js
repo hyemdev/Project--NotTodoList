@@ -4,12 +4,9 @@ import { deleteTodo, patchTitleTodo } from "../api/api";
 import {
   AddListTr,
   AddTableButton,
-  AddTableThBtn,
-  AddTableThContent,
   AddTableThDate,
   AddTableThNumber,
   AddTableThTitle,
-  AddTableTr,
 } from "../style/MonthlyAddCSS";
 
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
