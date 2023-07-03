@@ -31,6 +31,10 @@ const getTodo = async setTodoData => {
   }
 };
 
+// todo data get
+
+
+
 //post
 //todo data post
 const postTodo = async newTodo => {
