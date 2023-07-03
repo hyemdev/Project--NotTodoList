@@ -15,7 +15,7 @@ import { Footer } from "antd/es/layout/layout";
 import { useEffect, useState } from "react";
 import MonthlyAdd from "./pages/MonthlyAdd";
 import { getTodo } from "./api/api";
-import DailyCalendarList from "./pages/DailyCalendarList";
+import CalendarDayList from "./pages/CalenderDayList";
 
 function App() {
   const [todoData, setTodoData] = useState([]);
@@ -68,9 +68,9 @@ function App() {
               }
             />
             <Route
-              path="/dailycalendarlist"
+              path="/calendardaylist"
               element={
-                <DailyCalendarList
+                <CalendarDayList
                   todoData={todoData}
                   setTodoData={setTodoData}
                 />

@@ -10,18 +10,31 @@ const axiosInstance = axios.create({
   },
 });
 
+// Memo get
+const getMemo = async setOneMemo => {
+  try {
+    const res = await axiosInstance.get("/todos");
+    const result = res.data;
+    console.log("result", result);
+
+    setOneMemo(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // todo data get
 const getTodo = async setTodoData => {
   try {
     const res = await axiosInstance.get("/todos");
     const result = res.data;
 
-    const todosArr = result.map(item => {
-      item.completed = JSON.parse(item.completed);
-      item.id = JSON.parse(item.id);
-    });
-    console.log("todosArr", todosArr);
-    setTodoData(todosArr);
+    // const todosArr = result.map(item => {
+    //   item.completed = JSON.parse(item.completed);
+    //   item.id = JSON.parse(item.id);
+    // });
+    // console.log("todosArr", todosArr);
+    // setTodoData(todosArr);
 
     console.log("result", result);
 
@@ -30,10 +43,6 @@ const getTodo = async setTodoData => {
     console.log(error);
   }
 };
-
-// todo data get
-
-
 
 //post
 //todo data post
@@ -75,10 +84,12 @@ const patchTitleTodo = async (_id, item) => {
   }
 };
 
-//daily추가수량 수정기능
-const putDailyAddNum = async (_id, item) => {
+//daily오늘수량 수정기능
+const patchDailyAddNum = async (_id, dailyEditTodayNum) => {
   try {
-    const res = await axiosInstance.put(`/todos/${_id}`, item);
+    const res = await axiosInstance.patch(`/todos/${_id}`, {
+      dailyAddNumber: dailyEditTodayNum,
+    });
     const data = res.data;
     console.log(data);
   } catch (error) {
@@ -112,11 +123,12 @@ const deleteTodo = async _id => {
 
 export {
   axiosInstance,
+  getTodo,
+  getMemo,
   putOneMemo,
   postOneMemo,
-  getTodo,
   postTodo,
   deleteTodo,
-  putDailyAddNum,
+  patchDailyAddNum,
   patchTitleTodo,
 };

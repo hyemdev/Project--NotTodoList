@@ -11,7 +11,7 @@ import {
   DailyListTr,
   DailyListWrap,
 } from "../style/DailySectionCSS";
-import { putDailyAddNum } from "../api/api";
+import { patchDailyAddNum } from "../api/api";
 
 const DailyList = ({ todoData, setTodoData }) => {
   // 데일리낫투두 수정 관련 state
@@ -43,9 +43,9 @@ const DailyList = ({ todoData, setTodoData }) => {
                 <DailyListTitle>{item.title}</DailyListTitle>
                 <DailyListNumber>{item.goalNumber}</DailyListNumber>
                 <DailyListNumber>{item.accumulateNumber}</DailyListNumber>
-                <DailyListNumber>{item.dailyEditTodayNum}</DailyListNumber>
+                <DailyListNumber>{item.dailyAddNumber}</DailyListNumber>
                 <DailyListBtn
-                  onClick={() => handleEditClick(item.id)}
+                  onClick={() => handleEditClick(item)}
                   className="p-2 m-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                 >
                   수정
@@ -59,9 +59,9 @@ const DailyList = ({ todoData, setTodoData }) => {
   };
   // 이벤트 핸들러
   //선택편집(버튼활성화하기)
-  const handleEditClick = _id => {
-    console.log("handleEdit_id", _id);
-    setDailyEdit(true);
+  const handleEditClick = item => {
+    console.log("handleEdit_id", item.id);
+    setDailyEdit(item);
   };
 
   // 일일수량 변경
@@ -84,8 +84,9 @@ const DailyList = ({ todoData, setTodoData }) => {
     });
     setTodoData(newTodoData);
 
-    putDailyAddNum(_id, { dailyAddNumber: dailyEditTodayNum  });
+    patchDailyAddNum(_id, dailyEditTodayNum);
     setDailyEdit(false);
+    setDailyEditTodayNum("");
   };
 
   useEffect(() => {
@@ -97,19 +98,21 @@ const DailyList = ({ todoData, setTodoData }) => {
     return (
       <DailyListWrap>
         <DailyEditListTr>
-          <DailyEditListTitle>{todoData.title}</DailyEditListTitle>
-          <DailyEditListNumber>{todoData.goalNumber}</DailyEditListNumber>
+          <DailyEditListTitle>{dailyEdit.title}</DailyEditListTitle>
+          <DailyEditListNumber>{dailyEdit.goalNumber}</DailyEditListNumber>
           <DailyEditListNumber>누적숫자</DailyEditListNumber>
           <DailyEditListNumber>
             <input
               type="number"
-              value={dailyEditTodayNum}
+              defaultValue={dailyEditTodayNum}
               onChange={handleDailyNumEditChange}
             />
           </DailyEditListNumber>
           <DailyEditListBtn>
             <button
-              onClick={handleDailySaveClick}
+              onClick={() => {
+                handleDailySaveClick(dailyEdit.id);
+              }}
               className="w-12 p-2 my-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
             >
               저장

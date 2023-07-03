@@ -9,7 +9,7 @@ import {
   MonthlyCalendarDiv,
   MonthlyCalendarWrap,
 } from "../style/MonthlyCalendarCSS";
-import DailyCalendarList from "./DailyCalendarList";
+import CalendarDayList from "./CalenderDayList";
 
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,7 +76,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
         >
           <div>
             <h2>daily 상세내역 출력</h2>
-            <DailyCalendarList />
+            <CalendarDayList />
           </div>
           <div className="flex justify-center mt-10">
             <button

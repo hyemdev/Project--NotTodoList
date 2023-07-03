@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { postOneMemo, putOneMemo } from "../api/api";
+import React, { useEffect, useState } from "react";
+import { getMemo, postOneMemo, putOneMemo } from "../api/api";
 import {
   MemoDiv,
   MemoForm,
@@ -13,50 +13,55 @@ const MemoSection = () => {
 
   //
   const handleMemoChange = e => {
-    console.log("memo", e.target.value);
+    // console.log("memo", e.target.value);
     setOneMemo(e.target.value);
   };
   // 메모수정창 열기
   const handleMemoEditClick = _id => {
-    console.log("handleEdit_id", _id);
+    // console.log("handleEdit_id", _id);
     setMemoIsEdit(true);
   };
   //메모 수정 취소하기
   const handleMemoCancelClick = () => {
     setMemoIsEdit(false);
   };
-  //메모 저장 PUT
-  const handleMemoSaveClick = _id => {
-    setOneMemo(OneMemo);
+  // //메모 저장 PUT
+  // const handleSummit = _id => {
+  //   setOneMemo(OneMemo);
 
-    putOneMemo(_id, OneMemo);
+  //   // putOneMemo(_id, OneMemo);
 
-    setMemoIsEdit(false);
-  };
+  //   setMemoIsEdit(false);
+  // };
 
   // POST
-  const handleSummit = e => {
+  const handleMemoSaveClick = e => {
     // 브라우저 갱신 막기
     e.preventDefault();
     // 빈공백 입력 막기
     const blankRE = /^\s*$/;
-    if (OneMemo === blankRE) {
+    if (blankRE.test(OneMemo)) {
       alert("내용을 입력하세요");
     }
     const newTodo = {
       id: Date.now(),
-      oneMemoDate: OneMemo,
+      oneMemoData: OneMemo,
     };
     console.log("newTodo", newTodo);
 
-    // 변경될 데이터를 뜯어서, 추가하고 배열에 담는다~
-    setOneMemo(OneMemo);
+    setOneMemo(newTodo.oneMemoData);
 
     //Post 하자~~~
     postOneMemo(newTodo);
+    setMemoIsEdit(false);
 
     // 전송완료 된 다음 입력창을 초기화 하자
     // setOneMemo("");
+
+    // 메모내용 get
+    useEffect(() => {
+      getMemo(setOneMemo);
+    }, []);
   };
   if (MemoIsEdit) {
     //수정중인 상태
@@ -64,7 +69,7 @@ const MemoSection = () => {
       <div>
         <MemoSectionTitle>한줄메모</MemoSectionTitle>
         <MemoSectionWrap>
-          <MemoForm onSubmit={handleSummit}>
+          <MemoForm>
             <input
               type="text"
               placeholder="메모를 입력하세요"
@@ -100,7 +105,6 @@ const MemoSection = () => {
             onClick={handleMemoEditClick}
             className="py-2 px-4 mr-10 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           >
-            {" "}
             입력
           </button>
         </MemoSectionWrap>
