@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { postOneMemo,putOneMemo } from "../api/api";
+import { postOneMemo, putOneMemo } from "../api/api";
+import {
+  MemoDiv,
+  MemoForm,
+  MemoSectionTitle,
+  MemoSectionWrap,
+} from "../style/MemoSectionCSS";
 
 const MemoSection = () => {
   const [OneMemo, setOneMemo] = useState("");
@@ -56,46 +62,48 @@ const MemoSection = () => {
     //수정중인 상태
     return (
       <div>
-        <h2>한줄메모</h2>
-        <form onSubmit={handleSummit} className="flex justify-between">
-          <input
-            type="text"
-            placeholder="한줄메모"
-            value={OneMemo}
-            onChange={handleMemoChange}
-            className="w-20 rounded-lg flex-1 appearance-none border border-gray-300 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:ring-2 focus:ring-purple-100 mx-1"
-          />
-          <input
-            onClick={handleMemoSaveClick}
-            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
-            type="submit"
-            value="확인"
-          />
-          <input
-            onClick={handleMemoCancelClick}
-            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
-            type="submit"
-            value="취소"
-          />
-        </form>
+        <MemoSectionTitle>한줄메모</MemoSectionTitle>
+        <MemoSectionWrap>
+          <MemoForm onSubmit={handleSummit}>
+            <input
+              type="text"
+              placeholder="메모를 입력하세요"
+              value={OneMemo}
+              onChange={handleMemoChange}
+              className="w-20 rounded-lg flex-1 appearance-none border border-gray-300 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:ring-2 focus:ring-purple-100 mx-1"
+            />
+            <input
+              onClick={handleMemoSaveClick}
+              className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
+              type="submit"
+              value="확인"
+            />
+            <input
+              onClick={handleMemoCancelClick}
+              className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
+              type="submit"
+              value="취소"
+            />
+          </MemoForm>
+        </MemoSectionWrap>
       </div>
     );
   } else {
     // 평소상태
     return (
       <div>
-        <h2>한줄메모</h2>
-        <div className="flex justify-between bg-slate-200">
-          <span className="w-20 flex-1 appearance-none leading-8 line-h py-2 px-4 text-blue-950 placeholder-gray-400 shadow-sm text-base focus:ring-2 mx-1">
-            {OneMemo}
-          </span>
+        <MemoSectionTitle>한줄메모</MemoSectionTitle>
+        <MemoSectionWrap>
+          <MemoDiv>{OneMemo}</MemoDiv>
           {/* 입력버튼 만들기 */}
           <button
             onClick={handleMemoEditClick}
-            className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-          > 입력
+            className="py-2 px-4 mr-10 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            {" "}
+            입력
           </button>
-        </div>
+        </MemoSectionWrap>
       </div>
     );
   }

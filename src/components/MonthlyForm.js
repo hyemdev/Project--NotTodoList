@@ -9,7 +9,12 @@ import { Button, Input, InputNumber, Radio, Form, Modal } from "antd";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 import { format, parseISO } from "date-fns";
-import { AddFormWrap, FormLabel, SaveBtn } from "../style/MonthlyAddCSS";
+import {
+  AddFormTitle,
+  AddFormWrap,
+  FormLabel,
+  SaveBtn,
+} from "../style/MonthlyAddCSS";
 
 const MonthlyForm = ({ todoData, setTodoData }) => {
   // state 변수
@@ -97,13 +102,14 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
   // ant form 전송
   const onFinish = values => {
     console.log("Success:", values);
-
+    
+    
     const newTodo = {
       id: Date.now(),
       title: strValue,
       options: selectedOption,
       goalNumber: goalNumValue,
-      completed: false,
+      // completed: false,
       startDate: startDateFormat,
       endDate: EndDateFormat,
       dateArray: datesInRange,
@@ -112,7 +118,24 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     console.log("selectedOption.value", selectedOption.value);
     console.log("newTodo", newTodo);
 
+    
     setTodoData([...todoData, newTodo]);
+    
+    // if (!values.title) {
+    //   showModal();
+    //   setModalMessage("목표를 입력해야 합니다");
+    //   return false;
+    // }
+    // if (!values.options) {
+    //   showModal();
+    //   setModalMessage("단위를 입력해야 합니다");
+    //   return false;
+    // }
+    // if (!values.goalNumber) {
+    //   showModal();
+    //   setModalMessage("목표수량을 선택해야 합니다");
+    //   return false;
+    // }
 
     //Post
     postTodo(newTodo);
@@ -121,21 +144,6 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     setStrValue("");
     setGoalNumValue("");
 
-    // if (!values.title) {
-    //   showModal();
-    //   setModalMessage("목표를 입력해야 합니다");
-    //   return false;
-    // }
-    if (!values.options) {
-      showModal();
-      setModalMessage("단위를 입력해야 합니다");
-      return false;
-    }
-    // if (!values.goalNumber) {
-    //   showModal();
-    //   setModalMessage("목표수량을 선택해야 합니다");
-    //   return false;
-    // }
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
@@ -170,23 +178,28 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
               endDate={endDate}
             />
           </div>
-          <div>
+          <AddFormTitle>
             <Form.Item
               // label="한달 목표"
               name="title"
               value={strValue}
               onChange={handleStrChange}
-              rules={[
-                {
-                  required: true,
-                  message: "목표를 입력하세요",
-                },
-              ]}
+              //   rules={[
+              //     {
+              //       required: true,
+              //       message: "목표를 입력하세요",
+              //     },
+              //     { max: 10, message: '목표를 10자이내로 입력하세요' },
+              //     {
+              //       pattern: /^\S/,
+              //       message: '목표를 입력하세요',
+              //     },
+              //   ]}
             >
               <FormLabel>한달목표</FormLabel>
               <Input size="large" />
             </Form.Item>
-          </div>
+          </AddFormTitle>
           <div>
             <Form.Item
               // label="목표 단위"
@@ -205,14 +218,23 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
             <Form.Item
               // label="목표수량"
               name="goalNumber"
-              value={goalNumValue}
+              initialValue={goalNumValue}
               onChange={handleNumChange}
-              rules={[
-                {
-                  required: true,
-                  message: "수량을 입력하세요",
-                },
-              ]}
+              // rules={[
+              //   { max: 10, message: '목표수량을 10자이내로 입력하세요' },
+              //   {
+              //     type: 'number',
+              //     message: "수량을 입력하세요",
+              //   },
+              //   {
+              //     required: true,
+              //     message: "수량을 입력하세요",
+              //   },
+              //   {
+              //     pattern: /^\S/,
+              //     message: '수량을 입력하세요',
+              //   },
+              // ]}
             >
               <FormLabel>목표수량</FormLabel>
               <Input size="large" />
@@ -229,7 +251,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           </div>
         </Form>
       </AddFormWrap>
-      {/* 경고모달 */}
+
       {/* 경고모달 */}
       <Modal
         // title="로그인 실패..."

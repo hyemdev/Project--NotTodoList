@@ -6,6 +6,11 @@ export const MonthlyAddWrap = styled.div`
   height: 100%;
 `;
 
+export const AddModalClose = styled.div`
+display: flex;
+justify-content: center;
+`
+
 // 한달목표 리스트
 export const AddTitleDiv = styled.div``;
 export const AddTitle = styled.h2`
@@ -90,11 +95,15 @@ export const AddFormWrap = styled.div`
   & > Form {
     display: flex;
     justify-content: space-around;
+    margin: 0 30px;
     & > Button {
-      background: red;
     }
   }
 `;
+
+export const AddFormTitle = styled.div`
+width: 300px;
+`
 
 export const FormLabel = styled.p`
   color: #1e293b;

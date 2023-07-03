@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
 
 //DailySection
+export const DailySectionTitle = styled.h2`
+font-weight: 600;
+font-size: 18px;
+`
+
 export const DailyTable = styled.table`
   width: 100%;
   /* text-align: center; */

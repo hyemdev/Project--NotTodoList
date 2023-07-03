@@ -4,6 +4,7 @@ import moment from "moment";
 import MonthlyAdd from "../pages/MonthlyAdd";
 import {
   DailyListDiv,
+  DailySectionTitle,
   DailyTable,
   DailyTableThBtn,
   DailyTableThNumber,
@@ -12,7 +13,7 @@ import {
   DailyTableTr,
 } from "../style/DailySectionCSS";
 import DailyList from "./DailyList";
-import { Dddd } from "../style/MonthlyAddCSS";
+import { AddModalClose, Dddd } from "../style/MonthlyAddCSS";
 
 const DailySection = ({ todoData, setTodoData }) => {
   //월간목표 추가하기용 모달창
@@ -34,7 +35,7 @@ const DailySection = ({ todoData, setTodoData }) => {
   return (
     <>
       <div>
-        <h2>DailyNotTodo</h2>
+        <DailySectionTitle>DailyNotTodo</DailySectionTitle>
         <span> today :{isToday}</span>
         <div>
           <DailyTable>
@@ -70,19 +71,21 @@ const DailySection = ({ todoData, setTodoData }) => {
             <h1>
               <MonthlyAdd todoData={todoData} setTodoData={setTodoData} />
             </h1>
-                <button
-                  type="button"
-                  className="mt-10 py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                  onClick={closeModal}
-                >
-                  CLOSE
-                </button>
+            <AddModalClose>
+              <button
+                type="button"
+                className="mt-5 py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                onClick={closeModal}
+              >
+                CLOSE
+              </button>
+            </AddModalClose>
           </Modal>
         </div>
         <div className="flex flex-col items-center justify-end mt-10">
           <button
             onClick={openModal}
-            className="w-80 py-4 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold text-xl shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            className="w-80 py-3 px-3 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold text-xl shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           >
             월간목표 설정하기
           </button>

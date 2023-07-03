@@ -80,7 +80,7 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
         item.title = editTitle;
         item.options = editSelect;
         item.goalNumber = editGoalNumber;
-        item.completed = false;
+        // item.completed = false;
       }
       return item;
     });

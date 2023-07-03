@@ -11,7 +11,7 @@ import {
   DailyListTr,
   DailyListWrap,
 } from "../style/DailySectionCSS";
-import { patchDailyAddNum } from "../api/api";
+import { putDailyAddNum } from "../api/api";
 
 const DailyList = ({ todoData, setTodoData }) => {
   // 데일리낫투두 수정 관련 state
@@ -84,7 +84,7 @@ const DailyList = ({ todoData, setTodoData }) => {
     });
     setTodoData(newTodoData);
 
-    patchDailyAddNum(_id, { dailyAddNumber: dailyEditTodayNum });
+    putDailyAddNum(_id, { dailyAddNumber: dailyEditTodayNum  });
     setDailyEdit(false);
   };
 
@@ -103,7 +103,7 @@ const DailyList = ({ todoData, setTodoData }) => {
           <DailyEditListNumber>
             <input
               type="number"
-              defaultValue={dailyEditTodayNum}
+              value={dailyEditTodayNum}
               onChange={handleDailyNumEditChange}
             />
           </DailyEditListNumber>
@@ -125,11 +125,7 @@ const DailyList = ({ todoData, setTodoData }) => {
       </DailyListWrap>
     );
   } else {
-    return (
-      <div>
-       {showNotTodoList()}
-      </div>
-    );
+    return <div>{showNotTodoList()}</div>;
   }
 };
 export default DailyList;
