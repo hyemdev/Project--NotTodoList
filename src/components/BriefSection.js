@@ -2,6 +2,7 @@ import { Button, Modal, Space } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+
 const BriefSection = () => {
   const [mostSavedMonth, setMostSavedMonth] = useState("");
   const [mostSavedAmount, setMostSavedAmount] = useState(0);
@@ -92,7 +93,6 @@ const BriefSection = () => {
       <p>총 절약 금액 : {totalSavingAmount}</p>
        */}
       
-
 
       
       {/* <div className="text-center text-2xl">

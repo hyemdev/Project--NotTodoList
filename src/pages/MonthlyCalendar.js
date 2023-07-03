@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import moment from "moment/moment";
 
 import { Calendar } from "react-calendar";
-import { Modal } from "antd";
+import Modal from "react-modal";
 
-import "../style/Calendar.css";
+import "../style/CalendarCSS.css";
+import {
+  MonthlyCalendarDiv,
+  MonthlyCalendarWrap,
+} from "../style/MonthlyCalendarCSS";
+import DailyCalendarList from "../components/DailyCalendarList";
 
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,36 +48,50 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     });
     if (results.length > 0) {
       return results.map(result => (
-        <div key={result.id}>
-          <div>{result.title}</div>
-          {/* <div>{result.options}</div> */}
-          {/* <div>{result.goalNumber}</div> */}
+        <div
+          key={result.id}
+          className="bg-slate-500 border-dotted rounded-md my-1"
+        >
+          <div className="text-slate-50">{result.title}</div>
         </div>
       ));
     }
   };
 
   return (
-    <>
-      <div className="mt-10">
+    <div>
+      <div>
         <Modal
-          title="상세보기"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
+          isOpen={isModalOpen}
+          onRequestClose={handleOk}
+          contentLabel="모달"
+          style={{
+            content: {
+              width: "50%",
+              height: "40%",
+              margin: "auto",
+              borderRadius: "20px"
+            },
+          }}
         >
-          <>
-            <div>
-              <h2>daily 상세내역 출력</h2>
-              title / option / number / 수정버튼 / 삭제버튼
-            </div>
-          </>
+          <div>
+            <h2>daily 상세내역 출력</h2>
+            <DailyCalendarList todoData={todoData} setTodoData={setTodoData} />
+          </div>
+          <div className="flex justify-center mt-10">
+            <button
+              type="button"
+              className="mt-10 py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              onClick={handleCancel}
+            >
+              CLOSE
+            </button>
+          </div>
         </Modal>
       </div>
 
-      <div>
-        <div className="container w-1200 mx-auto">
-          <label>목표 달력:</label>
+      <MonthlyCalendarWrap>
+        <MonthlyCalendarDiv>
           <Calendar
             //날짜 클릭했을 때 이벤트핸들러
             onClickDay={(value, event) => handleClickDay(value, event)}
@@ -83,10 +102,9 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
             formatDay={(locale, date) => moment(date).format("D")}
             tileContent={showScheduleJSX}
           />
-          <div>{moment(day).format("YYYY-MM-DD")}</div>
-        </div>
-      </div>
-    </>
+        </MonthlyCalendarDiv>
+      </MonthlyCalendarWrap>
+    </div>
   );
 };
 

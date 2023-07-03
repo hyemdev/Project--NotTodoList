@@ -55,7 +55,7 @@ const MemoSection = () => {
   if (MemoIsEdit) {
     //수정중인 상태
     return (
-      <div className="w-300 h-40 bg-slate-200 rounded-md p-10">
+      <div>
         <h2>한줄메모</h2>
         <form onSubmit={handleSummit} className="flex justify-between">
           <input
@@ -83,7 +83,7 @@ const MemoSection = () => {
   } else {
     // 평소상태
     return (
-      <div className="w-300 h-40 bg-slate-200 rounded-md p-10">
+      <div>
         <h2>한줄메모</h2>
         <div className="flex justify-between bg-slate-200">
           <span className="w-20 flex-1 appearance-none leading-8 line-h py-2 px-4 text-blue-950 placeholder-gray-400 shadow-sm text-base focus:ring-2 mx-1">
