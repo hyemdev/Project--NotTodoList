@@ -8,15 +8,21 @@ import moment from "moment/moment";
 import { Button, Input, InputNumber, Radio, Form, Modal } from "antd";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
-import { format, parseISO } from "date-fns";
-import { AddFormWrap, FormLabel, SaveBtn } from "../style/MonthlyAddCSS";
+import { format } from "date-fns";
+import {
+  AddFormTitle,
+  AddFormWrap,
+  FormLabel,
+  SaveBtn,
+} from "../style/MonthlyAddCSS";
 
 const MonthlyForm = ({ todoData, setTodoData }) => {
   // state 변수
   const [strValue, setStrValue] = useState("");
   const [goalNumValue, setGoalNumValue] = useState("");
   const [selectedOption, setSelectedOption] = useState([0]);
-  const [selectedMonth, setSelectedMonth] = useState(new Date());
+  // const [selectedMonth, setSelectedMonth] = useState(new Date());
+  const [selectedMonth, setSelectedMonth] = useState(0);
   const [dailyAddNumber, setDailyAddNumber] = useState(0);
 
   //모달관련 state
@@ -43,38 +49,10 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
 
   // 만약 당월이라면 현재날짜부터 말일까지
   // 만약 다음달이라면 1일부터 말일까지(제대로 구현안됨. 수정필요)
-  // const startDate = moment(new Date()).format("YYYY-MM-DD");
-  const startDate = parseISO(moment(new Date()).format("YYYY-MM-DD"));
-  const startDateFormat = format(startDate, "yyyy-MM-dd");
 
-  console.log(startDate);
-  console.log(startDateFormat);
+    const selectedMonthYYYYMM = format(selectedMonth, "yyyy-MM");
 
-  const endDate = parseISO(
-    moment(
-      new Date(selectedMonth.getFullYear(), selectedMonth.getMonth() + 1, 0),
-    ).format("YYYY-MM-DD"),
-  );
-  const EndDateFormat = format(endDate, "yyyy-MM-dd");
-  console.log(endDate);
-  console.log(EndDateFormat);
-
-  // 시작날짜~끝날짜 배열로 담기
-  const getDatesInRange = (startDateFormat, EndDateFormat) => {
-    const dates = [];
-    const currentDay = moment(startDateFormat);
-    const lastDay = moment(EndDateFormat);
-
-    while (currentDay <= lastDay) {
-      dates.push(currentDay.format("YYYY-MM-DD"));
-      currentDay.add(1, "day");
-    }
-
-    return dates;
-  };
-
-  const datesInRange = getDatesInRange(startDateFormat, EndDateFormat);
-  // console.log(datesInRange);
+    console.log(selectedMonthYYYYMM);
 
   // 목표명
   const handleStrChange = e => {
@@ -99,20 +77,38 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     console.log("Success:", values);
 
     const newTodo = {
-      id: Date.now(),
+      uid: Date.now(),
       title: strValue,
       options: selectedOption,
       goalNumber: goalNumValue,
-      completed: false,
-      startDate: startDateFormat,
-      endDate: EndDateFormat,
-      dateArray: datesInRange,
+      // completed: false,
+      // startDate: startDateFormat,
+      // endDate: EndDateFormat,
+      // dateArray: datesInRange,
+      monthYear: selectedMonthYYYYMM,
       dailyAddNumber: dailyAddNumber,
     };
     console.log("selectedOption.value", selectedOption.value);
+    // console.log("selectmonth", selectedMonthYYYYMM.value);
     console.log("newTodo", newTodo);
 
     setTodoData([...todoData, newTodo]);
+
+    // if (!values.title) {
+    //   showModal();
+    //   setModalMessage("목표를 입력해야 합니다");
+    //   return false;
+    // }
+    // if (!values.options) {
+    //   showModal();
+    //   setModalMessage("단위를 입력해야 합니다");
+    //   return false;
+    // }
+    // if (!values.goalNumber) {
+    //   showModal();
+    //   setModalMessage("목표수량을 선택해야 합니다");
+    //   return false;
+    // }
 
     //Post
     postTodo(newTodo);
@@ -120,22 +116,6 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     // 전송완료 된 다음 입력창을 초기화 하자(제대로 안됨, 수정필요)
     setStrValue("");
     setGoalNumValue("");
-
-    // if (!values.title) {
-    //   showModal();
-    //   setModalMessage("목표를 입력해야 합니다");
-    //   return false;
-    // }
-    if (!values.options) {
-      showModal();
-      setModalMessage("단위를 입력해야 합니다");
-      return false;
-    }
-    // if (!values.goalNumber) {
-    //   showModal();
-    //   setModalMessage("목표수량을 선택해야 합니다");
-    //   return false;
-    // }
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
@@ -166,27 +146,34 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
               dateFormat="yyyy/MM"
               minDate={new Date()} // 오늘날짜 이전은 선택못하게
               showMonthYearPicker
-              startDate={startDate}
-              endDate={endDate}
+              // startDate={startDate}
+              // endDate={endDate}
             />
           </div>
-          <div>
+          <AddFormTitle>
+            <div>
             <Form.Item
               // label="한달 목표"
               name="title"
               value={strValue}
               onChange={handleStrChange}
-              rules={[
-                {
-                  required: true,
-                  message: "목표를 입력하세요",
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: "목표를 입력하세요",
+              //   },
+              //   { max: 10, message: '목표를 10자이내로 입력하세요' },
+              //   {
+              //     pattern: /^\S/,
+              //     message: '목표를 입력하세요',
+              //   },
+              // ]}
             >
               <FormLabel>한달목표</FormLabel>
               <Input size="large" />
             </Form.Item>
-          </div>
+            </div>
+          </AddFormTitle>
           <div>
             <Form.Item
               // label="목표 단위"
@@ -205,14 +192,23 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
             <Form.Item
               // label="목표수량"
               name="goalNumber"
-              value={goalNumValue}
+              initialValue={goalNumValue}
               onChange={handleNumChange}
-              rules={[
-                {
-                  required: true,
-                  message: "수량을 입력하세요",
-                },
-              ]}
+              // rules={[
+              //   { max: 10, message: '목표수량을 10자이내로 입력하세요' },
+              //   {
+              //     type: 'number',
+              //     message: "수량을 입력하세요",
+              //   },
+              //   {
+              //     required: true,
+              //     message: "수량을 입력하세요",
+              //   },
+              //   {
+              //     pattern: /^\S/,
+              //     message: '수량을 입력하세요',
+              //   },
+              // ]}
             >
               <FormLabel>목표수량</FormLabel>
               <Input size="large" />
@@ -229,7 +225,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           </div>
         </Form>
       </AddFormWrap>
-      {/* 경고모달 */}
+
       {/* 경고모달 */}
       <Modal
         // title="로그인 실패..."

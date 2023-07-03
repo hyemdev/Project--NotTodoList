@@ -9,7 +9,7 @@ import {
   MonthlyCalendarDiv,
   MonthlyCalendarWrap,
 } from "../style/MonthlyCalendarCSS";
-import DailyCalendarList from "../components/DailyCalendarList";
+import CalendarDayList from "./CalenderDayList";
 
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,7 +41,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     // 포맷을 YYYY-MM-DD로 변경한다
     let DefalutDay = moment(date).format("YYYY-MM-DD");
     let results = todoData.filter(item => {
-      if (item["dateArray[]"].includes(DefalutDay)) {
+      if (item.date === DefalutDay) {
         console.log("날짜가 같아요, 화면에 내용 출력");
         return item;
       }
@@ -70,13 +70,13 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
               width: "50%",
               height: "40%",
               margin: "auto",
-              borderRadius: "20px"
+              borderRadius: "20px",
             },
           }}
         >
           <div>
             <h2>daily 상세내역 출력</h2>
-            <DailyCalendarList todoData={todoData} setTodoData={setTodoData} />
+            <CalendarDayList />
           </div>
           <div className="flex justify-center mt-10">
             <button

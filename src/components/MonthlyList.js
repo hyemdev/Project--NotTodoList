@@ -1,17 +1,18 @@
 import React from "react";
-import MonthlyListItem from "./MonthlyListItem";
+import MonthlyListItem from "./MonthlyListItem"
+
 const MonthlyList = ({ todoData, setTodoData }) => {
   console.log(todoData);
   return (
     <>
-      {/* not todo list 출력 */}
       {todoData.map(item => (
         <MonthlyListItem
-          key={item.id}
+          key={item.uid}
           item={item}
           options={item.options}
-          startDate={item.startDateFormat}
-          endDate={item.startDateFormat}
+          // startDate={item.startDateFormat}
+          // endDate={item.startDateFormat}
+          monthYear={item.selectedMonth}
           todoData={todoData}
           setTodoData={setTodoData}
         />

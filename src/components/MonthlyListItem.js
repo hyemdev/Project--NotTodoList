@@ -4,12 +4,9 @@ import { deleteTodo, patchTitleTodo } from "../api/api";
 import {
   AddListTr,
   AddTableButton,
-  AddTableThBtn,
-  AddTableThContent,
   AddTableThDate,
   AddTableThNumber,
   AddTableThTitle,
-  AddTableTr,
 } from "../style/MonthlyAddCSS";
 
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
@@ -43,16 +40,16 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
   
   // 선택삭제
-  const handleDeleteClick = _id => {
+  const handleDeleteClick = _uid => {
     // tododata중 id가 겹치지않는것만 담는다.
-    const newTodoData = todoData.filter(item => item.id !== _id);
+    const newTodoData = todoData.filter(item => item.uid !== _uid);
     setTodoData(newTodoData);
-    deleteTodo(_id);
+    deleteTodo(_uid);
   };
 
   //선택편집(버튼활성화하기)
-  const handleEditClick = _id => {
-    console.log("handleEdit_id", _id);
+  const handleEditClick = _uid => {
+    console.log("handleEdit_id", _uid);
     setIsEdit(true);
   };
 
@@ -74,19 +71,19 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
   };
 
   //수정 저장하기
-  const handleSaveClick = _id => {
+  const handleSaveClick = _uid => {
     let newTodoData = todoData.map(item => {
-      if (item.id === _id) {
+      if (item.uid === _uid) {
         item.title = editTitle;
         item.options = editSelect;
         item.goalNumber = editGoalNumber;
-        item.completed = false;
+        // item.completed = false;
       }
       return item;
     });
     setTodoData(newTodoData);
 
-    patchTitleTodo(_id, { ...item });
+    patchTitleTodo(_uid, { ...item });
     setIsEdit(false);
   };
 
@@ -96,7 +93,8 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
       <div>
         <AddListTr>
           <AddTableThDate className="w-10">
-            {item.startDate}~{item.endDate}
+            {/* {item.startDate}~{item.endDate} */}
+
           </AddTableThDate>
           <AddTableThTitle>
             <input
@@ -145,7 +143,8 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
             onChange={() => handleCompleteChange(item.id)}
           /> */}
         <AddTableThDate>
-          {item.startDate}~{item.endDate}
+          {/* {item.startDate}~{item.endDate} */}
+          {item.monthYear}
         </AddTableThDate>
         <AddTableThTitle>{item.title}</AddTableThTitle>
         <AddTableThNumber>{item.options}</AddTableThNumber>
