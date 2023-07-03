@@ -1,6 +1,7 @@
 import { Button, Modal, Space } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { fetchDummyData, getDateRange, getSavingAmount } from "../api/api";
 
 
 const BriefSection = () => {
@@ -10,18 +11,47 @@ const BriefSection = () => {
   const [mostSavedMonth2, setMostSavedMonth2] = useState("");
   const [mostSavedTime, setMostSavedTime] = useState(0);
 
-  const [savingData, setSavingData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [dateRange, setDateRange] = useState("")
+  const [dateRange2, setDateRange2] = useState("")
+  // const [totalSavingAmount, setTotalSavingAmount] = useState(null)
+
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [totalSavingAmount, setTotalSavingAmount] = useState()
+  // const [savingData, setSavingData] = useState(null);
 
   useEffect(() => {
-    fetchData();
-
     // 더미데이터
     const dummyData2 = {
       startDate: "2023-01-01",
       endDate: "2023-01-31",
       totalSavingAmount: 5000,
     };
+
+    // const fetchData = async () => {
+    //   // try {
+    //   //   const startDate = "YY년 MM월";
+    //   //   const endDate = "YY년 MM월";
+    //   //   await fetchDummyData(startDate, endDate)
+    //   //   setDateRange(getDateRange());
+    //   //   setTotalSavingAmount(getSavingAmount());
+    //   //   setLoading(false)
+    //   // } catch (error) {
+    //   //   console.error("Error fetching data", error)
+    //   // }
+    //   try {
+    //     const data = await fetchDummyData();
+    //     setStartDate(data.startDate)
+    //     setEndDate(data.endDate)
+    //     setTotalSavingAmount(data.totalSavingAmount)
+    //   } catch (error) {
+    //     console.log("Error fetching data", error)
+    //   }
+    // }
+    fetchData()
   }, []);
+
 
   const fetchData = async () => {
     const dummyData = [{ month: "2022-01", item: "과자", saving: 50000 }];
@@ -81,13 +111,40 @@ const BriefSection = () => {
   // }
 
   return (
-    <div className="h-auto bg-slate-50 rounded-md p-10">
-      <h2>가장 많이 아낀 달 : {mostSavedMonth}</h2>
-      <h2>가장 많이 아낀 금액 : {mostSavedAmount}</h2>
+    <div className="h-auto bg-slate-50 rounded-md p-10 mt-14">
+      <h2 className="text-center text-3xl"> {mostSavedMonth}
+        <span>YY년 AA월</span>
+      에
+      </h2>
+      <h2 className="text-center text-2xl mb-10 text-gray-600">가장 많이 아낀 금액 : {mostSavedAmount}<span className="text-center text-2xl ">원으로 <br/>가장 많이 절약했습니다.</span></h2>
 
-      <h2>가장 많이 아낀 달 : {mostSavedMonth2}</h2>
-      <h2>가장 많이 아낀 시간 : {mostSavedTime}</h2>
+      <hr />
 
+      <h2 className="text-center text-3xl mt-10">{mostSavedMonth2}
+        <span className="text-center text-3xl">YY년 AA월</span>
+        에
+      </h2>
+      <h2 className="text-center text-2xl mb-10 text-gray-600">가장 많이 아낀 시간 : {mostSavedTime}<span>시간으로 <br/>가장 많이 절약했습니다.</span></h2>
+
+      <hr />
+
+      <h1  className="text-center text-3xl mt-10">{startDate}부터 ~ {endDate}까지</h1><br />
+      <h2 className="text-2xl text-gray-600 text-center">총 절약한 금액</h2><br />
+      <h2>{ totalSavingAmount}</h2>
+
+
+
+      {/* <p className="text-center text-3xl mt-10">
+        {dateRange}부터 ~ {dateRange}까지 <br />
+        <span className="text-2xl text-gray-600">총 절약한</span><br/>
+      <Space wrap>
+        <Button type="primary" danger >금액</Button>
+          /
+        <Button type="primary" danger>시간</Button>
+      </Space>
+      </p> */}
+
+      
       {/* <h2>절약 금액 요약</h2>
       <p>절약 기간 : {startDate} ~ {endDate}</p>
       <p>총 절약 금액 : {totalSavingAmount}</p>

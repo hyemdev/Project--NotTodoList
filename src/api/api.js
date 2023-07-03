@@ -31,7 +31,42 @@ const getTodo = async setTodoData => {
   }
 };
 
-// todo data get
+// 가장 많이 아낀 금액, 시간
+const fetchData = async () => {
+  try {
+    const res = await axios.get('')
+    const dummyData = res.data;
+  } catch (error) {
+    console.error('Error fetching data:' ,error)
+  }
+}
+
+
+
+  // todo ~부터 ~까지 총 절약한 금액
+  let savingData = null;
+
+export const fetchDummyData = async (startDate, endDate) => {
+  try {
+    const res = await axios.get("", {
+      params: { startDate, endDate },
+    })
+    savingData = res.data;
+  } catch (error) {
+    console.error("Error fetching data:", error)
+  }
+}
+
+
+
+
+
+// export const getSavingAmount = () => {
+//   return savingData ? savingData.totalSavingAmount : null;
+// }
+// export const getDateRange = () => {
+//   return savingData ? savingData.dataRange : null;
+// }
 
 
 
