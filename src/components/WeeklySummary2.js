@@ -5,32 +5,32 @@ const WeeklySummary2 = () => {
   // 초기 상단 데이터
   const weekDataInit = [
     {
-      week: "지난주",
-      "밀가루": 100000,
-      "밀가루Color": "hsl(56, 70%, 50%)",
-      "금연": 100000,
-      "금연Color": "hsl(15, 70%, 50%)",
-      "과자": 20000,
-      "과자Color": "hsl(102, 70%, 50%)",
-      "욕설": 50000,
-      "욕설Color": "hsl(319, 70%, 50%)",
-      "라면": 300000,
-      "라면Color": "hsl(39, 70%, 50%)",
+      country: "지난주",
+      "hot dog": 100000,
+      "hot dogColor": "hsl(56, 70%, 50%)",
+      burger: 100000,
+      burgerColor: "hsl(15, 70%, 50%)",
+      sandwich: 20000,
+      sandwichColor: "hsl(102, 70%, 50%)",
+      kebab: 50000,
+      kebabColor: "hsl(319, 70%, 50%)",
+      fries: 300000,
+      friesColor: "hsl(39, 70%, 50%)",
       donut: 129,
       donutColor: "hsl(18, 70%, 50%)",
     },
     {
-      week: "이번주",
-      "밀가루": 114,
-      "밀가루Color": "hsl(17, 70%, 50%)",
-      "금연": 86,
-      "금연Color": "hsl(21, 70%, 50%)",
-      "과자": 101,
-      "과자Color": "hsl(191, 70%, 50%)",
-      "욕설": 68,
-      "욕설Color": "hsl(102, 70%, 50%)",
-      "라면": 65,
-      "라면Color": "hsl(48, 70%, 50%)",
+      country: "이번주",
+      "hot dog": 100000,
+      "hot dogColor": "hsl(17, 70%, 50%)",
+      burger: 100000,
+      burgerColor: "hsl(21, 70%, 50%)",
+      sandwich: 20000,
+      sandwichColor: "hsl(191, 70%, 50%)",
+      kebab: 50000,
+      kebabColor: "hsl(102, 70%, 50%)",
+      fries: 300000,
+      friesColor: "hsl(48, 70%, 50%)",
       donut: 186,
       donutColor: "hsl(90, 70%, 50%)",
     },
@@ -44,8 +44,8 @@ const WeeklySummary2 = () => {
         <div style={{ height: 400 }}>
           <ResponsiveBar
             data={weekData}
-            keys={["밀가루", "금연", "과자", "욕설", "라면", "donut"]}
-            indexBy="week"
+            keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
+            indexBy="country"
             margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
             padding={0.2}
             valueScale={{ type: "linear" }}
@@ -95,7 +95,7 @@ const WeeklySummary2 = () => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "week",
+              legend: "country",
               legendPosition: "middle",
               legendOffset: 32,
             }}
