@@ -41,7 +41,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     // 포맷을 YYYY-MM-DD로 변경한다
     let DefalutDay = moment(date).format("YYYY-MM-DD");
     let results = todoData.filter(item => {
-      if (item["dateArray[]"].includes(DefalutDay)) {
+      if (item.date === DefalutDay) {
         console.log("날짜가 같아요, 화면에 내용 출력");
         return item;
       }

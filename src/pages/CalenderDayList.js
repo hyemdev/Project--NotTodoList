@@ -13,7 +13,6 @@ const CalendarDayList = ({ todoData, setTodoData }) => {
         <DailyCalTable>
           <DailyCalTableThead>
             <DailyCalTableTr>
-              <CalendarTableThDate>기간</CalendarTableThDate>
               <CalendarTableThTitle>월간목표</CalendarTableThTitle>
               <CalendarTableThNumber>단위</CalendarTableThNumber>
               <CalendarTableThNumber>수량</CalendarTableThNumber>
