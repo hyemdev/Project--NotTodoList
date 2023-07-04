@@ -51,8 +51,11 @@ const DailySection = ({ todoData, setTodoData }) => {
           </DailyTable>
           {/* today list 출력창 */}
           <DailyListDiv>
+
             <DailyList todoData={todoData} setTodoData={setTodoData} />
+            
           </DailyListDiv>
+
         </div>
         <div>
           <Modal
