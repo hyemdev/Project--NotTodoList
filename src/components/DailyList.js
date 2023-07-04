@@ -11,7 +11,7 @@ import {
   DailyListTr,
   DailyListWrap,
 } from "../style/DailySectionCSS";
-import { patchDailyAddNum } from "../api/api";
+// import { patchDailyAddNum } from "../api/api";
 
 const DailyList = ({ todoData, setTodoData }) => {
   // 데일리낫투두 수정 관련 state
@@ -84,7 +84,7 @@ const DailyList = ({ todoData, setTodoData }) => {
     });
     setTodoData(newTodoData);
 
-    patchDailyAddNum(_id, dailyEditTodayNum);
+    // patchDailyAddNum(_id, dailyEditTodayNum);
     setDailyEdit(false);
     setDailyEditTodayNum("");
   };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import { deleteTodo, patchTitleTodo } from "../api/api";
+import { deleteTodo, patchTitleTodo, putTitleTodo } from "../api/api";
 import {
   AddListBtnDiv,
   AddListTbody,
@@ -34,16 +34,16 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
   // 이벤트핸들러
 
   // 선택삭제
-  const handleDeleteClick = _id => {
+  const handleDeleteClick = _goalId => {
     // tododata중 id가 겹치지않는것만 담는다.
-    const newTodoData = todoData.filter(item => item.uid !== _id);
+    const newTodoData = todoData.filter(item => item.goalId !== _goalId);
     setTodoData(newTodoData);
-    deleteTodo(_id);
+    deleteTodo(_goalId);
   };
 
   //선택편집(버튼활성화하기)
-  const handleEditClick = _id => {
-    console.log("handleEdit_id", _id);
+  const handleEditClick = _goalId => {
+    console.log("handleEdit_id", _goalId);
     setIsEdit(true);
   };
 
@@ -65,19 +65,19 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
   };
 
   //수정 저장하기
-  const handleSaveClick = _id => {
+  const handleSaveClick = _goalId => {
     let newTodoData = todoData.map(item => {
-      if (item.id === _id) {
-        item.title = editTitle;
-        item.options = editSelect;
-        item.goalNumber = editGoalNumber;
+      if (item.goalId === _goalId) {
+        item.notTodo = editTitle;
+        item.costCategory = editSelect;
+        item.goalCost = editGoalNumber;
         // item.completed = false;
       }
       return item;
     });
     setTodoData(newTodoData);
 
-    patchTitleTodo(_id, { ...item });
+    putTitleTodo(_goalId, { ...item });
     setIsEdit(false);
   };
 
@@ -146,9 +146,9 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
             {/* {item.startDate}~{item.endDate} */}
             {item.monthYear}
           </AddListTdDate>
-          <AddListTdTitle>{item.title}</AddListTdTitle>
-          <AddListTdNumber>{item.options}</AddListTdNumber>
-          <AddListTdNumber>{item.goalNumber}</AddListTdNumber>
+          <AddListTdTitle>{item.notTodo}</AddListTdTitle>
+          <AddListTdNumber>{item.costCategory}</AddListTdNumber>
+          <AddListTdNumber>{item.goalCost}</AddListTdNumber>
           {/* 편집/ 삭제 버튼 만들기 */}
           <AddListBtnDiv>
             <AddListbtn
@@ -161,7 +161,7 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
           </AddListBtnDiv>
           <AddListBtnDiv>
             <AddListbtn
-              onClick={() => handleDeleteClick(item.id)}
+              onClick={() => handleDeleteClick(item.goalId)}
               className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
             >
               {" "}

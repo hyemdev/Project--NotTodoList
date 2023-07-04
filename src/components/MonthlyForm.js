@@ -77,12 +77,11 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     console.log("Success:", values);
 
     const newTodo = {
-      id: Date.now(),
-      title: strValue,
-      options: selectedOption,
-      goalNumber: goalNumValue,
+      notTodo: strValue,
+      costCategory: selectedOption,
+      goalCost: goalNumValue,
       monthYear: selectedMonthYYYYMM,
-      dailyAddNumber: dailyAddNumber,
+      // dailyAddNumber: dailyAddNumber,
     };
     console.log("selectedOption.value", selectedOption.value);
     console.log("newTodo", newTodo);
@@ -149,7 +148,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
             <div>
             <Form.Item
               // label="한달 목표"
-              name="title"
+              name="notTodo"
               value={strValue}
               onChange={handleStrChange}
               // rules={[
@@ -172,7 +171,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           <div>
             <Form.Item
               // label="목표 단위"
-              name="options"
+              name="costCategory"
               options={selectTimePrice}
               onChange={handleSelectedOption}
             >
@@ -186,7 +185,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           <div>
             <Form.Item
               // label="목표수량"
-              name="goalNumber"
+              name="goalCost"
               initialValue={goalNumValue}
               onChange={handleNumChange}
               // rules={[

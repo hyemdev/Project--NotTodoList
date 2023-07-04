@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment/moment";
 
 import { Calendar } from "react-calendar";
@@ -10,6 +10,7 @@ import {
   MonthlyCalendarWrap,
 } from "../style/MonthlyCalendarCSS";
 import CalendarDayList from "./CalenderDayList";
+import { getCalendarTodo } from "../api/api";
 
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +19,13 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
   //CalendarDayList 에 출력시켜줄 state
   const [clickItems, setClickItems] = useState([]);
   const [clickDate, setClickDate] = useState([]);
+  const [monthData, setMonthData] = useState([]);
+
+  useEffect(() => {
+    getCalendarTodo(setMonthData, DefalutMonth);
+  }, []);
+  const DefalutMonth = moment(day).format("YYYY-MM");
+  console.log("DefalutMonth", DefalutMonth);
 
   // 상세보기 모달창
   const showModal = () => {
@@ -32,19 +40,11 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
 
   const handleClickDay = (value, event) => {
     showModal();
-    // console.log(event.currentTarget);
 
     let ClickDay = moment(value).format("YYYY-MM-DD");
     let DayFilterItem = todoData.filter(item => item.date === ClickDay);
     setClickItems(DayFilterItem);
     setClickDate(ClickDay);
-
-    console.log("DayFilterItem", DayFilterItem);
-    console.log("clickItems", clickItems);
-
-    console.log("ClickDay", ClickDay);
-
-    // console.log("value1", value);
 
     const div = event.currentTarget.querySelector("div");
     if (div !== null) {
@@ -56,18 +56,19 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const showScheduleJSX = ({ date, view }) => {
     // 포맷을 YYYY-MM-DD로 변경한다
     let DefalutDay = moment(date).format("YYYY-MM-DD");
-    let results = todoData.filter(item => {
+    let results = monthData.filter(item => {
       if (item.date === DefalutDay) {
         return item;
       }
     });
+    // console.log("results", results);
     if (results.length > 0) {
-      return results.map(result => (
+      return results.map((result,index) => (
         <div
-          key={result.id}
+          key={index}
           className="bg-slate-500 border-dotted rounded-md my-1"
         >
-          <div className="text-slate-50">{result.title}</div>
+          <div className="text-slate-50">{result.name}</div>
         </div>
       ));
     }

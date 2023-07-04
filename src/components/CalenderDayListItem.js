@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deleteTodo, patchTitleTodo } from "../api/api";
+// import { deleteTodo, patchTitleTodo } from "../api/api";
 import {
   CalListButton,
   CalListTbody,
@@ -30,7 +30,7 @@ const CalendarDayListItem = ({ item, todoData, setTodoData }) => {
     // tododata중 id가 겹치지않는것만 담는다.
     const newTodoData = todoData.filter(item => item.id !== _id);
     setTodoData(newTodoData);
-    deleteTodo(_id);
+    // deleteTodo(_id);
   };
 
   //선택편집(버튼활성화하기)
@@ -68,29 +68,9 @@ const CalendarDayListItem = ({ item, todoData, setTodoData }) => {
     });
     setTodoData(newTodoData);
 
-    patchTitleTodo(_id, { ...item });
+    // patchTitleTodo(_id, { ...item });
     setIsEdit(false);
   };
-
-  // const handleSaveClick = _id => {
-  //   // if (todoData.length === 0) {
-  //   //   return; // todoData 배열이 비어있으면 함수 실행을 중단.
-  //   // }
-  //   console.log("todoData", todoData)
-
-  //   let editedItem = todoData.find(item => item.id === _id); // 수정된 아이템 찾기
-  //   if (!editedItem) {
-  //     return; // 수정된 아이템이 없으면 함수 실행을 중단.
-  //   }
-  //   editedItem.title = editTitle;
-  //   editedItem.options = editSelect;
-  //   editedItem.goalNumber = editGoalNumber;
-
-  //   setTodoData([...todoData]); // todoData를 새로운 배열로 업데이트
-
-  //   patchTitleTodo(_id, editedItem); // 수정된 아이템 전달
-  //   setIsEdit(false);
-  // };
 
   if (isEdit) {
     //수정중인 상태
