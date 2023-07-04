@@ -1,15 +1,22 @@
 import styled from "@emotion/styled";
 
+
 export const DailyCalWrap = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`;
+  padding: 20px;
+  max-width: 950px;
+  margin: 0 auto;
+  `;
 
 // export const AddModalClose = styled.div`
 // display: flex;
 // justify-content: center;
 // `
+
+
+
 export const DailyTitleDiv = styled.div``;
 export const DailyCalTitle = styled.h2`
   text-align: center;
@@ -19,7 +26,10 @@ export const DailyCalTitle = styled.h2`
   padding: 10px;
   margin: 10px 0;
   padding: 10px;
-`;
+  `;
+
+
+//일자별 상세보기 table head
 
 export const DailyCalTable = styled.table`
   width: 100%;
@@ -27,59 +37,73 @@ export const DailyCalTable = styled.table`
   color: #1e293b;
 `;
 
-export const DailyCalTableThead = styled.div`
+export const DailyCalTableThead = styled.thead`
   font-size: 14px;
   color: #475569;
   background: #e2e8f0;
   padding: 0 3px;
 `;
 
-export const DailyCalTableTr = styled.div`
+export const DailyCalTableTr = styled.tr`
   /* width: 100%; */
   margin-top: 5px;
   display: flex;
   justify-content: space-between;
 `;
 
-export const CalendarListTr = styled.div`
-  margin-top: 5px;
-  display: flex;
-  justify-content: space-between;
-  height: 50px;
-  padding: 0 10px;
-`;
-
-export const CalendarTableThDate = styled.span`
-  padding: 12px 3px;
-  width: 20%;
-  text-align: center;
-  letter-spacing: -0.8px;
-`;
-export const CalendarTableThTitle = styled.span`
+export const CalendarTableThTitle = styled.th`
   padding: 12px 3px;
   width: 30%;
   text-align: center;
 `;
-export const CalendarTableThNumber = styled.span`
+export const CalendarTableThNumber = styled.th`
   padding: 12px 3px;
   width: 15%;
   text-align: center;
 `;
-export const CalendarTableThBtn = styled.span`
+export const CalendarTableThBtn = styled.th`
   padding: 12px 3px;
   width: 10%;
 `;
 
-// export const DailyTableThContent = styled.span`
-//   padding: 5px 3px;
-//   text-align: center;
-//   width: 150px;
-// `;
 
-export const CalendarListButton = styled.button`
+
+// 상세보기 List body
+
+export const CalListTbody = styled.tbody`
+  font-size: 14px;
+  color: #475569;
+  padding: 0 3px;
+  `;
+
+export const CalListTr = styled.tr`
+  width: 900px;
+  max-width: 950px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const CalListTdTitle = styled.td`
+  padding: 12px 3px;
+  width: 30%;
+  text-align: center;
+`;
+export const CalListTdNumber = styled.td`
+  padding: 12px 3px;
+  width: 15%;
+  text-align: center;
+`;
+export const CalListTdBtnDiv = styled.td`
+  padding: 12px 3px;
+  width: 200px;
+`;
+
+
+export const CalListButton = styled.button`
   padding: 5px 3px;
-  width: 7%;
+  width: 70px;
   height: 35px;
   margin: 4px;
-  margin-right: 5px;
+  margin-right: 10px;
 `;

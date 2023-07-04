@@ -28,7 +28,7 @@ const DailyList = ({ todoData, setTodoData }) => {
       // 오늘날짜와 일치하는 자료만 찾아서 배열로 만들자
       const matchingDates = todoData
         ? todoData.filter(
-            item => item["dateArray[]"] && item["dateArray[]"][0] === todayDate,
+            item => item.date === todayDate,
           )
         : [];
       // todayDate()

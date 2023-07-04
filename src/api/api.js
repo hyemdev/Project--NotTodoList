@@ -28,14 +28,6 @@ const getTodo = async setTodoData => {
   try {
     const res = await axiosInstance.get("/todos");
     const result = res.data;
-
-    // const todosArr = result.map(item => {
-    //   item.completed = JSON.parse(item.completed);
-    //   item.id = JSON.parse(item.id);
-    // });
-    // console.log("todosArr", todosArr);
-    // setTodoData(todosArr);
-
     console.log("result", result);
 
     setTodoData(result);

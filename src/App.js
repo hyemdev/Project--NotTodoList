@@ -70,10 +70,7 @@ function App() {
             <Route
               path="/calendardaylist"
               element={
-                <CalendarDayList
-                  todoData={todoData}
-                  setTodoData={setTodoData}
-                />
+                <CalendarDayList />
               }
             />
           </Route>

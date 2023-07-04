@@ -10,7 +10,8 @@ export const MonthlyCalendarWrap = styled.div`
 `;
 
 export const MonthlyCalendarDiv = styled.div`
-  height: 820px;
+  height: 100%;
+  max-height: 920px;
   width: 100%;
   max-width: 1400px;
   /* padding-top: 10px; */

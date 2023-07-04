@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getMemo, postOneMemo, putOneMemo } from "../api/api";
+import { getMemo, postOneMemo } from "../api/api";
 import {
   MemoDiv,
   MemoForm,
@@ -52,7 +52,7 @@ const MemoSection = () => {
     setOneMemo(newTodo.oneMemoData);
 
     //Post 하자~~~
-    postOneMemo(newTodo);
+    // postOneMemo(newTodo);
     setMemoIsEdit(false);
 
     // 전송완료 된 다음 입력창을 초기화 하자
@@ -60,7 +60,7 @@ const MemoSection = () => {
 
     // 메모내용 get
     useEffect(() => {
-      getMemo(setOneMemo);
+      // getMemo(setOneMemo);
     }, []);
   };
   if (MemoIsEdit) {

@@ -15,6 +15,10 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [day, setDay] = useState(new Date());
 
+  //CalendarDayList 에 출력시켜줄 state
+  const [clickItems, setClickItems] = useState([]);
+  const [clickDate, setClickDate] = useState([]);
+
   // 상세보기 모달창
   const showModal = () => {
     setIsModalOpen(true);
@@ -28,11 +32,23 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
 
   const handleClickDay = (value, event) => {
     showModal();
-    console.log(event.currentTarget);
+    // console.log(event.currentTarget);
+
+    let ClickDay = moment(value).format("YYYY-MM-DD");
+    let DayFilterItem = todoData.filter(item => item.date === ClickDay);
+    setClickItems(DayFilterItem);
+    setClickDate(ClickDay);
+
+    console.log("DayFilterItem", DayFilterItem);
+    console.log("clickItems", clickItems);
+
+    console.log("ClickDay", ClickDay);
+
+    // console.log("value1", value);
 
     const div = event.currentTarget.querySelector("div");
     if (div !== null) {
-      console.log(value);
+      // console.log("value2", value);
     }
   };
 
@@ -42,7 +58,6 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     let DefalutDay = moment(date).format("YYYY-MM-DD");
     let results = todoData.filter(item => {
       if (item.date === DefalutDay) {
-        console.log("날짜가 같아요, 화면에 내용 출력");
         return item;
       }
     });
@@ -67,16 +82,21 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           contentLabel="모달"
           style={{
             content: {
-              width: "50%",
-              height: "40%",
+              width: "70%",
+              height: "50%",
               margin: "auto",
               borderRadius: "20px",
             },
           }}
         >
           <div>
-            <h2>daily 상세내역 출력</h2>
-            <CalendarDayList />
+            <h2>daily 상세내역 출력 {clickDate}</h2>
+            <CalendarDayList
+              clickItems={clickItems}
+              clickDate={clickDate}
+              todoData={todoData}
+              setTodoData={setTodoData}
+            />
           </div>
           <div className="flex justify-center mt-10">
             <button

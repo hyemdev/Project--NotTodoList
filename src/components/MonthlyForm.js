@@ -77,19 +77,14 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     console.log("Success:", values);
 
     const newTodo = {
-      uid: Date.now(),
+      id: Date.now(),
       title: strValue,
       options: selectedOption,
       goalNumber: goalNumValue,
-      // completed: false,
-      // startDate: startDateFormat,
-      // endDate: EndDateFormat,
-      // dateArray: datesInRange,
       monthYear: selectedMonthYYYYMM,
       dailyAddNumber: dailyAddNumber,
     };
     console.log("selectedOption.value", selectedOption.value);
-    // console.log("selectmonth", selectedMonthYYYYMM.value);
     console.log("newTodo", newTodo);
 
     setTodoData([...todoData, newTodo]);
