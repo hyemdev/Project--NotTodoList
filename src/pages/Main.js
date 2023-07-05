@@ -16,19 +16,18 @@ const Main = ({ todoData, setTodoData }) => {
     <MainWrap>
       <MainFlex>
         <MainLeft>
+          {/*  컴포넌트 */}
+          <DailySection todoData={todoData} setTodoData={setTodoData} />
+        </MainLeft>
+        <MainRight>
           <Memo>
             {/* 컴포넌트 */}
             <MemoSection />
           </Memo>
           <BriefData>
-          {/* 컴포넌트 */}
-          <BriefSection />
+            {/* 컴포넌트 */}
+            <BriefSection />
           </BriefData>
-        </MainLeft>
-        <MainRight>
-            {/*  컴포넌트 */}
-            <DailySection todoData={todoData} setTodoData={setTodoData} />
-
         </MainRight>
       </MainFlex>
     </MainWrap>

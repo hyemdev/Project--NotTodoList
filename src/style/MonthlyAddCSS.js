@@ -7,14 +7,32 @@ export const MonthlyAddWrap = styled.div`
   max-width: 1000px;
   height: 100%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 `;
 
-export const AddTitleDiv = styled.div``;
+export const ListTemp = styled.div`
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  height: 300px;
+  overflow: scroll;
+`;
+
+export const AddTitleDiv = styled.div`
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: lightblue; */
+`;
+
 export const AddTitle = styled.h2`
   text-align: center;
   color: #475569;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 24px;
   padding: 10px;
   margin: 10px 0;
   padding: 10px;
@@ -44,6 +62,7 @@ export const AddTableTr = styled.tr`
   display: flex;
   justify-content: space-between;
 `;
+
 export const AddTableThDate = styled.th`
   padding: 12px 3px;
   width: 20%;
@@ -128,14 +147,12 @@ export const ListTitleEdit = styled.input`
   border-radius: 5px;
   line-height: 12px;
   height: 38px;
-
 `;
 
 export const ListSelectEdit = styled.div`
-width: 100px;
-margin: 0 auto;
+  width: 100px;
+  margin: 0 auto;
 `;
-
 
 export const ListNumEdit = styled.input`
   padding: 8px 3px;
@@ -145,20 +162,18 @@ export const ListNumEdit = styled.input`
   border-radius: 5px;
   line-height: 12px;
   height: 38px;
-
 `;
-
 
 // 한달목표 입력 form
 export const AddFormWrap = styled.div`
   width: 100%;
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 
   & > Form {
     display: flex;
     justify-content: space-around;
-    margin: 0 30px;
+    margin: 0 10px;
     & > Button {
     }
   }
@@ -176,4 +191,14 @@ export const FormLabel = styled.p`
 `;
 export const SaveBtn = styled.div`
   margin-top: 26px;
+`;
+
+export const Temp = styled.div`
+  /* position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  //left: 50%;
+  background-color: aliceblue;
+  z-index: 99999; */
 `;

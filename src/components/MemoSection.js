@@ -26,7 +26,7 @@ const MemoSection = () => {
     setMemoIsEdit(false);
   };
 
-  // POST
+  // 클릭기능
   const handleMemoSaveClick = e => {
     // 브라우저 갱신 막기
     e.preventDefault();

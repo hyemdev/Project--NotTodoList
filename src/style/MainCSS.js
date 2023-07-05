@@ -3,9 +3,9 @@ import styled from "@emotion/styled";
 export const MainWrap = styled.div`
   height: 100%;
   width: 100%;
-  max-width: 1400px;
+  height: 850px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 10px;
 `;
 
 // export const MainGrid = styled.div`
@@ -20,11 +20,14 @@ export const MainFlex = styled.div`
   display: flex;
   gap: 15px;
   padding-top: 10px;
-  margin: 0 10px;
+  margin: 20px 0px;
 `;
 export const MainLeft = styled.div`
   height: 100%;
   width: 50%;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 20px;
 `;
 
 export const Memo = styled.div`
@@ -35,15 +38,13 @@ export const Memo = styled.div`
   border-radius: 10px;
 `;
 export const BriefData = styled.div`
-  height: 800px;
+  /* height: 800px; */
   padding: 30px 20px;
   background: #f1f5f9;
   border-radius: 10px;
 `;
 
 export const MainRight = styled.div`
-  padding: 20px;
   width: 50%;
-  background: #f1f5f9;
   border-radius: 10px;
 `;

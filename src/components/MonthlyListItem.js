@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import { deleteTodo, patchTitleTodo, putTitleTodo } from "../api/api";
+import { deleteTodo, putTitleTodo } from "../api/api";
 import {
   AddListBtnDiv,
   AddListTbody,
@@ -9,10 +9,6 @@ import {
   AddListTdTitle,
   AddListTr,
   AddListbtn,
-  AddTableButton,
-  AddTableThDate,
-  AddTableThNumber,
-  AddTableThTitle,
   ListNumEdit,
   ListSelectEdit,
   ListTitleEdit,
@@ -21,9 +17,9 @@ import {
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
   //state
   const [isEdit, setIsEdit] = useState(false);
-  const [editTitle, setEditTitle] = useState(item.title);
-  const [editGoalNumber, setEditGoalNumber] = useState(item.goalNumber);
-  const [editSelect, setEditSelect] = useState(item.options);
+  const [editTitle, setEditTitle] = useState(item.notTodo);
+  const [editGoalNumber, setEditGoalNumber] = useState(item.goalCost);
+  const [editSelect, setEditSelect] = useState(item.costCategory);
 
   // 선택창 옵션(추후에 따로 빼내야 함)
   const selectTimePrice = [
@@ -68,16 +64,17 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
   const handleSaveClick = _goalId => {
     let newTodoData = todoData.map(item => {
       if (item.goalId === _goalId) {
+        item.goalId = _goalId
         item.notTodo = editTitle;
         item.costCategory = editSelect;
         item.goalCost = editGoalNumber;
-        // item.completed = false;
       }
       return item;
     });
     setTodoData(newTodoData);
 
     putTitleTodo(_goalId, { ...item });
+    console.log("putTitleTodo", {...item})
     setIsEdit(false);
   };
 

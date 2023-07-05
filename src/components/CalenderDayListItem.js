@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { deleteTodo, patchTitleTodo } from "../api/api";
+import { deleteTodo, putDailyAddNum } from "../api/api";
 import {
   CalListButton,
   CalListTbody,
@@ -10,12 +10,12 @@ import {
 } from "../style/CalendarListCSS";
 import Select from "rc-select";
 
-const CalendarDayListItem = ({ item, todoData, setTodoData }) => {
+const CalendarDayListItem = ({ item, DailyList, setDailyList }) => {
   //state
   const [isEdit, setIsEdit] = useState(false);
-  const [editTitle, setEditTitle] = useState(item.title);
-  const [editGoalNumber, setEditGoalNumber] = useState(item.goalNumber);
-  const [editSelect, setEditSelect] = useState(item.options);
+  const [editTitle, setEditTitle] = useState(item.name);
+  const [editCostNumber, setEditCostNumber] = useState(item.cost);
+  const [editSelect, setEditSelect] = useState(item.costCategory);
 
   // 선택창 옵션(추후에 따로 빼내야 함)
   const selectTimePrice = [
@@ -24,17 +24,15 @@ const CalendarDayListItem = ({ item, todoData, setTodoData }) => {
   ];
 
   // 선택삭제
-  const handleDeleteClick = _id => {
-    console.log(_id);
-    console.log(todoData);
+  const handleDeleteClick = _useListId => {
     // tododata중 id가 겹치지않는것만 담는다.
-    const newTodoData = todoData.filter(item => item.id !== _id);
-    setTodoData(newTodoData);
+    const newTodoData = DailyList.filter(item => item.useListId !== _useListId);
+    setDailyList(newTodoData);
     // deleteTodo(_id);
   };
 
   //선택편집(버튼활성화하기)
-  const handleEditClick = _id => {
+  const handleEditClick = _useListId => {
     // console.log("handleEdit_id", _id);
     setIsEdit(true);
   };
@@ -44,7 +42,7 @@ const CalendarDayListItem = ({ item, todoData, setTodoData }) => {
     setEditTitle(e.target.value);
   };
   const handleNumEditChange = e => {
-    setEditGoalNumber(e.target.value);
+    setEditCostNumber(e.target.value);
   };
   const handleSelectEditChange = selectedOption => {
     setEditSelect(selectedOption.value);
@@ -57,18 +55,19 @@ const CalendarDayListItem = ({ item, todoData, setTodoData }) => {
   };
 
   //수정 저장하기
-  const handleSaveClick = _id => {
-    let newTodoData = todoData.map(item => {
-      if (item.id === _id) {
-        item.title = editTitle;
-        item.options = editSelect;
-        item.goalNumber = editGoalNumber;
+  const handleSaveClick = _useListId => {
+    let newTodoData = DailyList.map(item => {
+      if (item.useListId === _useListId) {
+        item.useListId = _useListId;
+        // item.title = editTitle;
+        // item.options = editSelect;
+        item.cost = editCostNumber;
       }
       return item;
     });
-    setTodoData(newTodoData);
+    setDailyList(newTodoData);
 
-    // patchTitleTodo(_id, { ...item });
+    putDailyAddNum(_useListId, { ...item });
     setIsEdit(false);
   };
 
@@ -95,7 +94,7 @@ const CalendarDayListItem = ({ item, todoData, setTodoData }) => {
           <CalListTdNumber>
             <input
               type="number"
-              defaultValue={editGoalNumber}
+              defaultValue={editCostNumber}
               onChange={handleNumEditChange}
             />
           </CalListTdNumber>
@@ -121,11 +120,11 @@ const CalendarDayListItem = ({ item, todoData, setTodoData }) => {
     return (
       <CalListTbody>
         <CalListTr>
-          <CalListTdTitle>{item.title}</CalListTdTitle>
-          <CalListTdNumber>{item.options}</CalListTdNumber>
+          <CalListTdTitle>{item.name}</CalListTdTitle>
+          <CalListTdNumber>{item.costCategory}</CalListTdNumber>
 
           {/* 일일수량 출력필요함 */}
-          <CalListTdNumber>{item.goalNumber}</CalListTdNumber>
+          <CalListTdNumber>{item.cost}</CalListTdNumber>
           {/* 편집/ 삭제 버튼 만들기 */}
           {/* <CalListTdBtnDiv> */}
           <CalListButton
@@ -136,7 +135,7 @@ const CalendarDayListItem = ({ item, todoData, setTodoData }) => {
             edit
           </CalListButton>
           <CalListButton
-            onClick={() => handleDeleteClick(item.id)}
+            onClick={() => handleDeleteClick(item.useListId)}
             className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           >
             {" "}

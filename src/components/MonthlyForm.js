@@ -50,13 +50,13 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
   // 만약 당월이라면 현재날짜부터 말일까지
   // 만약 다음달이라면 1일부터 말일까지(제대로 구현안됨. 수정필요)
 
-    const selectedMonthYYYYMM = format(selectedMonth, "yyyy-MM");
+  const selectedMonthYYYYMM = format(selectedMonth, "yyyy-MM");
 
-    console.log(selectedMonthYYYYMM);
+  // console.log(selectedMonthYYYYMM);
 
   // 목표명
   const handleStrChange = e => {
-    console.log("str", e.target.value);
+    // console.log("str", e.target.value);
     setStrValue(e.target.value);
   };
 
@@ -146,26 +146,26 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           </div>
           <AddFormTitle>
             <div>
-            <Form.Item
-              // label="한달 목표"
-              name="notTodo"
-              value={strValue}
-              onChange={handleStrChange}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: "목표를 입력하세요",
-              //   },
-              //   { max: 10, message: '목표를 10자이내로 입력하세요' },
-              //   {
-              //     pattern: /^\S/,
-              //     message: '목표를 입력하세요',
-              //   },
-              // ]}
-            >
-              <FormLabel>한달목표</FormLabel>
-              <Input size="large" />
-            </Form.Item>
+              <Form.Item
+                // label="한달 목표"
+                name="notTodo"
+                value={strValue}
+                onChange={handleStrChange}
+                // rules={[
+                //   {
+                //     required: true,
+                //     message: "목표를 입력하세요",
+                //   },
+                //   { max: 10, message: '목표를 10자이내로 입력하세요' },
+                //   {
+                //     pattern: /^\S/,
+                //     message: '목표를 입력하세요',
+                //   },
+                // ]}
+              >
+                <FormLabel>한달목표</FormLabel>
+                <Input size="large" />
+              </Form.Item>
             </div>
           </AddFormTitle>
           <div>
@@ -177,8 +177,10 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
             >
               <FormLabel>단위</FormLabel>
               <Radio.Group style={{ display: "inline-block" }} size="large">
-                <Radio.Button value="TIME">TIME</Radio.Button>
-                <Radio.Button value="PRICE">PRICE</Radio.Button>
+                <div>
+                  <Radio.Button value="TIME">TIME</Radio.Button>
+                  <Radio.Button value="PRICE">PRICE</Radio.Button>
+                </div>
               </Radio.Group>
             </Form.Item>
           </div>

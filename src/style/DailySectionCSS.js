@@ -66,13 +66,14 @@ export const DailyListWrap = styled.tbody`
 `;
 
 export const DailyListTr = styled.tr`
-  width: 620px;
+  width: 550px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2px 8px;
   border-radius: 10px;
+
 `;
 export const DailyListTitle = styled.td`
   display: inline-block;
@@ -98,7 +99,7 @@ export const DailyListBtn = styled.td`
 
 //todolist 수정중
 export const DailyEditListTr = styled.tr`
-  width: 620px;
+  width: 520px;
   margin-top: 5px;
   display: flex;
   justify-content: space-between;
@@ -124,7 +125,7 @@ export const DailyEditListNumber = styled.td`
 `;
 export const DailyEditListBtn = styled.td`
   font-size: 12px;
-  width: 16%;
+  width: 20%;
   display: flex;
   justify-content: space-between;
 `;

@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import CalendarDayListItem from "../components/CalenderDayListItem";
 
 import {
+  Aaa,
   CalendarTableThBtn,
-  CalendarTableThDate,
   CalendarTableThNumber,
   CalendarTableThTitle,
   DailyCalTable,
@@ -10,10 +11,18 @@ import {
   DailyCalTableTr,
   DailyCalTitle,
   DailyCalWrap,
-  DailyTitleDiv,
+  DailyTitleDiv
 } from "../style/CalendarListCSS";
+import { getCalendarDaylist } from "../api/api";
 
 const CalendarDayList = ({ todoData, setTodoData, clickItems, clickDate }) => {
+  // state
+  const [DailyList, setDailyList] = useState([]);
+
+  useEffect(() => {
+    getCalendarDaylist(setDailyList, clickDate);
+  }, []);
+  console.log("DailyList", DailyList);
   return (
     <>
       <DailyCalWrap>
@@ -30,19 +39,21 @@ const CalendarDayList = ({ todoData, setTodoData, clickItems, clickDate }) => {
               <CalendarTableThBtn></CalendarTableThBtn>
             </DailyCalTableTr>
           </DailyCalTableThead>
-        </DailyCalTable>
-        {clickItems.map(item => (
+
+        {DailyList.map(item => (
           <CalendarDayListItem
-            key={item.id}
-            item={item}
-            title={item.title}
-            options={item.options}
-            goalNumber={item.goalNumber}
-            monthYear={item.selectedMonth}
-            todoData={todoData}
-            setTodoData={setTodoData}
+          key={item.useListId}
+          item={item}
+          name={item.name}
+          costCategory={item.costCategory}
+          cost={item.cost}
+          // monthYear={item.selectedMonth}
+          DailyList={DailyList}
+          setDailyList={setDailyList}
           />
-        ))}
+          ))}
+
+          </DailyCalTable>
       </DailyCalWrap>
     </>
   );

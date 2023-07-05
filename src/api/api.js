@@ -10,7 +10,8 @@ import axios from "axios";
 //   },
 // });
 
-// todo data get
+//////////////GET
+// todo Add data get
 export const getTodo = async setTodoData => {
   try {
     const res = await axios.get("/api/monthly-goal");
@@ -24,12 +25,50 @@ export const getTodo = async setTodoData => {
 };
 
 // calendar data get
-export const getCalendarTodo = async (setMonthData, DefalutMonth) => {
+export const getCalendarTodo = async DefalutMonth => {
   try {
     const res = await axios.get(`/api/calender?monthYear=${DefalutMonth}`);
     const result = await res.data;
     console.log("result", result);
-    setMonthData(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return [
+      {
+        name: "라면",
+        date: "2023-07-01",
+      },
+      {
+        name: "술",
+        date: "2023-07-01",
+      },
+      {
+        name: "여가생활",
+        date: "2023-07-04",
+      },
+    ];
+  }
+};
+
+// Day 상세 List get
+export const getCalendarDaylist = async (setDailyList, clickDate) => {
+  try {
+    const res = await axios.get(`/api/daily?date=${clickDate}`);
+    const result = await res.data;
+    console.log("result", result);
+    setDailyList(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 오늘의 List get
+export const getTodaylist = async (setTodayList, todayDate) => {
+  try {
+    const res = await axios.get(`/api/daily?date=${todayDate}`);
+    const result = await res.data;
+    console.log("result", result);
+    setTodayList(result);
   } catch (error) {
     console.log(error);
   }
@@ -48,7 +87,7 @@ export const getCalendarTodo = async (setMonthData, DefalutMonth) => {
 //   }
 // };
 
-//post
+//////////////////////////////////POST
 //todo data post
 export const postTodo = async newTodo => {
   try {
@@ -71,41 +110,28 @@ export const postTodo = async newTodo => {
 //   }
 // };
 
-//put
+////////////////////////////////////PUT
 //todo data 수정기능 (수정필요)
 export const putTitleTodo = async (_goalCost, item) => {
   try {
     const res = await axios.put("/api/monthly-goal", {
-      goalId: 0,
-      notTodo: "string",
-      costCategory: "string",
-      goalCost: 0,
+      goalId: item.goalId,
+      notTodo: item.notTodo,
+      costCategory: item.costCategory,
+      goalCost: item.goalCost,
     });
     const data = await res.data;
-    console.log(data);
+    console.log("수정", data);
   } catch (error) {
     console.log(error);
   }
 };
 
-// //daily오늘수량 수정기능
-// const patchDailyAddNum = async (_id, dailyEditTodayNum) => {
-//   try {
-//     const res = await axiosInstance.patch(`/todos/${_id}`, {
-//       dailyAddNumber: dailyEditTodayNum,
-//     });
-//     const data = res.data;
-//     console.log(data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// 메모 수정기능(덮어씌우기)
-export const putOneMemo = async (OneMemo) => {
+// daily오늘수량 수정기능
+export const putDailyAddNum = async (_useListId, item) => {
   try {
-    const res = await axios.put(`/api/memo`,{
-      memo: OneMemo
+    const res = await axios.patch("/api/daily", {
+      cost: item.cost,
     });
     const data = res.data;
     console.log(data);
@@ -114,7 +140,27 @@ export const putOneMemo = async (OneMemo) => {
   }
 };
 
-//todo date delete (수정필요)
+// 메모 수정기능(덮어씌우기)
+export const putOneMemo = async OneMemo => {
+  try {
+    const res = await axios.put(
+      `/api/memo`,
+      {
+        memo: OneMemo,
+      },
+      // {
+      //   memo: "string",
+      // },
+    );
+    const data = res.data;
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+///////////////////////////////////////DELETE
+//todo date delete
 export const deleteTodo = async _goalId => {
   try {
     const res = await axios.delete(`/api/monthly-goal?goalId=${_goalId}`);
@@ -125,6 +171,16 @@ export const deleteTodo = async _goalId => {
   }
 };
 
+//daily오늘수량 delete (수정필요)
+export const deleteDailyAddNum = async _useListId => {
+  try {
+    const res = await axios.delete(`/api/daily?useListId=${_useListId}`);
+    const result = await res.data;
+    console.log("del,result", result);
+  } catch (error) {
+    console.log(error);
+  }
+};
 // export {
 //   axiosInstance,
 //   getMemo,
