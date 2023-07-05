@@ -7,12 +7,14 @@ const MonthlyList = ({ todoData, setTodoData }) => {
     <>
       {todoData.map(item => (
         <MonthlyListItem
-          key={item.uid}
+          key={item.goalId}
           item={item}
-          options={item.options}
+          notTodo={item.notTodo}
+          costCategory={item.costCategory}
+          goalCost={item.goalCost}
           // startDate={item.startDateFormat}
           // endDate={item.startDateFormat}
-          monthYear={item.selectedMonth}
+          monthYear={item.monthYear}
           todoData={todoData}
           setTodoData={setTodoData}
         />

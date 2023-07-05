@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment/moment";
 
 import { Calendar } from "react-calendar";
@@ -10,10 +10,24 @@ import {
   MonthlyCalendarWrap,
 } from "../style/MonthlyCalendarCSS";
 import CalendarDayList from "./CalenderDayList";
-
+import { getCalendarTodo } from "../api/api";
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [day, setDay] = useState(new Date());
+
+  //CalendarDayList 에 출력시켜줄 state
+  const [clickItems, setClickItems] = useState([]);
+  const [clickDate, setClickDate] = useState([]);
+  const [monthData, setMonthData] = useState([]);
+
+  const getCalendarTodoData = async _month => {
+    const result = await getCalendarTodo(_month);
+    setMonthData(result);
+  };
+  useEffect(() => {
+    getCalendarTodoData(moment(day).format("YYYY-MM"));
+  }, []);
+  // const DefalutMonth = moment(day).format("YYYY-MM");
 
   // 상세보기 모달창
   const showModal = () => {
@@ -26,33 +40,49 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     setIsModalOpen(false);
   };
 
+  // 클릭했을 때 그날의 날짜 data넘기기
   const handleClickDay = (value, event) => {
     showModal();
-    console.log(event.currentTarget);
+
+    let ClickDay = moment(value).format("YYYY-MM-DD");
+    let DayFilterItem = todoData.filter(item => item.date === ClickDay);
+    setClickItems(DayFilterItem);
+    setClickDate(ClickDay);
 
     const div = event.currentTarget.querySelector("div");
     if (div !== null) {
-      console.log(value);
+      // console.log("value2", value);
     }
   };
 
-  //calendar 내용 출력하기 기능
+  //상단 네비게이션에서 월 클릭 했을 때
+  const handleNavClickMonth = (value, event) => {
+    let clickMonth = moment(value).format("YYYY-MM");
+    getCalendarTodoData(clickMonth);
+    console.log("clickMonth11", clickMonth);
+  };
+
+  //이전,다음버튼 눌러서 월 정보 불러오기
+  const handleArrowClickMonth = (value, event) => {
+    let clickMonth = moment(value.activeStartDate).format("YYYY-MM");
+    getCalendarTodoData(clickMonth);
+    console.log("clickMonth22", clickMonth);
+  };
+
+  //calendar에 title 출력하기 기능
   const showScheduleJSX = ({ date, view }) => {
     // 포맷을 YYYY-MM-DD로 변경한다
     let DefalutDay = moment(date).format("YYYY-MM-DD");
-    let results = todoData.filter(item => {
+    let results = monthData.filter(item => {
       if (item.date === DefalutDay) {
-        console.log("날짜가 같아요, 화면에 내용 출력");
         return item;
       }
     });
+    // console.log("results", results);
     if (results.length > 0) {
-      return results.map(result => (
-        <div
-          key={result.id}
-          className="bg-slate-500 border-dotted rounded-md my-1"
-        >
-          <div className="text-slate-50">{result.title}</div>
+      return results.map((result, index) => (
+        <div key={index} className="bg-slate-500 border-dotted rounded-md my-1">
+          <div className="text-slate-50">{result.name}</div>
         </div>
       ));
     }
@@ -67,21 +97,27 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           contentLabel="모달"
           style={{
             content: {
-              width: "50%",
-              height: "40%",
+              width: "70%",
+              maxWidth: "900px",
+              height: "600px",
               margin: "auto",
               borderRadius: "20px",
             },
           }}
         >
           <div>
-            <h2>daily 상세내역 출력</h2>
-            <CalendarDayList />
+            <h2>daily 상세내역 출력 {clickDate}</h2>
+            <CalendarDayList
+              clickItems={clickItems}
+              clickDate={clickDate}
+              todoData={todoData}
+              setTodoData={setTodoData}
+            />
           </div>
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center">
             <button
               type="button"
-              className="mt-10 py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              className="py-2 px-4 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               onClick={handleCancel}
             >
               CLOSE
@@ -95,6 +131,12 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           <Calendar
             //날짜 클릭했을 때 이벤트핸들러
             onClickDay={(value, event) => handleClickDay(value, event)}
+            // 상단 네비게이션에서 월 클릭했을 때
+            onClickMonth={(value, event) => handleNavClickMonth(value, event)}
+            // 이전 다음 버튼클릭해서 월 정보 넘기기
+            onActiveStartDateChange={(value, event) =>
+              handleArrowClickMonth(value, event)
+            }
             onChange={setDay}
             value={day}
             // 일요일부터 출력하도록 설정하기

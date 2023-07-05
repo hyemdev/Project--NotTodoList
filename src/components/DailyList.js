@@ -11,52 +11,49 @@ import {
   DailyListTr,
   DailyListWrap,
 } from "../style/DailySectionCSS";
-import { patchDailyAddNum } from "../api/api";
+import { getTodaylist } from "../api/api";
+// import { patchDailyAddNum } from "../api/api";
 
 const DailyList = ({ todoData, setTodoData }) => {
   // 데일리낫투두 수정 관련 state
   const [dailyEdit, setDailyEdit] = useState(false);
   const [dailyEditTodayNum, setDailyEditTodayNum] = useState(0);
 
+  // get관련 useState
+  const [todayList, setTodayList] = useState([]);
+
+  // 오늘날짜 계산하기
+  const todayDate = moment().format("YYYY-MM-DD");
+  
   // Daily not todo list 출력
   const showNotTodoList = () => {
-    if (todoData) {
-      // 오늘날짜 포맷에 맞게 출력하기
-      const todayDate = moment().format("YYYY-MM-DD");
-      console.log(typeof todayDate);
-      // console.log(todoData[0]["dateArray[]"])
-      // 오늘날짜와 일치하는 자료만 찾아서 배열로 만들자
-      const matchingDates = todoData
-        ? todoData.filter(
-            item => item["dateArray[]"] && item["dateArray[]"][0] === todayDate,
-          )
-        : [];
-      // todayDate()
-      console.log("matchingDates", matchingDates); // 오늘과 일치하는 날짜를 포함하는 배열 출력
-      // matchingDates();
-
-      if (matchingDates.length > 0) {
-        return matchingDates.map(item => (
-          <div key={item.id}>
-            <DailyListWrap>
-              <DailyListTr>
-                <DailyListTitle>{item.title}</DailyListTitle>
-                <DailyListNumber>{item.goalNumber}</DailyListNumber>
-                <DailyListNumber>{item.accumulateNumber}</DailyListNumber>
-                <DailyListNumber>{item.dailyAddNumber}</DailyListNumber>
-                <DailyListBtn
-                  onClick={() => handleEditClick(item)}
-                  className="p-2 m-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                >
-                  수정
-                </DailyListBtn>
-              </DailyListTr>
-            </DailyListWrap>
-          </div>
-        ));
-      }
+    if (todayList) {
+      // 오늘날짜 list 출력하기
+      return todayList.map(item => (
+        // <div key={item.useListId}>
+          <DailyListWrap key={item.useListId}>
+            <DailyListTr>
+              <DailyListTitle>{item.name}</DailyListTitle>
+              {/* 목표수량 */}
+              <DailyListNumber>{item.goalNumber}</DailyListNumber>
+              {/* 누적수량 */}
+              <DailyListNumber>{item.cost}</DailyListNumber>
+              {/* 오늘수량 */}
+              <DailyListNumber>{item.cost}</DailyListNumber>
+              <DailyListNumber>{item.costCategory}</DailyListNumber>
+              <DailyListBtn
+                onClick={() => handleEditClick(item)}
+                className="p-2 m-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                수정
+              </DailyListBtn>
+            </DailyListTr>
+          </DailyListWrap>
+        // </div>
+      ));
     }
   };
+
   // 이벤트 핸들러
   //선택편집(버튼활성화하기)
   const handleEditClick = item => {
@@ -76,7 +73,7 @@ const DailyList = ({ todoData, setTodoData }) => {
 
   // 일일수량 변경 저장하기
   const handleDailySaveClick = _id => {
-    let newTodoData = todoData.map(item => {
+    let newTodoData = getTodaylist.map(item => {
       if (item.id === _id) {
         item.dailyAddNumber = dailyEditTodayNum;
       }
@@ -84,13 +81,15 @@ const DailyList = ({ todoData, setTodoData }) => {
     });
     setTodoData(newTodoData);
 
-    patchDailyAddNum(_id, dailyEditTodayNum);
+    // patchDailyAddNum(_id, dailyEditTodayNum);
     setDailyEdit(false);
     setDailyEditTodayNum("");
   };
 
+  // GET 위치
   useEffect(() => {
     showNotTodoList();
+    getTodaylist(setTodayList, todayDate);
   }, []);
 
   if (dailyEdit) {
@@ -128,7 +127,7 @@ const DailyList = ({ todoData, setTodoData }) => {
       </DailyListWrap>
     );
   } else {
-    return <div>{showNotTodoList()}</div>;
+    return <>{showNotTodoList()}</>;
   }
 };
 export default DailyList;

@@ -12,31 +12,35 @@ import {
   AddTableThNumber,
   AddTableThBtn,
   AddTitleDiv,
+  Temp,
+  ListTemp,
 } from "../style/MonthlyAddCSS";
 
 const MonthlyAdd = ({ todoData, setTodoData }) => {
   return (
-    <div>
-      <MonthlyAddWrap>
-        <AddTitleDiv>
-          <AddTitle>한달목표 설정하기</AddTitle>
-        </AddTitleDiv>
-        <AddTable>
-          <AddTableThead>
-            <AddTableTr>
-              <AddTableThDate>기간</AddTableThDate>
-              <AddTableThTitle>월간목표</AddTableThTitle>
-              <AddTableThNumber>단위</AddTableThNumber>
-              <AddTableThNumber>수량</AddTableThNumber>
-              <AddTableThBtn></AddTableThBtn>
-              <AddTableThBtn></AddTableThBtn>
-            </AddTableTr>
-          </AddTableThead>
-        </AddTable>
+    <MonthlyAddWrap>
+      <AddTitleDiv>
+        <AddTitle>한달목표 설정하기</AddTitle>
+      </AddTitleDiv>
+      <AddTable>
+        <AddTableThead>
+          <AddTableTr>
+            <AddTableThDate>기간</AddTableThDate>
+            <AddTableThTitle>월간목표</AddTableThTitle>
+            <AddTableThNumber>단위</AddTableThNumber>
+            <AddTableThNumber>수량</AddTableThNumber>
+            <AddTableThBtn></AddTableThBtn>
+            <AddTableThBtn></AddTableThBtn>
+          </AddTableTr>
+        </AddTableThead>
+      </AddTable>
+      <ListTemp>
         <MonthlyList todoData={todoData} setTodoData={setTodoData} />
+      </ListTemp>
+      <Temp>
         <MonthlyForm todoData={todoData} setTodoData={setTodoData} />
-      </MonthlyAddWrap>
-    </div>
+      </Temp>
+    </MonthlyAddWrap>
   );
 };
 

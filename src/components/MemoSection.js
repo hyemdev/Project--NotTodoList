@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getMemo, postOneMemo, putOneMemo } from "../api/api";
+import { putOneMemo } from "../api/api";
 import {
   MemoDiv,
   MemoForm,
@@ -25,16 +25,8 @@ const MemoSection = () => {
   const handleMemoCancelClick = () => {
     setMemoIsEdit(false);
   };
-  // //메모 저장 PUT
-  // const handleSummit = _id => {
-  //   setOneMemo(OneMemo);
 
-  //   // putOneMemo(_id, OneMemo);
-
-  //   setMemoIsEdit(false);
-  // };
-
-  // POST
+  // 클릭기능
   const handleMemoSaveClick = e => {
     // 브라우저 갱신 막기
     e.preventDefault();
@@ -44,25 +36,25 @@ const MemoSection = () => {
       alert("내용을 입력하세요");
     }
     const newTodo = {
-      id: Date.now(),
-      oneMemoData: OneMemo,
+      memo: OneMemo,
     };
     console.log("newTodo", newTodo);
 
     setOneMemo(newTodo.oneMemoData);
 
-    //Post 하자~~~
-    postOneMemo(newTodo);
+    //보내자~~~
+    putOneMemo(newTodo);
     setMemoIsEdit(false);
 
     // 전송완료 된 다음 입력창을 초기화 하자
-    // setOneMemo("");
+    setOneMemo(OneMemo);
 
-    // 메모내용 get
-    useEffect(() => {
-      getMemo(setOneMemo);
-    }, []);
   };
+
+  useEffect(() => {
+    // getMemo(setOneMemo);
+  }, []);
+  
   if (MemoIsEdit) {
     //수정중인 상태
     return (

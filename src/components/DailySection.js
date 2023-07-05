@@ -37,7 +37,6 @@ const DailySection = ({ todoData, setTodoData }) => {
       <div>
         <DailySectionTitle>DailyNotTodo</DailySectionTitle>
         <span> today :{isToday}</span>
-        <div>
           <DailyTable>
             <DailyTableThead>
               <DailyTableTr>
@@ -51,9 +50,11 @@ const DailySection = ({ todoData, setTodoData }) => {
           </DailyTable>
           {/* today list 출력창 */}
           <DailyListDiv>
+
             <DailyList todoData={todoData} setTodoData={setTodoData} />
+            
           </DailyListDiv>
-        </div>
+
         <div>
           <Modal
             isOpen={isModalOpen}
