@@ -62,6 +62,32 @@ export const getCalendarDaylist = async (setDailyList, clickDate) => {
   }
 };
 
+
+// 가장 많이 절약한 금액의 달 data 가져오기
+export const getMostSavedMonth = async (_startMonth, _endMonth) => {
+  try {
+    const startMonth = _startMonth;
+    const endMonth = _endMonth;
+    const res = await axios.get(
+      `/api/main?startMonth=${startMonth}&endMonth=${endMonth}`,
+    );
+    // 데이터가 조금 복잡하게 들어옴. 주의할 것
+    const data = res.data;
+    return data;
+  } catch (err) {
+    console.log(err);
+    return {
+      maxMoneyMonth: "2023-07",
+      maxSaveMoney: 326000,
+      maxTimeMonth: "2023-07",
+      maxSaveTime: 170,
+      sumSaveMoney: 524000,
+      sumSaveTime: 220,
+    };
+  }
+};
+
+  
 // 오늘의 List get
 export const getTodaylist = async (setTodayList, todayDate) => {
   try {

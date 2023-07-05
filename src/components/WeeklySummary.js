@@ -5,7 +5,7 @@ const WeeklySummary = () => {
   // 초기 상단 데이터
   const weekDataInit = [
     {
-      country: "지난주",
+      week: "지난주",
       "hot dog": 100000,
       "hot dogColor": "hsl(56, 70%, 50%)",
       burger: 100000,
@@ -20,7 +20,7 @@ const WeeklySummary = () => {
       donutColor: "hsl(18, 70%, 50%)",
     },
     {
-      country: "이번주",
+      week: "이번주",
       "hot dog": 100000,
       "hot dogColor": "hsl(17, 70%, 50%)",
       burger: 100000,
@@ -40,11 +40,11 @@ const WeeklySummary = () => {
     <div className="flex flex-col">
       <div>
         <h2>Weekly 시간</h2>
-        <div style={{ height: 400 }}>
+        <div style={{ height: "400px" }}>
           <ResponsiveBar
             data={weekData}
             keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
-            indexBy="country"
+            indexBy="week"
             margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
             padding={0.2}
             valueScale={{ type: "linear" }}
@@ -94,7 +94,7 @@ const WeeklySummary = () => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "country",
+              legend: "week",
               legendPosition: "middle",
               legendOffset: 32,
             }}
@@ -102,7 +102,6 @@ const WeeklySummary = () => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "food",
               legendPosition: "middle",
               legendOffset: -40,
             }}
