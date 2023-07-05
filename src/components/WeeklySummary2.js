@@ -1,41 +1,26 @@
 import { ResponsiveBar } from "@nivo/bar";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const WeeklySummary2 = () => {
-  // 초기 상단 데이터
-  const weekDataInit = [
-    {
-      country: "지난주",
-      "hot dog": 100000,
-      "hot dogColor": "hsl(56, 70%, 50%)",
-      burger: 100000,
-      burgerColor: "hsl(15, 70%, 50%)",
-      sandwich: 20000,
-      sandwichColor: "hsl(102, 70%, 50%)",
-      kebab: 50000,
-      kebabColor: "hsl(319, 70%, 50%)",
-      fries: 300000,
-      friesColor: "hsl(39, 70%, 50%)",
-      donut: 129,
-      donutColor: "hsl(18, 70%, 50%)",
-    },
-    {
-      country: "이번주",
-      "hot dog": 100000,
-      "hot dogColor": "hsl(17, 70%, 50%)",
-      burger: 100000,
-      burgerColor: "hsl(21, 70%, 50%)",
-      sandwich: 20000,
-      sandwichColor: "hsl(191, 70%, 50%)",
-      kebab: 50000,
-      kebabColor: "hsl(102, 70%, 50%)",
-      fries: 300000,
-      friesColor: "hsl(48, 70%, 50%)",
-      donut: 186,
-      donutColor: "hsl(90, 70%, 50%)",
-    },
-  ];
-  const [weekData, setWeekData] = useState(weekDataInit);
+  const [weekData, setWeekData] = useState([
+    { week: "과자", cost: 0 },
+    { week: "담배", cost: 0 },
+    { week: "라면", cost: 2500 },
+    { week: "술", cost: 2000 },
+    { week: "여가생활", cost: 7000 },
+    { week: "커피", cost: 0 },
+  ]);
+
+  const addNewItem = () => {
+    const newItem = {
+      week: prompt("항목을 입력하세요"),
+      cost: parseInt(prompt("금액을 입력하세요")) || 0
+    };
+
+    if (newItem.week && newItem.cost >= 0) {
+      setWeekData([...weekData, newItem]);
+    }
+  };
 
   return (
     <div className="flex flex-col">
@@ -44,50 +29,16 @@ const WeeklySummary2 = () => {
         <div style={{ height: 400 }}>
           <ResponsiveBar
             data={weekData}
-            keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
-            indexBy="country"
+            keys={["cost"]}
+            indexBy="week"
             margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
             padding={0.2}
             valueScale={{ type: "linear" }}
             indexScale={{ type: "band", round: true }}
             colors={{ scheme: "nivo" }}
-            defs={[
-              {
-                id: "dots",
-                type: "patternDots",
-                background: "inherit",
-                color: "#38bcb2",
-                size: 4,
-                padding: 1,
-                stagger: true,
-              },
-              {
-                id: "lines",
-                type: "patternLines",
-                background: "inherit",
-                color: "#eed312",
-                rotation: -45,
-                lineWidth: 6,
-                spacing: 10,
-              },
-            ]}
-            fill={[
-              {
-                match: {
-                  id: "fries",
-                },
-                id: "dots",
-              },
-              {
-                match: {
-                  id: "sandwich",
-                },
-                id: "lines",
-              },
-            ]}
             borderColor={{
               from: "color",
-              modifiers: [["darker", 1.6]],
+              modifiers: [["darker", 1.6]]
             }}
             axisTop={null}
             axisRight={null}
@@ -95,26 +46,25 @@ const WeeklySummary2 = () => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "country",
+              legend: "week",
               legendPosition: "middle",
-              legendOffset: 32,
+              legendOffset: 32
             }}
             axisLeft={{
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legendPosition: "middle",
-              legendOffset: -40,
+              legendPositimon: "middle",
+              legendOffset: 32
             }}
             labelSkipWidth={12}
             labelSkipHeight={12}
             labelTextColor={{
               from: "color",
-              modifiers: [["darker", 1.6]],
+              modifiers: [["darker", 1.6]]
             }}
             legends={[
               {
-                dataFrom: "keys",
                 anchor: "bottom-right",
                 direction: "column",
                 justify: false,
@@ -130,11 +80,11 @@ const WeeklySummary2 = () => {
                   {
                     on: "hover",
                     style: {
-                      itemOpacity: 1,
-                    },
-                  },
-                ],
-              },
+                      itemOpacity: 1
+                    }
+                  }
+                ]
+              }
             ]}
             role="application"
             ariaLabel="Nivo bar chart demo"
@@ -143,6 +93,7 @@ const WeeklySummary2 = () => {
             }
           />
         </div>
+        <button onClick={addNewItem} className="absolute top-9 right-24  border p-1 hover:bg-black hover:text-white">항목 추가</button>
       </div>
     </div>
   );

@@ -3,116 +3,68 @@ import React, { useState } from "react";
 
 const MonthlySummary = () => {
   // 초기 상단 데이터
-  const monthDataInit = [
+  const jsonData = [
     {
-      "id": "japan",
-      "color": "hsl(336, 70%, 50%)",
-      "data": [
-        {
-          "x": "plane",
-          "y": 212
-        },
-        {
-          "x": "helicopter",
-          "y": 174
-        },
-        {
-          "x": "boat",
-          "y": 76
-        },
-        {
-          "x": "train",
-          "y": 192
-        },
-        {
-          "x": "subway",
-          "y": 67
-        },
-        {
-          "x": "bus",
-          "y": 130
-        },
-        {
-          "x": "car",
-          "y": 76
-        },
-        {
-          "x": "moto",
-          "y": 132
-        },
-        {
-          "x": "bicycle",
-          "y": 253
-        },
-        {
-          "x": "horse",
-          "y": 243
-        },
-        {
-          "x": "skateboard",
-          "y": 177
-        },
-        {
-          "x": "others",
-          "y": 145
-        }
-      ]
+      "month": "2023-01",
+      "saveCost": 0
     },
     {
-      "id": "france",
-      "color": "hsl(208, 70%, 50%)",
-      "data": [
-        {
-          "x": "plane",
-          "y": 89
-        },
-        {
-          "x": "helicopter",
-          "y": 256
-        },
-        {
-          "x": "boat",
-          "y": 178
-        },
-        {
-          "x": "train",
-          "y": 101
-        },
-        {
-          "x": "subway",
-          "y": 206
-        },
-        {
-          "x": "bus",
-          "y": 113
-        },
-        {
-          "x": "car",
-          "y": 226
-        },
-        {
-          "x": "moto",
-          "y": 55
-        },
-        {
-          "x": "bicycle",
-          "y": 252
-        },
-        {
-          "x": "horse",
-          "y": 225
-        },
-        {
-          "x": "skateboard",
-          "y": 154
-        },
-        {
-          "x": "others",
-          "y": 104
-        }
-      ]
+      "month": "2023-02",
+      "saveCost": 0
+    },
+    {
+      "month": "2023-03",
+      "saveCost": 0
+    },
+    {
+      "month": "2023-04",
+      "saveCost": 0
+    },
+    {
+      "month": "2023-05",
+      "saveCost": 0
+    },
+    {
+      "month": "2023-06",
+      "saveCost": 50
+    },
+    {
+      "month": "2023-07",
+      "saveCost": 170
+    },
+    {
+      "month": "2023-08",
+      "saveCost": 60
+    },
+    {
+      "month": "2023-09",
+      "saveCost": 0
+    },
+    {
+      "month": "2023-10",
+      "saveCost": 0
+    },
+    {
+      "month": "2023-11",
+      "saveCost": 0
+    },
+    {
+      "month": "2023-12",
+      "saveCost": 0
     },
   ]
+
+  const monthDataInit = [
+    {
+      id: "savings",
+      color: "hsl(336,70%,50%",
+      data: jsonData.map((item) => ({
+        x: item.month,
+        y:item.saveCost,
+      }))
+    }
+  ]
+  
   const [monthData, setMonthData] = useState(monthDataInit);
   return (
     <div className="flex flex-col">
@@ -145,7 +97,6 @@ const MonthlySummary = () => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'count',
             legendOffset: -40,
             legendPosition: 'middle'
         }}

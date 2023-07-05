@@ -1,318 +1,71 @@
-import { Button, Modal, Space } from "antd";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { fetchDummyData, getDateRange, getSavingAmount } from "../api/api";
-
+import { getMostSavedMonth } from "../api/api";
 
 const BriefSection = () => {
-  const [mostSavedMonth, setMostSavedMonth] = useState("");
-  const [mostSavedAmount, setMostSavedAmount] = useState(0);
+  const [maxStats, setMaxStats] = useState(null);
+  const [totalStats, setTotalStats] = useState(null);
 
-  const [mostSavedMonth2, setMostSavedMonth2] = useState("");
-  const [mostSavedTime, setMostSavedTime] = useState(0);
+  // 메인 출력 데이터호출
+  const fetchMaxStats = async (_startMonth, _endMonth) => {
+    try {
+      const response = await getMostSavedMonth(_startMonth, _endMonth);
+      // console.log(response.saveStats);
+      const {
+        maxMoneyMonth,
+        maxSaveMoney,
+        maxTimeMonth,
+        maxSaveTime,
+        sumSaveMoney,
+        sumSaveTime,
+      } = response.saveStats;
 
-  const [loading, setLoading] = useState(true);
-  const [dateRange, setDateRange] = useState("")
-  const [dateRange2, setDateRange2] = useState("")
-  // const [totalSavingAmount, setTotalSavingAmount] = useState(null)
+      // 가장 많이 절약한 달의 금액과 시간을 가져오는 요청
+      setMaxStats({
+        maxMoneyMonth,
+        maxSaveMoney,
+        maxTimeMonth,
+        maxSaveTime,
+        sumSaveMoney,
+        sumSaveTime,
+      });
 
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [totalSavingAmount, setTotalSavingAmount] = useState()
-  // const [savingData, setSavingData] = useState(null);
+      // 지정된 기간 동안의 총 절약 금액과 시간을 가져오는 요청
+      setTotalStats({ _startMonth, _endMonth, sumSaveMoney, sumSaveTime });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    // 더미데이터
-    const dummyData2 = {
-      startDate: "2023-01-01",
-      endDate: "2023-01-31",
-      totalSavingAmount: 5000,
-    };
-
-    // const fetchData = async () => {
-    //   // try {
-    //   //   const startDate = "YY년 MM월";
-    //   //   const endDate = "YY년 MM월";
-    //   //   await fetchDummyData(startDate, endDate)
-    //   //   setDateRange(getDateRange());
-    //   //   setTotalSavingAmount(getSavingAmount());
-    //   //   setLoading(false)
-    //   // } catch (error) {
-    //   //   console.error("Error fetching data", error)
-    //   // }
-    //   try {
-    //     const data = await fetchDummyData();
-    //     setStartDate(data.startDate)
-    //     setEndDate(data.endDate)
-    //     setTotalSavingAmount(data.totalSavingAmount)
-    //   } catch (error) {
-    //     console.log("Error fetching data", error)
-    //   }
-    // }
-    fetchData()
+    // 예시 사용
+    const startDate = "2023-06"; // 시작 날짜
+    const endDate = "2023-07"; // 종료 날짜
+    fetchMaxStats(startDate, endDate); // 메인 데이터 호출
   }, []);
-
-
-  const fetchData = async () => {
-    const dummyData = [{ month: "2022-01", item: "과자", saving: 50000 }];
-
-    let maxSavedMonth = "";
-    let maxSavedAmount = 0;
-
-    let maxSavedMonth2 = "";
-    let maxSavedTime = 0;
-
-    for (const item of dummyData) {
-      if (item.savings > maxSavedAmount) {
-        maxSavedMonth = item.month;
-        maxSavedAmount = item.savings;
-      }
-    }
-    setMostSavedMonth(maxSavedMonth);
-    setMostSavedAmount(maxSavedAmount);
-
-    for (const item of dummyData) {
-      if (item.time > maxSavedTime) {
-        maxSavedMonth2 = item.month;
-        maxSavedTime = item.time;
-      }
-    }
-    setMostSavedMonth2(maxSavedMonth2);
-    setMostSavedTime(maxSavedTime);
-  };
-  // if (!savingData) {
-  //     return <div>Loading...</div>;
-  //   }
-  // const { startDate, endDate, totalSavingAmount } = savingData;
-
-
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const showModal = () => {
-  //   setIsModalOpen(true)
-  // }
-  // const [gogo, setGogo] = useState("");
-  // useEffect(() => {
-  //   // axios 호출 예정
-  //   setGogo("50000");
-  // }, []);
-
-  // const [day, setDay] = useState("")
-  // useEffect(() => {
-  //   setDay("23년6월")
-  // })
-
-  // const [time, setTime] = useState("")
-  // useEffect(() => {
-  //   setTime("21")
-  // })
-
-  // const handleClick = () => {
-  //   setGogo("1000")
-  // }
 
   return (
     <div className="h-auto bg-slate-50 rounded-md p-10 mt-14">
-      <h2 className="text-center text-3xl"> {mostSavedMonth}
-        <span>YY년 AA월</span>
-      에
-      </h2>
-      <h2 className="text-center text-2xl mb-10 text-gray-600">가장 많이 아낀 금액 : {mostSavedAmount}<span className="text-center text-2xl ">원으로 <br/>가장 많이 절약했습니다.</span></h2>
-
-      <hr />
-
-      <h2 className="text-center text-3xl mt-10">{mostSavedMonth2}
-        <span className="text-center text-3xl">YY년 AA월</span>
-        에
-      </h2>
-      <h2 className="text-center text-2xl mb-10 text-gray-600">가장 많이 아낀 시간 : {mostSavedTime}<span>시간으로 <br/>가장 많이 절약했습니다.</span></h2>
-
-      <hr />
-
-      <h1  className="text-center text-3xl mt-10">{startDate}부터 ~ {endDate}까지</h1><br />
-      <h2 className="text-2xl text-gray-600 text-center">총 절약한 금액</h2><br />
-      <h2>{ totalSavingAmount}</h2>
-
-
-
-      {/* <p className="text-center text-3xl mt-10">
-        {dateRange}부터 ~ {dateRange}까지 <br />
-        <span className="text-2xl text-gray-600">총 절약한</span><br/>
-      <Space wrap>
-        <Button type="primary" danger >금액</Button>
-          /
-        <Button type="primary" danger>시간</Button>
-      </Space>
-      </p> */}
-
-      
-      {/* <h2>절약 금액 요약</h2>
-      <p>절약 기간 : {startDate} ~ {endDate}</p>
-      <p>총 절약 금액 : {totalSavingAmount}</p>
-       */}
-      
-
-      
-      {/* <div className="text-center text-2xl">
-        <p>
-          <span>{day}</span>에 {gogo}원으로
-        </p>
-        <br />
-        <p className="mb-6">가장 많이 절약했습니다.</p>
-
-        <p>
-          <span>{day}</span>에 {time}시간으로
-        </p>
-        <br />
-        <p className="mb-20">가장 많이 절약했습니다.</p>
-
-        <p>
-          <span>{day}</span>부터<span>{}</span>까지
-        </p>
-        <br />
-        <p>
-          총 절약한 {}
-          <Space wrap>
-            <Button type="primary" danger>
-                금액
-            </Button>
-            /
-            <Button onClick={handleClick} type="primary" danger>
-              시간
-            </Button>
-          </Space>
-        </p>
-        <p>
-          <span>{gogo}</span>원
-        </p>
-      </div> */}
-      {/* <div className="text-3xl">
-        <form>
-          <input type="text" className="w-12 h-7 text-xlindent-0.5 float-left" />
-          <span className="text-xl float-left">년</span>
-          <select name="" id="" className="w-14 h-7 text-xl indent-0.5 float-left">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-            <option value="">7</option>
-            <option value="">8</option>
-            <option value="">9</option>
-            <option value="">10</option>
-            <option value="">11</option>
-            <option value="">12</option>
-          </select>
-          <span className="text-xl float-left">월</span>
-          <input type="text" className="w-12 text-xl indent-0.5 float-left" />
-          <span className="text-xl float-left">원으로</span><br />
-          <p className="text-xl float-left">가장 많이 절약했습니다.</p><br/>
-        </form>
-        
-        <form action="#">
-            <input type="text" className="w-12 h-7 text-xl indent-0.5 float-left" />
-          <span className="text-xl float-left">년</span>
-          <select name="" id="" className="w-14 h-7 text-xl indent-0.5 float-left">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-            <option value="">7</option>
-            <option value="">8</option>
-            <option value="">9</option>
-            <option value="">10</option>
-            <option value="">11</option>
-            <option value="">12</option>
-          </select>
-          <span className="text-xl float-left">월</span>
-          <input type="text" className="w-12 h-7 text-xl indent-0.5 float-left" />
-          <span className="text-xl float-left">시간으로</span><br />
-          <p className="text-xl float-left ">가장 많이 절약했습니다.</p>
-        </form>
-
-        <form action="#" className="mt-8 "><br/>
-            <input type="text" className="w-12 h-7 text-xl indent-0.5 float-left" />
-          <span className="text-xl float-left">년</span>
-          <select name="" id="" className="w-14 h-7 text-xl indent-0.5 float-left">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-            <option value="">7</option>
-            <option value="">8</option>
-            <option value="">9</option>
-            <option value="">10</option>
-            <option value="">11</option>
-            <option value="">12</option>
-
-          </select>
-          <span className="text-xl float-left">월부터 ~ &nbsp;</span>
-          
-          <input type="text" className="w-12 h-7 text-xl indent-0.5 float-left" />
-          <span className="text-xl float-left">년</span>
-          <select name="" id="" className="w-14 h-7 text-xl indent-0.5 float-left">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-            <option value="">7</option>
-            <option value="">8</option>
-            <option value="">9</option>
-            <option value="">10</option>
-            <option value="">11</option>
-            <option value="">12</option>
-          </select>
-          <span className="text-xl float-left">월까지</span><br/>
-          <p className="text-xl float-left">총 절약한 비용</p><br/> <input type="text" className="w-12 h-7 text-xl indent-0.5 float-left" />
-        </form>
-
-        <form action="#"><br/>
-            <input type="text" className="w-12 h-7 text-xl indent-0.5 float-left" />
-          <span className="text-xl float-left">년</span>
-          <select name="" id="" className="w-14 h-7 text-xl indent-0.5 float-left">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-            <option value="">7</option>
-            <option value="">8</option>
-            <option value="">9</option>
-            <option value="">10</option>
-            <option value="">11</option>
-            <option value="">12</option>
-          </select>
-          <span className="text-xl float-left">월부터 ~ &nbsp;</span>
-          
-          <input type="text" className="w-12 h-7 text-xl indent-0.5 float-left" />
-          <span className="text-xl float-left">년</span>
-          <select name="" id="" className="w-14 h-7 text-xl indent-0.5 float-left">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-            <option value="">7</option>
-            <option value="">8</option>
-            <option value="">9</option>
-            <option value="">10</option>
-            <option value="">11</option>
-            <option value="">12</option>
-          </select>
-          <span className="text-xl float-left">월까지</span><br/>
-          <BestSummaryAmount/>
-          <p className="text-xl float-left">총 절약한 금액</p><br />
-          <input type="text" className="w-12 h-7 text-xl indent-0.5 float-left" />
-        </form>
-      </div> */}
+      {maxStats && (
+        <div className="text-center ">
+          <h2 className="text-xl">가장 많이 절약한 달</h2>
+          <p>
+            금액: {maxStats.maxSaveMoney}, 달: {maxStats.maxMoneyMonth}
+          </p>
+          <p>
+            시간: {maxStats.maxSaveTime}, 달: {maxStats.maxTimeMonth}
+          </p>
+        </div>
+      )}
+      {totalStats && (
+        <div className="text-center mt-10">
+          <h2 className="text-xl">지정된 기간 동안<br/> 총 절약한 금액과 시간</h2>
+          <p>
+            기간: {totalStats._startMonth} ~ {totalStats._endMonth}
+          </p>
+          <p>금액: {totalStats.sumSaveMoney}</p>
+          <p>시간: {totalStats.sumSaveTime}</p>
+        </div>
+      )}
     </div>
   );
 };
