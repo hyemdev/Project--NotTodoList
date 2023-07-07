@@ -1,14 +1,14 @@
 import axios from "axios";
 
 //  axios
-// const axiosInstance = axios.create({
-//   baseURL: "http://localhost:5000",
-//   timeout: 1000,
-//   headers: {
-//     "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-//     Accept: "*/*",
-//   },
-// });
+const axiosInstance = axios.create({
+  baseURL: "http://localhost:5000",
+  timeout: 1000,
+  headers: {
+    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    Accept: "*/*",
+  },
+});
 
 //////////////GET
 // todo Add data get
@@ -77,8 +77,8 @@ export const getMostSavedMonth = async (_startMonth, _endMonth) => {
   } catch (err) {
     console.log(err);
     return {
-      maxMoneyMonth: "2023-07",
-      maxSaveMoney: 326000,
+      maxMoneyMonth: "2023-06",
+      maxSaveMoney: 480000,
       maxTimeMonth: "2023-07",
       maxSaveTime: 170,
       sumSaveMoney: 524000,
@@ -86,7 +86,6 @@ export const getMostSavedMonth = async (_startMonth, _endMonth) => {
     };
   }
 };
-
   
 // 오늘의 List get
 export const getTodaylist = async (setTodayList, todayDate) => {
@@ -207,13 +206,13 @@ export const deleteDailyAddNum = async _useListId => {
     console.log(error);
   }
 };
-// export {
-//   axiosInstance,
-//   getMemo,
-//   putOneMemo,
-//   postOneMemo,
-//   postTodo,
-//   deleteTodo,
-//   patchDailyAddNum,
-//   patchTitleTodo,
-// };
+export {
+  axiosInstance,
+  // getMemo,
+  // putOneMemo,
+  // postOneMemo,
+  // postTodo,
+  // deleteTodo,
+  // patchDailyAddNum,
+  // patchTitleTodo,
+};

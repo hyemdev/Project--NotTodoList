@@ -16,6 +16,7 @@ const Summary = () => {
             <MonthlySummary />
           </div>
           <div className="flex-1">
+            
             <WeeklySummary2 />
             <MonthlySummary2 />
           </div>
