@@ -11,6 +11,7 @@ import {
 } from "../style/MonthlyCalendarCSS";
 import CalendarDayList from "./CalenderDayList";
 import { getCalendarTodo } from "../api/api";
+
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [day, setDay] = useState(new Date());
@@ -26,7 +27,8 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
   };
   useEffect(() => {
     getCalendarTodoData(moment(day).format("YYYY-MM"));
-  }, []);
+    console.log("페이지 리랜더링")
+  }, [isModalOpen]);
   // const DefalutMonth = moment(day).format("YYYY-MM");
 
   // 상세보기 모달창
@@ -87,7 +89,6 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
       ));
     }
   };
-
   return (
     <div>
       <div>
@@ -97,8 +98,8 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           contentLabel="모달"
           style={{
             content: {
-              width: "70%",
-              maxWidth: "900px",
+              width: "60%",
+              maxWidth: "800px",
               height: "600px",
               margin: "auto",
               borderRadius: "20px",
@@ -111,10 +112,10 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
               clickItems={clickItems}
               clickDate={clickDate}
               todoData={todoData}
-              setTodoData={setTodoData}
+              setTodoData={setTodoData}      
             />
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center items-center">
             <button
               type="button"
               className="py-2 px-4 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"

@@ -9,9 +9,11 @@ import {
   MainLeft,
   BriefData,
   Memo,
+  Profile,
 } from "../style/MainCSS";
+import ProfileSection from "../components/ProfileSection";
 
-const Main = ({ todoData, setTodoData }) => {
+const Main = ({ todoData, setTodoData, nickName, setNickname }) => {
   return (
     <MainWrap>
       <MainFlex>
@@ -20,6 +22,9 @@ const Main = ({ todoData, setTodoData }) => {
           <DailySection todoData={todoData} setTodoData={setTodoData} />
         </MainLeft>
         <MainRight>
+          <Profile>
+            <ProfileSection nickName={nickName} setNickname={setNickname} />
+          </Profile>
           <Memo>
             {/* 컴포넌트 */}
             <MemoSection />

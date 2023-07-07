@@ -24,27 +24,38 @@ export const MainFlex = styled.div`
 `;
 export const MainLeft = styled.div`
   height: 100%;
+  max-height: 800px;
   width: 50%;
   background: #f1f5f9;
   border-radius: 10px;
   padding: 20px;
 `;
 
+export const Profile = styled.div`
+  padding: 20px;
+  background: #e2e8f0;
+  height: 140px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+`;
+
 export const Memo = styled.div`
   padding: 20px;
   background: #e2e8f0;
-  height: 130px;
+  height: 140px;
   margin-bottom: 15px;
   border-radius: 10px;
 `;
 export const BriefData = styled.div`
-  /* height: 800px; */
+  height: 470px;
   padding: 30px 20px;
   background: #f1f5f9;
   border-radius: 10px;
 `;
 
 export const MainRight = styled.div`
+  height: 100%;
   width: 50%;
   border-radius: 10px;
+  max-height: 800px;
 `;

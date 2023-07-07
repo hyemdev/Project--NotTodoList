@@ -17,6 +17,7 @@ import {
 } from "../style/MonthlyAddCSS";
 
 const MonthlyAdd = ({ todoData, setTodoData }) => {
+
   return (
     <MonthlyAddWrap>
       <AddTitleDiv>
@@ -27,16 +28,15 @@ const MonthlyAdd = ({ todoData, setTodoData }) => {
           <AddTableTr>
             <AddTableThDate>기간</AddTableThDate>
             <AddTableThTitle>월간목표</AddTableThTitle>
-            <AddTableThNumber>단위</AddTableThNumber>
-            <AddTableThNumber>수량</AddTableThNumber>
+            <AddTableThNumber>목표수량</AddTableThNumber>
             <AddTableThBtn></AddTableThBtn>
             <AddTableThBtn></AddTableThBtn>
           </AddTableTr>
         </AddTableThead>
-      </AddTable>
       <ListTemp>
         <MonthlyList todoData={todoData} setTodoData={setTodoData} />
       </ListTemp>
+      </AddTable>
       <Temp>
         <MonthlyForm todoData={todoData} setTodoData={setTodoData} />
       </Temp>

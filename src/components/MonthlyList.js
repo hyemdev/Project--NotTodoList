@@ -1,5 +1,5 @@
 import React from "react";
-import MonthlyListItem from "./MonthlyListItem"
+import MonthlyListItem from "./MonthlyListItem";
 
 const MonthlyList = ({ todoData, setTodoData }) => {
   console.log(todoData);

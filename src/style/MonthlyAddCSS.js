@@ -4,8 +4,8 @@ export const MonthlyAddWrap = styled.div`
   position: relative;
   width: 100%;
   min-width: 500px;
-  max-width: 1000px;
-  height: 100%;
+  max-width: 950px;
+  height: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -15,8 +15,8 @@ export const ListTemp = styled.div`
   /* position: absolute;
   top: 0;
   left: 0; */
-  height: 300px;
-  overflow: scroll;
+  height: 350px;
+  overflow-y: auto;
 `;
 
 export const AddTitleDiv = styled.div`
@@ -88,19 +88,20 @@ export const AddTableThBtn = styled.th`
 // 한달목표 리스트(List body)
 
 export const AddListTbody = styled.tbody`
-  width: 100%;
+  /* width: 90%; */
   font-size: 14px;
   color: #475569;
   padding: 0 3px;
 `;
 export const AddListTr = styled.tr`
-  width: 950px;
+  width: 900px;
   max-width: 1000px;
   margin-top: 5px;
   display: flex;
   justify-content: space-between;
   height: 50px;
   padding: 0 10px;
+  border-bottom: 1px dotted #cbd5e1;
 `;
 export const AddListTdDate = styled.td`
   padding: 12px 3px;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CalendarDayListItem from "../components/CalenderDayListItem";
 
 import {
-  Aaa,
+  CalListTbody,
   CalendarTableThBtn,
   CalendarTableThNumber,
   CalendarTableThTitle,
@@ -11,11 +11,11 @@ import {
   DailyCalTableTr,
   DailyCalTitle,
   DailyCalWrap,
-  DailyTitleDiv
+  DailyTitleDiv,
 } from "../style/CalendarListCSS";
 import { getCalendarDaylist } from "../api/api";
 
-const CalendarDayList = ({ todoData, setTodoData, clickItems, clickDate }) => {
+const CalendarDayList = ({ todoData, setTodoData, clickItems, clickDate}) => {
   // state
   const [DailyList, setDailyList] = useState([]);
 
@@ -33,27 +33,27 @@ const CalendarDayList = ({ todoData, setTodoData, clickItems, clickDate }) => {
           <DailyCalTableThead>
             <DailyCalTableTr>
               <CalendarTableThTitle>월간목표</CalendarTableThTitle>
-              <CalendarTableThNumber>단위</CalendarTableThNumber>
+              {/* <CalendarTableThNumber>단위</CalendarTableThNumber> */}
               <CalendarTableThNumber>일일수량</CalendarTableThNumber>
               <CalendarTableThBtn></CalendarTableThBtn>
               <CalendarTableThBtn></CalendarTableThBtn>
             </DailyCalTableTr>
           </DailyCalTableThead>
-
-        {DailyList.map(item => (
-          <CalendarDayListItem
-          key={item.useListId}
-          item={item}
-          name={item.name}
-          costCategory={item.costCategory}
-          cost={item.cost}
-          // monthYear={item.selectedMonth}
-          DailyList={DailyList}
-          setDailyList={setDailyList}
-          />
-          ))}
-
-          </DailyCalTable>
+          <CalListTbody>
+            {DailyList.map(item => (
+              <CalendarDayListItem
+                key={item.useListId}
+                item={item}
+                name={item.name}                
+                costCategory={item.costCategory}
+                useCost={item.useCost}
+                // monthYear={item.selectedMonth}
+                DailyList={DailyList}
+                setDailyList={setDailyList}   
+              />
+            ))}
+          </CalListTbody>
+        </DailyCalTable>
       </DailyCalWrap>
     </>
   );
