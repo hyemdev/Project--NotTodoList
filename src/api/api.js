@@ -1,20 +1,36 @@
 import axios from "axios";
 
-//  axios
-const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000",
-  timeout: 1000,
-  headers: {
-    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-    Accept: "*/*",
-  },
-});
+// login id
+//GET
+// export const getId = async (setNickname, nickId) => {
+//   try {
+//     const res = await axios.get(`/api/member?memberId=${nickId}`);
+//     const result = await res.data;
+//     console.log("result", result);
+//     console.log("nickId", nickId);
+//     setNickname(result);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+//post
+//nickname post
+// export const postNickname = async (setNickId, inputNickname) => {
+//   try {
+//     const res = await axios.post("/api/member", inputNickname);
+//     const data = await res.data;
+//     console.log(data);
+//     setNickId(data);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 //////////////GET
 // todo Add data get
-export const getTodo = async setTodoData => {
+export const getTodo = async (setTodoData, nickId) => {
   try {
-    const res = await axios.get("/api/monthly-goal");
+    const res = await axios.get(`/api/monthly-goal?memberId=1`);
     const result = await res.data;
     console.log("result", result);
 
@@ -25,9 +41,11 @@ export const getTodo = async setTodoData => {
 };
 
 // calendar data get
-export const getCalendarTodo = async DefalutMonth => {
+export const getCalendarTodo = async (DefalutMonth, nickId) => {
   try {
-    const res = await axios.get(`/api/calender?monthYear=${DefalutMonth}`);
+    const res = await axios.get(
+      `/api/calender?monthYear=${DefalutMonth}&memberId=1`,
+    );
     const result = await res.data;
     console.log("result", result);
     return result;
@@ -53,7 +71,7 @@ export const getCalendarTodo = async DefalutMonth => {
 // Day 상세 List get
 export const getCalendarDaylist = async (setDailyList, clickDate) => {
   try {
-    const res = await axios.get(`/api/daily?date=${clickDate}`);
+    const res = await axios.get(`/api/daily?date=${clickDate}&memberId=1`);
     const result = await res.data;
     console.log("result", result);
     setDailyList(result);
@@ -61,7 +79,6 @@ export const getCalendarDaylist = async (setDailyList, clickDate) => {
     console.log(error);
   }
 };
-
 
 // 가장 많이 절약한 금액의 달 data 가져오기
 export const getMostSavedMonth = async (_startMonth, _endMonth) => {
@@ -77,8 +94,8 @@ export const getMostSavedMonth = async (_startMonth, _endMonth) => {
   } catch (err) {
     console.log(err);
     return {
-      maxMoneyMonth: "2023-06",
-      maxSaveMoney: 480000,
+      maxMoneyMonth: "2023-07",
+      maxSaveMoney: 326000,
       maxTimeMonth: "2023-07",
       maxSaveTime: 170,
       sumSaveMoney: 524000,
@@ -86,11 +103,21 @@ export const getMostSavedMonth = async (_startMonth, _endMonth) => {
     };
   }
 };
-  
+
 // 오늘의 List get
-export const getTodaylist = async (setTodayList, todayDate) => {
+// export const getTodaylist = async (setTodayList, todayDate, nickId) => {
+//   try {
+//     const res = await axios.get(`/api/daily?date=${todayDate}&memberId=1`);
+//     const result = await res.data;
+//     console.log("result", result);
+//     setTodayList(result);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+export const getTodaylist = async (setTodayList, todayDate, nickId) => {
   try {
-    const res = await axios.get(`/api/daily?date=${todayDate}`);
+    const res = await axios.get(`/api/today-not-todo?memberId=1`);
     const result = await res.data;
     console.log("result", result);
     setTodayList(result);
@@ -100,19 +127,19 @@ export const getTodaylist = async (setTodayList, todayDate) => {
 };
 
 // // Memo get
-// const getMemo = async setOneMemo => {
-//   try {
-//     const res = await axiosInstance.get("/todos");
-//     const result = res.data;
-//     console.log("result", result);
-
-//     setOneMemo(result);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const getMemo = async setOneMemo => {
+  try {
+    const res = await axios.get("/api/memo?memberId=1");
+    const result = await res.data;
+    console.log("result", result);
+    setOneMemo(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 //////////////////////////////////POST
+
 //todo data post
 export const postTodo = async newTodo => {
   try {
@@ -124,27 +151,22 @@ export const postTodo = async newTodo => {
   }
 };
 
-// // 메모 내용 post
-// const postOneMemo = async newTodo => {
-//   try {
-//     const res = await axiosInstance.post("/todos", newTodo);
-//     const data = res.data;
-//     console.log(data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 ////////////////////////////////////PUT
 //todo data 수정기능 (수정필요)
-export const putTitleTodo = async (_goalCost, item) => {
+export const putTitleTodo = async (
+  _goalId,
+  editTitle,
+  editSelect,
+  editGoalNumber,
+) => {
   try {
     const res = await axios.put("/api/monthly-goal", {
-      goalId: item.goalId,
-      notTodo: item.notTodo,
-      costCategory: item.costCategory,
-      goalCost: item.goalCost,
+      goalId: _goalId,
+      notTodo: editTitle,
+      costCategory: editSelect,
+      goalCost: editGoalNumber,
     });
+
     const data = await res.data;
     console.log("수정", data);
   } catch (error) {
@@ -152,32 +174,44 @@ export const putTitleTodo = async (_goalCost, item) => {
   }
 };
 
-// daily오늘수량 수정기능
-export const putDailyAddNum = async (_useListId, item) => {
+// 메인 dailySection 일일수량 수정기능
+export const patchDailyAddNum = async (_goalId, dailyEditTodayNum) => {
   try {
-    const res = await axios.patch("/api/daily", {
-      cost: item.cost,
+    const res = await axios.patch("/api/today-not-todo", {
+      goalId: _goalId,
+      useCost: dailyEditTodayNum,
     });
-    const data = res.data;
-    console.log(data);
+    const result = await res.data;
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Calendar 상세DayList 수정기능
+export const putCalListEdit = async (_useListId, _goalId, editCostNumber) => {
+  try {
+    const res = await axios.put("/api/daily", {
+      useListId: _useListId,
+      goalId: _goalId,
+      useCost: editCostNumber,
+    });
+    const result = await res.data;
+    console.log(result);
+    return result;
   } catch (error) {
     console.log(error);
   }
 };
 
 // 메모 수정기능(덮어씌우기)
-export const putOneMemo = async OneMemo => {
+export const patchOneMemo = async OneMemo => {
   try {
-    const res = await axios.put(
-      `/api/memo`,
-      {
-        memo: OneMemo,
-      },
-      // {
-      //   memo: "string",
-      // },
-    );
-    const data = res.data;
+    const res = await axios.patch("/api/memo", {
+      memo: OneMemo,
+    });
+    const data = await res.data;
     console.log(data);
   } catch (error) {
     console.log(error);
@@ -196,7 +230,7 @@ export const deleteTodo = async _goalId => {
   }
 };
 
-//daily오늘수량 delete (수정필요)
+//daily 오늘수량 delete (수정필요)
 export const deleteDailyAddNum = async _useListId => {
   try {
     const res = await axios.delete(`/api/daily?useListId=${_useListId}`);
@@ -206,13 +240,24 @@ export const deleteDailyAddNum = async _useListId => {
     console.log(error);
   }
 };
-export {
-  axiosInstance,
-  // getMemo,
-  // putOneMemo,
-  // postOneMemo,
-  // postTodo,
-  // deleteTodo,
-  // patchDailyAddNum,
-  // patchTitleTodo,
+
+//Calendar 상세DayList Delete
+export const deleteCalList = async _useListId => {
+  try {
+    const res = await axios.delete(`/api/daily?useListId=${_useListId}`);
+    const result = await res.data;
+    console.log("del,result", result);
+  } catch (error) {
+    console.log(error);
+  }
 };
+// export {
+//   axiosInstance,
+//   getMemo,
+//   putOneMemo,
+//   postOneMemo,
+//   postTodo,
+//   deleteTodo,
+//   patchDailyAddNum,
+//   patchTitleTodo,
+// };

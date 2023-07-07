@@ -62,19 +62,22 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
   //수정 저장하기
   const handleSaveClick = _goalId => {
+    console.log("_goalId", _goalId);
     let newTodoData = todoData.map(item => {
       if (item.goalId === _goalId) {
-        item.goalId = _goalId
-        item.notTodo = editTitle;
-        item.costCategory = editSelect;
+        // item.notTodo = editTitle;
+        // item.costCategory = editSelect;
         item.goalCost = editGoalNumber;
       }
       return item;
     });
     setTodoData(newTodoData);
 
-    putTitleTodo(_goalId, { ...item });
-    console.log("putTitleTodo", {...item})
+    // putTitleTodo(_goalId, { ...item });
+    putTitleTodo(_goalId, editTitle, editSelect, editGoalNumber);
+    console.log("newTodoData", newTodoData);
+    console.log("_goalId", _goalId);
+    console.log("editTitle", editTitle);
     setIsEdit(false);
   };
 
@@ -86,19 +89,21 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
           <AddListTr>
             <AddListTdDate className="w-10">{item.monthYear}</AddListTdDate>
             <AddListTdTitle>
-              <ListTitleEdit
+              {/* <ListTitleEdit
                 type="text"
                 defaultValue={editTitle}
                 onChange={handleStrEditChange}
-              />
+              /> */}
+              {item.notTodo}
             </AddListTdTitle>
             <AddListTdNumber>
               <ListSelectEdit>
-              <Select
-                defaultValue={editSelect}
-                onChange={handleSelectEditChange}
-                options={selectTimePrice}
-              />
+                {/* <Select
+                  defaultValue={editSelect}
+                  onChange={handleSelectEditChange}
+                  options={selectTimePrice}
+                /> */}
+                {item.costCategory}
               </ListSelectEdit>
             </AddListTdNumber>
             <AddListTdNumber>
@@ -110,7 +115,8 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
             </AddListTdNumber>
             <AddListBtnDiv>
               <AddListbtn
-                onClick={() => handleSaveClick(item.id)}
+                // onClick={() => handleSaveClick(item._goalId)}
+                onClick={() => handleSaveClick(item.goalId)}
                 className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               >
                 Save
@@ -144,8 +150,8 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
             {item.monthYear}
           </AddListTdDate>
           <AddListTdTitle>{item.notTodo}</AddListTdTitle>
-          <AddListTdNumber>{item.costCategory}</AddListTdNumber>
           <AddListTdNumber>{item.goalCost}</AddListTdNumber>
+          <AddListTdNumber>{item.costCategory}</AddListTdNumber>
           {/* 편집/ 삭제 버튼 만들기 */}
           <AddListBtnDiv>
             <AddListbtn

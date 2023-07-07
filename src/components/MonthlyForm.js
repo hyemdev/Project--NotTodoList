@@ -16,30 +16,32 @@ import {
   SaveBtn,
 } from "../style/MonthlyAddCSS";
 
-const MonthlyForm = ({ todoData, setTodoData }) => {
+const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
   // state 변수
   const [strValue, setStrValue] = useState("");
   const [goalNumValue, setGoalNumValue] = useState("");
   const [selectedOption, setSelectedOption] = useState([0]);
   // const [selectedMonth, setSelectedMonth] = useState(new Date());
-  const [selectedMonth, setSelectedMonth] = useState(0);
+  const [selectedMonth, setSelectedMonth] = useState(new Date());
   const [dailyAddNumber, setDailyAddNumber] = useState(0);
 
+  // console.log("nickId",nickId)
+  
   //모달관련 state
-  const [modalMessage, setModalMessage] = useState(""); // 메세지
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [modalMessage, setModalMessage] = useState(""); // 메세지
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 모달창
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
+  // const showModal = () => {
+  //   setIsModalOpen(true);
+  // };
+  // const handleOk = () => {
+  //   setIsModalOpen(false);
+  // };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  // const handleCancel = () => {
+  //   setIsModalOpen(false);
+  // };
 
   // 셀렉트 옵션
   const selectTimePrice = [
@@ -72,11 +74,14 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
     console.log("e.target.value", e.target.value);
   };
 
+  
   // ant form 전송
   const onFinish = values => {
     console.log("Success:", values);
 
     const newTodo = {
+      // 임시로 memberId:1 로 고정
+      memberId: 1,
       notTodo: strValue,
       costCategory: selectedOption,
       goalCost: goalNumValue,
@@ -127,7 +132,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
           // 실제로 post하는 자리
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete="off"
+          autoComplete="on"
           layout="vertical"
         >
           <div>
@@ -140,33 +145,29 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
               dateFormat="yyyy/MM"
               minDate={new Date()} // 오늘날짜 이전은 선택못하게
               showMonthYearPicker
-              // startDate={startDate}
-              // endDate={endDate}
             />
           </div>
           <AddFormTitle>
-            <div>
-              <Form.Item
-                // label="한달 목표"
-                name="notTodo"
-                value={strValue}
-                onChange={handleStrChange}
-                // rules={[
-                //   {
-                //     required: true,
-                //     message: "목표를 입력하세요",
-                //   },
-                //   { max: 10, message: '목표를 10자이내로 입력하세요' },
-                //   {
-                //     pattern: /^\S/,
-                //     message: '목표를 입력하세요',
-                //   },
-                // ]}
-              >
-                <FormLabel>한달목표</FormLabel>
-                <Input size="large" />
-              </Form.Item>
-            </div>
+            <Form.Item
+              // label="한달 목표"
+              name="notTodo"
+              rules={
+                [
+                  // {
+                  //   required: true,
+                  //   message: "목표를 입력하세요",
+                  // },
+                  // { max: 10, message: '목표를 10자이내로 입력하세요' },
+                  // {
+                  //   pattern: /^\S/,
+                  //   message: '목표를 입력하세요',
+                  // },
+                ]
+              }
+            >
+              <FormLabel>한달목표</FormLabel>
+              <Input size="large" value={strValue} onChange={handleStrChange} />
+            </Form.Item>
           </AddFormTitle>
           <div>
             <Form.Item
@@ -188,26 +189,30 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
             <Form.Item
               // label="목표수량"
               name="goalCost"
-              initialValue={goalNumValue}
-              onChange={handleNumChange}
-              // rules={[
-              //   { max: 10, message: '목표수량을 10자이내로 입력하세요' },
-              //   {
-              //     type: 'number',
-              //     message: "수량을 입력하세요",
-              //   },
-              //   {
-              //     required: true,
-              //     message: "수량을 입력하세요",
-              //   },
-              //   {
-              //     pattern: /^\S/,
-              //     message: '수량을 입력하세요',
-              //   },
-              // ]}
+              rules={
+                [
+                  // {
+                  //   type: 'number',
+                  //   message: "수량을 입력하세요",
+                  // },
+                  // { max: 10, message: '목표수량을 10자이내로 입력하세요' },
+                  // {
+                  //   required: true,
+                  //   message: "수량을 입력하세요",
+                  // },
+                  // {
+                  //   pattern: /^\S/,
+                  //   message: '수량을 입력하세요',
+                  // },
+                ]
+              }
             >
               <FormLabel>목표수량</FormLabel>
-              <Input size="large" />
+              <Input
+                size="large"
+                value={goalNumValue}
+                onChange={handleNumChange}
+              />
             </Form.Item>
           </div>
           <div>
@@ -223,7 +228,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
       </AddFormWrap>
 
       {/* 경고모달 */}
-      <Modal
+      {/* <Modal
         // title="로그인 실패..."
         open={isModalOpen}
         onOk={handleOk}
@@ -237,7 +242,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
       >
         <p>안내!</p>
         <p>{modalMessage}</p>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
