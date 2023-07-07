@@ -7,6 +7,7 @@ import {
   AddListTdDate,
   AddListTdNumber,
   AddListTdTitle,
+  AddListTdUnit,
   AddListTr,
   AddListbtn,
   ListNumEdit,
@@ -85,7 +86,6 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     //수정중인 상태
     return (
       <div>
-        <AddListTbody>
           <AddListTr>
             <AddListTdDate className="w-10">{item.monthYear}</AddListTdDate>
             <AddListTdTitle>
@@ -117,7 +117,7 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
               <AddListbtn
                 // onClick={() => handleSaveClick(item._goalId)}
                 onClick={() => handleSaveClick(item.goalId)}
-                className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                className="bg-amber-500 hover:bg-amber-700 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               >
                 Save
               </AddListbtn>
@@ -125,38 +125,30 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
             <AddListBtnDiv>
               <AddListbtn
                 onClick={handleCancelClick}
-                className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                className="bg-amber-500 hover:bg-amber-700 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               >
                 Cancel
               </AddListbtn>
             </AddListBtnDiv>
           </AddListTr>
-        </AddListTbody>
       </div>
     );
   } else {
     // 평소상태
     return (
-      <AddListTbody>
         <AddListTr>
-          {/* <input
-            type="checkbox"
-            defaultChecked={item.completed}
-            value={item.completed}
-            onChange={() => handleCompleteChange(item.id)}
-          /> */}
           <AddListTdDate>
             {/* {item.startDate}~{item.endDate} */}
             {item.monthYear}
           </AddListTdDate>
           <AddListTdTitle>{item.notTodo}</AddListTdTitle>
           <AddListTdNumber>{item.goalCost}</AddListTdNumber>
-          <AddListTdNumber>{item.costCategory}</AddListTdNumber>
+          <AddListTdUnit>{item.costCategory}</AddListTdUnit>
           {/* 편집/ 삭제 버튼 만들기 */}
           <AddListBtnDiv>
             <AddListbtn
               onClick={handleEditClick}
-              className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              className="bg-amber-400 hover:bg-amber-300 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
             >
               {" "}
               edit
@@ -165,14 +157,13 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
           <AddListBtnDiv>
             <AddListbtn
               onClick={() => handleDeleteClick(item.goalId)}
-              className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              className="bg-amber-400 hover:bg-amber-300 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
             >
               {" "}
               del
             </AddListbtn>
           </AddListBtnDiv>
         </AddListTr>
-      </AddListTbody>
     );
   }
 };

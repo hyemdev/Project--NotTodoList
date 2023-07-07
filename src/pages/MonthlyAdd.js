@@ -24,15 +24,13 @@ const MonthlyAdd = ({ todoData, setTodoData }) => {
         <AddTitle>한달목표 설정하기</AddTitle>
       </AddTitleDiv>
       <AddTable>
-        <AddTableThead>
           <AddTableTr>
             <AddTableThDate>기간</AddTableThDate>
-            <AddTableThTitle>월간목표</AddTableThTitle>
-            <AddTableThNumber>목표수량</AddTableThNumber>
+            <AddTableThTitle>Dead schedule?</AddTableThTitle>
+            <AddTableThNumber>이달의 한계치</AddTableThNumber>
             <AddTableThBtn></AddTableThBtn>
             <AddTableThBtn></AddTableThBtn>
           </AddTableTr>
-        </AddTableThead>
       <ListTemp>
         <MonthlyList todoData={todoData} setTodoData={setTodoData} />
       </ListTemp>

@@ -83,7 +83,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     // console.log("results", results);
     if (results.length > 0) {
       return results.map((result, index) => (
-        <div key={index} className="bg-slate-500 border-dotted rounded-md my-1">
+        <div key={index} className="bg-slate-500 border-dotted rounded-md my-0.5">
           <div className="text-slate-50">{result.name}</div>
         </div>
       ));

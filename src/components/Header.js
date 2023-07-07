@@ -9,25 +9,46 @@ import {
   HeaderWrap,
 } from "../style/HeaderCSS";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar, faChartColumn, faHouse,  } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCalendar,
+  faChartColumn,
+  faHouse,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
     <div>
       <HeaderWrap>
-        <HeaderTitle>!Todo List</HeaderTitle>
+        <HeaderTitle className="drop-shadow-md">
+          <h2> <b>!</b>Todo List</h2>
+        </HeaderTitle>
         <HeaderSubtitle>Record your bad things.</HeaderSubtitle>
         <header>
           <div>
             <HeaderNav>
               <HeaderNavLi>
-                <Link to="/main"> <FontAwesomeIcon icon={faHouse} className="text-lg"/> <p>MAIN</p></Link>
+                <Link to="/main">
+                  {" "}
+                  <FontAwesomeIcon icon={faHouse} className="text-lg" />{" "}
+                  <p>MAIN</p>
+                </Link>
               </HeaderNavLi>
               <HeaderNavLi>
-                <Link to="/monthlycalendar"> <FontAwesomeIcon icon={faCalendar} className="text-lg"/> <p>CALENDAR</p> </Link>
+                <Link to="/monthlycalendar">
+                  {" "}
+                  <FontAwesomeIcon icon={faCalendar} className="text-lg" />{" "}
+                  <p>CALENDAR</p>{" "}
+                </Link>
               </HeaderNavLi>
               <HeaderNavLi>
-                <Link to="/summary"> <FontAwesomeIcon icon={faChartColumn} className="text-lg"/> <p>STATISTICS</p></Link>
+                <Link to="/summary">
+                  {" "}
+                  <FontAwesomeIcon
+                    icon={faChartColumn}
+                    className="text-lg"
+                  />{" "}
+                  <p>STATISTICS</p>
+                </Link>
               </HeaderNavLi>
             </HeaderNav>
           </div>

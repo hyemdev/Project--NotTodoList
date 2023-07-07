@@ -17,6 +17,7 @@ export const ListTemp = styled.div`
   left: 0; */
   height: 350px;
   overflow-y: auto;
+  padding: 10px 0;
 `;
 
 export const AddTitleDiv = styled.div`
@@ -45,92 +46,93 @@ export const AddModalClose = styled.div`
 
 ////////////////////////////////
 // 한달목표 리스트(Table head)
-export const AddTable = styled.table`
+export const AddTable = styled.div`
   width: 100%;
   /* text-align: center; */
   color: #1e293b;
 `;
-export const AddTableThead = styled.thead`
+
+export const AddTableTr = styled.div`
+  /* width: 100%; */
   font-size: 14px;
   color: #475569;
   background: #e2e8f0;
   padding: 0 3px;
-`;
-export const AddTableTr = styled.tr`
-  /* width: 100%; */
-  margin-top: 5px;
+  margin: 5px 0;
   display: flex;
   justify-content: space-between;
+  border-radius: 10px;
 `;
 
-export const AddTableThDate = styled.th`
+export const AddTableThDate = styled.div`
   padding: 12px 3px;
-  width: 20%;
+  width: 150px;
   text-align: center;
   letter-spacing: -0.8px;
 `;
-export const AddTableThTitle = styled.th`
+export const AddTableThTitle = styled.div`
   padding: 12px 3px;
-  width: 30%;
+  width: 250px;
   text-align: center;
 `;
-export const AddTableThNumber = styled.th`
+export const AddTableThNumber = styled.div`
   padding: 12px 3px;
-  width: 15%;
+  width: 180px;
   text-align: center;
 `;
-export const AddTableThBtn = styled.th`
+export const AddTableThBtn = styled.div`
   padding: 12px 3px;
-  width: 10%;
+  width: 100px;
 `;
 
 /////////////////////////////
 // 한달목표 리스트(List body)
 
-export const AddListTbody = styled.tbody`
-  /* width: 90%; */
+export const AddListTr = styled.div`
+  width: 100%;
   font-size: 14px;
   color: #475569;
   padding: 0 3px;
-`;
-export const AddListTr = styled.tr`
-  width: 900px;
-  max-width: 1000px;
-  margin-top: 5px;
+  max-width: 700px;
   display: flex;
   justify-content: space-between;
-  height: 50px;
-  padding: 0 10px;
+  height: 45px;
   border-bottom: 1px dotted #cbd5e1;
 `;
-export const AddListTdDate = styled.td`
+export const AddListTdDate = styled.div`
   padding: 12px 3px;
-  width: 20%;
+  width: 150px;
   text-align: center;
   letter-spacing: -0.8px;
 `;
-export const AddListTdTitle = styled.td`
+export const AddListTdTitle = styled.div`
   padding: 12px 3px;
-  width: 30%;
+  width: 250px;
   text-align: center;
 `;
-export const AddListTdNumber = styled.td`
-  padding: 12px 3px;
-  width: 15%;
-  text-align: center;
+export const AddListTdNumber = styled.div`
+  padding: 12px 7px;
+  width: 130px;
+  text-align: right;
 `;
-export const AddListBtnDiv = styled.td`
+export const AddListTdUnit = styled.div`
+  padding: 12px 7px;
+  width: 50px;
+  text-align: center;
+  margin-right: 20px;
+`;
+export const AddListBtnDiv = styled.div`
   padding: 5px 3px;
   width: 70px;
-  height: 35px;
+  height: 30px;
   margin: 0 auto;
 `;
 export const AddListbtn = styled.button`
-  padding: 5px 3px;
-  width: 100%;
-  height: 35px;
+  padding: 3px 3px;
+  width: 55px;
+  height: 30px;
   margin: 4px;
-  margin-right: 5px;
+  /* margin-right: 5px; */
 `;
 
 export const AddTableThContent = styled.th`
