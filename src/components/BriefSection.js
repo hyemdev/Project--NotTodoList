@@ -5,11 +5,10 @@ const BriefSection = () => {
   const [maxStats, setMaxStats] = useState(null);
   const [totalStats, setTotalStats] = useState(null);
 
-  // 메인 출력 데이터호출
+  // 메인 출력 데이터 호출
   const fetchMaxStats = async (_startMonth, _endMonth) => {
     try {
-      const response = await getMostSavedMonth(_startMonth, _endMonth);
-      // console.log(response.saveStats);
+      const response = await getMostSavedMonth( _startMonth, _endMonth);
       const {
         maxMoneyMonth,
         maxSaveMoney,
@@ -17,7 +16,7 @@ const BriefSection = () => {
         maxSaveTime,
         sumSaveMoney,
         sumSaveTime,
-      } = response.saveStats;
+      } = response;
 
       // 가장 많이 절약한 달의 금액과 시간을 가져오는 요청
       setMaxStats({
@@ -38,30 +37,31 @@ const BriefSection = () => {
 
   useEffect(() => {
     // 예시 사용
-    const startDate = "2023-06"; // 시작 날짜
-    const endDate = "2023-07"; // 종료 날짜
-    fetchMaxStats(startDate, endDate); // 메인 데이터 호출
+    const startMonth = "2023-06"; // 시작 날짜
+    const endMonth = "2023-07"; // 종료 날짜
+    fetchMaxStats(startMonth, endMonth); // 메인 데이터 호출
   }, []);
 
   return (
-    <div className="h-auto bg-slate-50 rounded-md p-10 mt-14">
-      {maxStats && (
+    <div className="h-auto bg-slate-50 rounded-md p-10 mt-3 mb-14">
+    {maxStats && (
         <div className="text-center ">
-          <h2 className="text-xl">가장 많이 절약한 달</h2>
-          <p>
-            금액: {maxStats.maxSaveMoney}, 달: {maxStats.maxMoneyMonth}
+          <p className="text-xl">
+            {maxStats.maxMoneyMonth}에  {maxStats.maxSaveMoney}원으로 <br />
+            가장 많이 절약했습니다.
           </p>
-          <p>
-            시간: {maxStats.maxSaveTime}, 달: {maxStats.maxTimeMonth}
+          <p className="mt-10 text-xl">
+            {maxStats.maxMoneyMonth}에  {maxStats.maxSaveTime}시간으로 <br />
+            가장 많이 절약했습니다.
           </p>
         </div>
       )}
-      {totalStats && (
-        <div className="text-center mt-10">
-          <h2 className="text-xl">지정된 기간 동안<br/> 총 절약한 금액과 시간</h2>
+    {totalStats && (
+        <div className="text-center mt-10 text-xl">
           <p>
-            기간: {totalStats._startMonth} ~ {totalStats._endMonth}
+            {totalStats._startMonth}부터 ~ {totalStats._endMonth}까지
           </p>
+          <p>총 절약한 금액/시간</p>
           <p>금액: {totalStats.sumSaveMoney}</p>
           <p>시간: {totalStats.sumSaveTime}</p>
         </div>
@@ -69,4 +69,5 @@ const BriefSection = () => {
     </div>
   );
 };
+
 export default BriefSection;

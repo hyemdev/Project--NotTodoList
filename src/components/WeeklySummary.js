@@ -2,48 +2,58 @@ import { ResponsiveBar } from "@nivo/bar";
 import React, { useState } from "react";
 
 const WeeklySummary = () => {
-  // 초기 상단 데이터
-  const weekDataInit = [
-    {
-      week: "지난주",
-      "hot dog": 100000,
-      "hot dogColor": "hsl(56, 70%, 50%)",
-      burger: 100000,
-      burgerColor: "hsl(15, 70%, 50%)",
-      sandwich: 20000,
-      sandwichColor: "hsl(102, 70%, 50%)",
-      kebab: 50000,
-      kebabColor: "hsl(319, 70%, 50%)",
-      fries: 300000,
-      friesColor: "hsl(39, 70%, 50%)",
-      donut: 129,
-      donutColor: "hsl(18, 70%, 50%)",
-    },
-    {
-      week: "이번주",
-      "hot dog": 100000,
-      "hot dogColor": "hsl(17, 70%, 50%)",
-      burger: 100000,
-      burgerColor: "hsl(21, 70%, 50%)",
-      sandwich: 20000,
-      sandwichColor: "hsl(191, 70%, 50%)",
-      kebab: 50000,
-      kebabColor: "hsl(102, 70%, 50%)",
-      fries: 300000,
-      friesColor: "hsl(48, 70%, 50%)",
-      donut: 186,
-      donutColor: "hsl(90, 70%, 50%)",
-    },
-  ];
-  const [weekData, setWeekData] = useState(weekDataInit);
+  const [weekData, setWeekData] = useState([
+    { week: "게임", time: 999 },
+    { week: "담배", time: 0 },
+    { week: "유튜브", time: 2000 },
+    { week: "술", time: 2000 },
+    { week: "여가생활", time: 7000 },
+    { week: "커피", time: 0 },
+  ])
+
+  // 수정할 코드는 여기서 관리
+  const updateData = () => {
+    const nextWeekData = [
+      { week: "게임", time: 500 },
+      { week: "담배", time: 1000 },
+      { week: "유튜브", time: 3000 },
+      { week: "술", time: 400 },
+      { week: "여가생활", time: 1000 },
+      { week: "운동", time: 1000 },
+    ];
+  
+    // 삭제할 항목은 여기서 관리
+    const itemsToDelte = ["커피" , "게임"]
+    const filteredData = weekData.filter((item) =>!itemsToDelte.includes(item.week)); 
+  
+    const updatedData = filteredData.map((item) => {
+      const newItem = nextWeekData.find((nextItem) => nextItem.week === item.week);
+      if (newItem) {
+        return {
+          week: item.week,
+          time: item.time + newItem.time,
+        };
+      }
+      return item;
+    });
+  
+    nextWeekData.forEach((newItem) => {
+      const existingItem = updatedData.find((item) => item.week === newItem.week);
+      if (!existingItem) {
+        updatedData.push(newItem);
+      }
+    });
+    setWeekData(updatedData);
+  };
   return (
     <div className="flex flex-col">
       <div>
-        <h2>Weekly 시간</h2>
+        <h2>Weekly 시간<button className="float-right mr-32 bg-white" onClick={updateData}>데이터 업데이트</button></h2>
+        
         <div style={{ height: "400px" }}>
           <ResponsiveBar
             data={weekData}
-            keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
+            keys={["time"]}
             indexBy="week"
             margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
             padding={0.2}

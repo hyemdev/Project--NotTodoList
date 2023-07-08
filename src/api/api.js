@@ -86,7 +86,8 @@ export const getMostSavedMonth = async (_startMonth, _endMonth) => {
     const startMonth = _startMonth;
     const endMonth = _endMonth;
     const res = await axios.get(
-      `/api/main?startMonth=${startMonth}&endMonth=${endMonth}`,
+      
+    `/api/save-data?memberId=${startMonth}=&endMonth  {endMonth}`,
     );
     // 데이터가 조금 복잡하게 들어옴. 주의할 것
     const data = res.data;
@@ -103,6 +104,18 @@ export const getMostSavedMonth = async (_startMonth, _endMonth) => {
     };
   }
 };
+
+// 주간 총 절약 시간
+// export const getMostSaveWeeklyMoney = async () => {
+//   try {
+    
+//   } catch (err) {
+//     console.log(err)
+//     return{}
+//   }
+// }
+// 주간 총 절약 금액
+
 
 // 오늘의 List get
 // export const getTodaylist = async (setTodayList, todayDate, nickId) => {

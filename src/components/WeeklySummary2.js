@@ -1,5 +1,6 @@
 import { ResponsiveBar } from "@nivo/bar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 
 const WeeklySummary2 = () => {
   const [weekData, setWeekData] = useState([
@@ -9,23 +10,45 @@ const WeeklySummary2 = () => {
     { week: "술", cost: 2000 },
     { week: "여가생활", cost: 7000 },
     { week: "커피", cost: 0 },
-  ]);
+  ])
 
-  const addNewItem = () => {
-    const newItem = {
-      week: prompt("항목을 입력하세요"),
-      cost: parseInt(prompt("금액을 입력하세요")) || 0
-    };
+  const updateData = () => {
+    const nextWeekData = [
+      { week: "과자", cost: 500 },
+      { week: "담배", cost: 1000 },
+      { week: "라면", cost: 3000 },
+      { week: "술", cost: 400 },
+      { week: "여가생활", cost: 1000 },
+      { week: "커피", cost: 500 },
+      { week: "사탕", cost: 3000 },
+    ]
 
-    if (newItem.week && newItem.cost >= 0) {
-      setWeekData([...weekData, newItem]);
-    }
-  };
+    const updatedData = weekData.map((item) => {
+      const newItem = nextWeekData.find((nextItem) => nextItem.week === item.week)
+      if (newItem) {
+        return {
+          week: item.week,
+          cost: item.cost + newItem.cost
+        }
+      }
+      return item
+    })
+
+    nextWeekData.forEach((newItem) => {
+      const existingItem = updatedData.find((item) => item.week === item.week)
+      if (!existingItem) {
+        updatedData.push(newItem)
+      }
+    })
+    setWeekData(updatedData)
+  }
+
 
   return (
     <div className="flex flex-col">
       <div>
-        <h2>Weekly 금액</h2>
+        <h2>Weekly 금액<button className="float-right mr-32 bg-white" onClick={updateData}>데이터 업데이트</button></h2>
+        
         <div style={{ height: 400 }}>
           <ResponsiveBar
             data={weekData}
@@ -93,7 +116,6 @@ const WeeklySummary2 = () => {
             }
           />
         </div>
-        <button onClick={addNewItem} className="absolute top-9 right-24  border p-1 hover:bg-black hover:text-white">항목 추가</button>
       </div>
     </div>
   );
