@@ -6,6 +6,7 @@ import {
   DailyEditListTitle,
   DailyEditListTr,
   DailyEditNumberInput,
+  DailyEditSub,
   DailyListBtn,
   DailyListNumber,
   DailyListTitle,
@@ -13,11 +14,16 @@ import {
 } from "../style/DailySectionCSS";
 import { patchDailyAddNum } from "../api/api";
 
-const DailyListItem = ({ todoData, setTodoData, todayList, item }) => {
+const DailyListItem = ({
+  todoData,
+  setTodoData,
+  todayList,
+  setTodayList,
+  item,
+}) => {
   // 데일리낫투두 수정 관련 state
   const [dailyEdit, setDailyEdit] = useState(false);
   const [dailyEditTodayNum, setDailyEditTodayNum] = useState(0);
-
 
   // 이벤트 핸들러
   //선택편집(버튼활성화하기)
@@ -46,35 +52,34 @@ const DailyListItem = ({ todoData, setTodoData, todayList, item }) => {
     });
     setTodoData(newTodoData);
 
-    patchDailyAddNum(_goalId, dailyEditTodayNum);
+    patchDailyAddNum(_goalId, dailyEditTodayNum, setTodayList);
     console.log("newTodoData", newTodoData);
     setDailyEdit(false);
     setDailyEditTodayNum("");
   };
-  
+
   useEffect(() => {
     // todayList 또는 dailyEdit가 변경될 때마다 실행되는 로직
     // 화면을 갱신하는 코드 작성
-    
-    console.log("페이지 리랜더링")
 
+    console.log("페이지 리랜더링");
   }, [todayList, dailyEdit, todoData]);
-
 
   if (dailyEdit) {
     // 수정중인 상태
     return (
       <DailyEditListTr>
         <DailyEditListTitle>{item.notTodo}</DailyEditListTitle>
-          {/* 오늘의 비용 수정 */}
-          <>(오늘의 비용 추가)</>
+        {/* 오늘의 비용 수정 */}
+        <DailyEditSub>(오늘의 비용 추가)</DailyEditSub>
         <DailyEditListNumber>
           <DailyEditNumberInput
             type="number"
+            value={item.useCost}
             defaultValue={dailyEditTodayNum}
             onChange={handleDailyNumEditChange}
           />
-        <DailyEditListTdUnit>{item.costCategory}</DailyEditListTdUnit>
+          <DailyEditListTdUnit>{item.costCategory}</DailyEditListTdUnit>
         </DailyEditListNumber>
         <DailyEditListBtn>
           <button
@@ -99,10 +104,16 @@ const DailyListItem = ({ todoData, setTodoData, todayList, item }) => {
       <DailyListTr>
         <DailyListTitle>{item.notTodo}</DailyListTitle>
         {/* 목표수량 */}
-        <DailyListNumber>{item.goalCost}{item.costCategory}</DailyListNumber>        
+        <DailyListNumber>
+          {item.goalCost}
+          {item.costCategory}
+        </DailyListNumber>
         {/* <DailyListTdUnit>{item.costCategory}</DailyListTdUnit> */}
         {/* 누적수량 */}
-        <DailyListNumber>{item.useCostSum}{item.costCategory}</DailyListNumber>
+        <DailyListNumber>
+          {item.useCostSum}
+          {item.costCategory}
+        </DailyListNumber>
         <DailyListBtn
           onClick={() => handleEditClick(item.goalId)}
           className="p-2 m-1 bg-amber-500 hover:bg-amber-400 focus:ring-amber-600 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"

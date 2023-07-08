@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Select from "react-select";
-import { deleteTodo, putTitleTodo } from "../api/api";
+import { deleteTodo, putMonthlyTodo } from "../api/api";
 import {
   AddListBtnDiv,
-  AddListTbody,
   AddListTdDate,
   AddListTdNumber,
   AddListTdTitle,
@@ -13,8 +11,6 @@ import {
   ListEditUnit,
   ListNumEdit,
   ListNumEditDiv,
-  ListSelectEdit,
-  ListTitleEdit,
 } from "../style/MonthlyAddCSS";
 
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
@@ -77,10 +73,10 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     setTodoData(newTodoData);
 
     // putTitleTodo(_goalId, { ...item });
-    putTitleTodo(_goalId, editTitle, editSelect, editGoalNumber);
+    putMonthlyTodo(_goalId, editGoalNumber, setTodoData);
     console.log("newTodoData", newTodoData);
     console.log("_goalId", _goalId);
-    console.log("editTitle", editTitle);
+    console.log("editGoalNumber", editGoalNumber);
     setIsEdit(false);
   };
 

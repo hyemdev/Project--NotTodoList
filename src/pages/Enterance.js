@@ -50,56 +50,59 @@ const Enterance = ({ nickName, setNickname, nickId, setNickId }) => {
   };
 
   return (
-    <div className="w-full h-full relative">
-      <div
-        style={{
-          backgroundImage: `URL(${path}/${bgImg})`,
-          width: "100%",
-          height: "100%",
-          backgroundSize: "cover",
-          opacity: "0.6",
-        }}
-      >
-        <div className="absolute top-3/4 left-1/2">
-          <div className="absolute bottom-1/2 left-1/2 w-80 h-40 bg-slate-200 rounded-md flex justify-center items-center">
-            <Form
-              name="enter"
-              direction="vertical"
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-              layout="vertical"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                width: 300,
-              }}
-            >
-              <div>
-                <Form.Item>
-                  <Input
-                    name="nickname"
-                    placeholder="닉네임을 입력하세요"
-                    size="large"
-                    defaultValue={user}
-                    onChange={handleNickChange}
-                    style={{ border: "1px solid #ca8a04" }}
-                  />
-                </Form.Item>
-              </div>
-              <div>
-                <Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    size="large"
-                    style={{ background: "#facc15" }}
-                  >
-                    Enter
-                  </Button>
-                </Form.Item>
-              </div>
-            </Form>
+    <div className="w-full relative bg-slate-200 flex items-center justify-center h-screen">
+      <div>
+        <p className="text-center text-3xl font-bold">Not Todo List!</p>
+        <div
+          style={{
+            // backgroundImage: `URL(${path}/${bgImg})`,
+            width: "100%",
+            height: "100%",
+            backgroundSize: "cover",
+            opacity: "0.6",
+          }}
+        >
+          <div>
+            <div className="w-80 h-40 bg-slate-300 rounded-md flex justify-center items-center">
+              <Form
+                name="enter"
+                direction="vertical"
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                layout="vertical"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: 300,
+                }}
+              >
+                <div>
+                  <Form.Item>
+                    <Input
+                      name="nickname"
+                      placeholder="닉네임을 입력하세요"
+                      size="large"
+                      defaultValue={user}
+                      onChange={handleNickChange}
+                      // style={{ border: "1px solid #ca8a04" }}
+                    />
+                  </Form.Item>
+                </div>
+                <div>
+                  <Form.Item>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      size="large"
+                      style={{ background: "#fbbf24" }}
+                    >
+                      Enter
+                    </Button>
+                  </Form.Item>
+                </div>
+              </Form>
+            </div>
           </div>
         </div>
         {/* <Link

@@ -83,7 +83,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     // console.log("results", results);
     if (results.length > 0) {
       return (
-        <div style={{height: "110px", maxHeight:"110px", overflowY:"auto"}}>
+        <div style={{height: "95px", maxHeight:"95px", overflowY:"auto"}}>
           {results.map((result, index) => (
             <div
               key={index}
@@ -106,7 +106,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           style={{
             content: {
               width: "60%",
-              maxWidth: "750px",
+              maxWidth: "700px",
               height: "600px",
               margin: "auto",
               borderRadius: "20px",

@@ -17,6 +17,7 @@ import MonthlyAdd from "./pages/MonthlyAdd";
 import { getTodo } from "./api/api";
 import CalendarDayList from "./pages/CalenderDayList";
 import ProfileSection from "./components/ProfileSection";
+import BriefSection2 from "./components/BriefSection2";
 
 function App() {
   const [todoData, setTodoData] = useState([]);
@@ -32,7 +33,6 @@ function App() {
     console.log("todoData", todoData);
     // getId(setNickname, nickId);
   }, []);
-  // console.log("nickName", nickName);
 
   useEffect(() => {
     console.log("setTodoData", todoData);
@@ -52,7 +52,14 @@ function App() {
             <Route
               index
               path="/main"
-              element={<Main todoData={todoData} setTodoData={setTodoData}  nickName={nickName} setNickname={setNickname}/>}
+              element={
+                <Main
+                  todoData={todoData}
+                  setTodoData={setTodoData}
+                  nickName={nickName}
+                  setNickname={setNickname}
+                />
+              }
             ></Route>
             <Route
               path="/monthlycalendar"
@@ -65,12 +72,9 @@ function App() {
             ></Route>
             <Route path="/summary" element={<Summary />}></Route>
             <Route path="*" element={<NotFound />}></Route>{" "}
-            <Route
-              path="/profilesection"
-              element={<ProfileSection />}
-            />
+            <Route path="/profilesection" element={<ProfileSection />} />
             <Route path="/memosection" element={<MemoSection />} />
-            <Route path="/briefsection" element={<BriefSection />} />
+            <Route path="/briefsection2" element={<BriefSection2 />} />
             <Route
               path="/dailysection"
               element={

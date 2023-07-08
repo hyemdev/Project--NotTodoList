@@ -63,6 +63,7 @@ export const DailyListWrap = styled.div`
   height: 500px;
   max-height: 500px;
   overflow-y: auto;
+  border-radius: 10px;
 `;
 
 export const DailyListTr = styled.div`
@@ -90,6 +91,7 @@ export const DailyListNumber = styled.div`
   padding: 12px 3px;
   width: 6.5rem;
   text-align: right;
+  margin-right: 8px;
 `;
 export const DailyListTdUnit = styled.div`
   display: inline-block;
@@ -102,7 +104,7 @@ export const DailyListTdUnit = styled.div`
 
 export const DailyListBtn = styled.div`
   font-size: 12px;
-  width: 10%;
+  width: 60px;
   margin: 0 auto;
   /* margin-right: 30px; */
   cursor: pointer;
@@ -128,14 +130,20 @@ export const DailyEditListTitle = styled.div`
   width: 11rem;
   text-align: center;
 `;
+export const DailyEditSub = styled.span`
+font-size: 12px;
+width: 100px;
+`
+
 export const DailyEditListNumber = styled.div`
   display: inline-block;
   font-size: 12px;
   font-weight: 500;
   padding: 0px 3px;
-  width: 80px;
+  width:80px;
   text-align: right;
 `;
+
 export const DailyEditNumberInput = styled.input`
   font-size: 12px;
   width: 60px;
@@ -166,5 +174,5 @@ export const DailyEditListBtn = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 0 5px;
-  margin-right: 10px;
+  margin-right: 15px;
 `;
