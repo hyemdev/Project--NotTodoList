@@ -6,6 +6,8 @@ import {
   MemoSectionTitle,
   MemoSectionWrap,
 } from "../style/MemoSectionCSS";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 const MemoSection = () => {
   const [OneMemo, setOneMemo] = useState("");
@@ -45,23 +47,24 @@ const MemoSection = () => {
     setOneMemo(newTodo);
 
     //보내자~~~
-    patchOneMemo(OneMemo,setOneMemo);
+    patchOneMemo(OneMemo, setOneMemo);
     setMemoIsEdit(false);
 
     // 전송완료 된 다음 입력창을 초기화 하자
     setOneMemo(OneMemo);
-
   };
 
   useEffect(() => {
     getMemo(setOneMemo);
   }, []);
-  
+
   if (MemoIsEdit) {
     //수정중인 상태
     return (
       <div>
-        <MemoSectionTitle>한줄메모</MemoSectionTitle>
+        <MemoSectionTitle>
+          <FontAwesomeIcon icon={faPenToSquare} /> 한줄메모
+        </MemoSectionTitle>
         <MemoSectionWrap>
           <MemoForm>
             <input
@@ -91,7 +94,9 @@ const MemoSection = () => {
     // 평소상태
     return (
       <div>
-        <MemoSectionTitle>한줄메모</MemoSectionTitle>
+        <MemoSectionTitle>
+          <FontAwesomeIcon icon={faPenToSquare} /> 한줄메모
+        </MemoSectionTitle>
         <MemoSectionWrap>
           <MemoDiv>{OneMemo}</MemoDiv>
           {/* 입력버튼 만들기 */}

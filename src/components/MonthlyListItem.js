@@ -10,7 +10,9 @@ import {
   AddListTdUnit,
   AddListTr,
   AddListbtn,
+  ListEditUnit,
   ListNumEdit,
+  ListNumEditDiv,
   ListSelectEdit,
   ListTitleEdit,
 } from "../style/MonthlyAddCSS";
@@ -45,16 +47,16 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
   };
 
   //수정 입력창 생성하기
-  const handleStrEditChange = e => {
-    setEditTitle(e.target.value);
-  };
+  // const handleStrEditChange = e => {
+  //   setEditTitle(e.target.value);
+  // };
   const handleNumEditChange = e => {
     setEditGoalNumber(e.target.value);
   };
-  const handleSelectEditChange = selectedOption => {
-    setEditSelect(selectedOption.value);
-    console.log("selectedOption", selectedOption);
-  };
+  // const handleSelectEditChange = selectedOption => {
+  //   setEditSelect(selectedOption.value);
+  //   console.log("selectedOption", selectedOption);
+  // };
 
   //수정 취소하기
   const handleCancelClick = () => {
@@ -86,84 +88,83 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     //수정중인 상태
     return (
       <div>
-          <AddListTr>
-            <AddListTdDate className="w-10">{item.monthYear}</AddListTdDate>
-            <AddListTdTitle>
-              {/* <ListTitleEdit
+        <AddListTr>
+          <AddListTdDate>{item.monthYear}</AddListTdDate>
+          <AddListTdTitle>
+            {/* <ListTitleEdit
                 type="text"
                 defaultValue={editTitle}
                 onChange={handleStrEditChange}
               /> */}
-              {item.notTodo}
-            </AddListTdTitle>
-            <AddListTdNumber>
-              <ListSelectEdit>
-                {/* <Select
+            {item.notTodo}
+          </AddListTdTitle>
+
+          <ListNumEditDiv>
+            <ListNumEdit
+              type="number"
+              defaultValue={editGoalNumber}
+              onChange={handleNumEditChange}
+            />
+          </ListNumEditDiv>
+          <ListEditUnit>
+            {/* <Select
                   defaultValue={editSelect}
                   onChange={handleSelectEditChange}
                   options={selectTimePrice}
                 /> */}
-                {item.costCategory}
-              </ListSelectEdit>
-            </AddListTdNumber>
-            <AddListTdNumber>
-              <ListNumEdit
-                type="number"
-                defaultValue={editGoalNumber}
-                onChange={handleNumEditChange}
-              />
-            </AddListTdNumber>
-            <AddListBtnDiv>
-              <AddListbtn
-                // onClick={() => handleSaveClick(item._goalId)}
-                onClick={() => handleSaveClick(item.goalId)}
-                className="bg-amber-500 hover:bg-amber-700 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-              >
-                Save
-              </AddListbtn>
-            </AddListBtnDiv>
-            <AddListBtnDiv>
-              <AddListbtn
-                onClick={handleCancelClick}
-                className="bg-amber-500 hover:bg-amber-700 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-              >
-                Cancel
-              </AddListbtn>
-            </AddListBtnDiv>
-          </AddListTr>
+            {item.costCategory}
+          </ListEditUnit>
+          <AddListBtnDiv>
+            <AddListbtn
+              // onClick={() => handleSaveClick(item._goalId)}
+              onClick={() => handleSaveClick(item.goalId)}
+              className="bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            >
+              Save
+            </AddListbtn>
+          </AddListBtnDiv>
+          <AddListBtnDiv>
+            <AddListbtn
+              onClick={handleCancelClick}
+              className="bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            >
+              Cancel
+            </AddListbtn>
+          </AddListBtnDiv>
+        </AddListTr>
       </div>
     );
   } else {
     // 평소상태
     return (
-        <AddListTr>
-          <AddListTdDate>
-            {/* {item.startDate}~{item.endDate} */}
-            {item.monthYear}
-          </AddListTdDate>
-          <AddListTdTitle>{item.notTodo}</AddListTdTitle>
-          <AddListTdNumber>{item.goalCost}</AddListTdNumber>
-          <AddListTdUnit>{item.costCategory}</AddListTdUnit>
-          {/* 편집/ 삭제 버튼 만들기 */}
-          <AddListBtnDiv>
-            <AddListbtn
-              onClick={handleEditClick}
-              className="bg-amber-400 hover:bg-amber-300 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-            >
-              {" "}
-              edit
-            </AddListbtn>
-          </AddListBtnDiv>
-          <AddListBtnDiv>
-            <AddListbtn
-              onClick={() => handleDeleteClick(item.goalId)}
-              className="bg-amber-400 hover:bg-amber-300 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-            >
-              {" "}
-              del
-            </AddListbtn>
-          </AddListBtnDiv>
-        </AddListTr>
+      <AddListTr>
+        <AddListTdDate>
+          {/* {item.startDate}~{item.endDate} */}
+          {item.monthYear}
+        </AddListTdDate>
+        <AddListTdTitle>{item.notTodo}</AddListTdTitle>
+        <AddListTdNumber>{item.goalCost}</AddListTdNumber>
+        <AddListTdUnit>{item.costCategory}</AddListTdUnit>
+        {/* 편집/ 삭제 버튼 만들기 */}
+        <AddListBtnDiv>
+          <AddListbtn
+            onClick={handleEditClick}
+            className="bg-amber-400 hover:bg-amber-300 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            {" "}
+            edit
+          </AddListbtn>
+        </AddListBtnDiv>
+        <AddListBtnDiv>
+          <AddListbtn
+            onClick={() => handleDeleteClick(item.goalId)}
+            className="bg-amber-400 hover:bg-amber-300 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          >
+            {" "}
+            del
+          </AddListbtn>
+        </AddListBtnDiv>
+      </AddListTr>
     );
   }
 };

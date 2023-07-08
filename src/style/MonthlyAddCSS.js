@@ -143,7 +143,7 @@ export const AddTableThContent = styled.th`
 
 //리스트(List body) 수정 중
 export const ListTitleEdit = styled.input`
-  padding: 8px 3px;
+  padding: 12px 3px;
   width: 250px;
   text-align: center;
   border: 1px solid #dddddd;
@@ -152,38 +152,50 @@ export const ListTitleEdit = styled.input`
   height: 38px;
 `;
 
-export const ListSelectEdit = styled.div`
-  width: 100px;
+export const ListEditUnit = styled.div`
+  width: 50px;
   margin: 0 auto;
+  text-align: center;
+  padding: 8px 3px;
+  
+  padding: 12px 7px;
+  width: 50px;
+  text-align: center;
+  margin-right: 20px;
 `;
-
+export const ListNumEditDiv = styled.div`
+  text-align: right;
+  padding-left: 20px;
+`;
 export const ListNumEdit = styled.input`
   padding: 8px 3px;
   width: 100px;
   text-align: center;
-  border: 1px solid #dddddd;
+  border: 1px solid #cbd5e1;
   border-radius: 5px;
   line-height: 12px;
-  height: 38px;
+  height: 35px;
+  -webkit-appearance: none; /* Safari 및 Chrome 기반 브라우저 */
+  -moz-appearance: none; /* Firefox */
+  appearance: none;
 `;
 
 // 한달목표 입력 form
 export const AddFormWrap = styled.div`
-  width: 100%;
+  width: 700px;
   padding: 10px;
-  margin-top: 10px;
+  padding-top: 20px;
+  margin: 0 auto;
 
   & > Form {
     display: flex;
     justify-content: space-around;
     margin: 0 10px;
-    & > Button {
-    }
   }
 `;
 
 export const AddFormTitle = styled.div`
-  width: 300px;
+  width: 200px;
 `;
 
 export const FormLabel = styled.p`
@@ -196,12 +208,4 @@ export const SaveBtn = styled.div`
   margin-top: 26px;
 `;
 
-export const Temp = styled.div`
-  /* position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 70px;
-  //left: 50%;
-  background-color: aliceblue;
-  z-index: 99999; */
-`;
+export const Temp = styled.div``;

@@ -30,7 +30,6 @@ const CalendarDayList = ({ todoData, setTodoData, clickItems, clickDate}) => {
           <DailyCalTitle>상세보기</DailyCalTitle>
         </DailyTitleDiv>
         <DailyCalTable>
-          <DailyCalTableThead>
             <DailyCalTableTr>
               <CalendarTableThTitle>월간목표</CalendarTableThTitle>
               {/* <CalendarTableThNumber>단위</CalendarTableThNumber> */}
@@ -38,7 +37,6 @@ const CalendarDayList = ({ todoData, setTodoData, clickItems, clickDate}) => {
               <CalendarTableThBtn></CalendarTableThBtn>
               <CalendarTableThBtn></CalendarTableThBtn>
             </DailyCalTableTr>
-          </DailyCalTableThead>
           <CalListTbody>
             {DailyList.map(item => (
               <CalendarDayListItem

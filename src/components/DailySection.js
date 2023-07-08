@@ -85,7 +85,7 @@ const DailySection = ({ todoData, setTodoData }) => {
           </AddModalClose>
         </Modal>
       </div>
-      <div className="flex flex-col items-center justify-end mt-6">
+      <div className="flex flex-col items-center justify-end mt-12">
         <button
           onClick={openModal}
           className="w-80 py-3 px-3 mb-4 bg-amber-400 hover:bg-amber-500 focus:ring-yellow-500 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center font-bold text-xl shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"

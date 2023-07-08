@@ -59,9 +59,9 @@ export const DailyTableThBtn = styled.div`
 
 export const DailyListWrap = styled.div`
   width: 100%;
-  /* text-align: center; */
   background: #f8fafc;
-  max-height: 530px;
+  height: 500px;
+  max-height: 500px;
   overflow-y: auto;
 `;
 
