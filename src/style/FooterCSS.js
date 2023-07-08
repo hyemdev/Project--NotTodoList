@@ -17,6 +17,6 @@ export const FooterText = styled.h2`
   font-size: 10px;
   font-weight: 500;
   text-align: center;
-  color: #f1f5f9;
+  color: #fbbf24;
   letter-spacing: 2px;
 `;

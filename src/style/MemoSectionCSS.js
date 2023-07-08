@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 // memo section
 export const MemoSectionTitle = styled.h2`
 font-weight: 600;
-font-size: 17px;
+font-size: 18px;
 `
 
 export const MemoSectionWrap = styled.div`

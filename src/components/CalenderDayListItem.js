@@ -3,7 +3,9 @@ import { deleteCalList, putCalListEdit, putDailyAddNum } from "../api/api";
 import {
   CalListButton,
   CalListEditTdNumber,
+  CalListEditTdNumberInput,
   CalListEditTdUnit,
+  CalListTdBtnDiv,
   CalListTdNumber,
   CalListTdTitle,
   CalListTdUnit,
@@ -92,28 +94,27 @@ const CalendarDayListItem = ({ item, DailyList, setDailyList }) => {
         <CalListTdTitle>{item.name}</CalListTdTitle>
         {/* 일일수량 출력 (수정필요)*/}
         <CalListEditTdNumber>
-          <input
+          <CalListEditTdNumberInput
             type="number"
             defaultValue={editCostNumber}
             onChange={handleNumEditChange}
-            style={{ width: "100px" }}
           />
         </CalListEditTdNumber>
         <CalListTdUnit>{item.costCategory}</CalListTdUnit>
-        {/* <CalListTdBtnDiv> */}
+        <CalListTdBtnDiv>
         <CalListButton
           onClick={() => handleSaveClick(item.useListId, item.goalId)}
-          className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          className="bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-amber-100 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
         >
           save
         </CalListButton>
         <CalListButton
           onClick={handleCancelClick}
-          className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          className="bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-amber-100 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
         >
           cancel
         </CalListButton>
-        {/* </CalListTdBtnDiv> */}
+        </CalListTdBtnDiv>
       </CalListTr>
     );
   } else {
@@ -126,22 +127,22 @@ const CalendarDayListItem = ({ item, DailyList, setDailyList }) => {
         <CalListTdNumber>{item.useCost}</CalListTdNumber>
         <CalListTdUnit>{item.costCategory}</CalListTdUnit>
         {/* 편집/ 삭제 버튼 만들기 */}
-        {/* <CalListTdBtnDiv> */}
+        <CalListTdBtnDiv>
         <CalListButton
           onClick={handleEditClick}
-          className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          className="bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-amber-100 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
         >
           {" "}
           edit
         </CalListButton>
         <CalListButton
           onClick={() => handleDeleteClick(item.useListId)}
-          className="bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          className="bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-amber-100 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
         >
           {" "}
           del
         </CalListButton>
-        {/* </CalListTdBtnDiv> */}
+        </CalListTdBtnDiv>
       </CalListTr>
     );
   }

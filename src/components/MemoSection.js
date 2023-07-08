@@ -6,6 +6,8 @@ import {
   MemoSectionTitle,
   MemoSectionWrap,
 } from "../style/MemoSectionCSS";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 const MemoSection = () => {
   const [OneMemo, setOneMemo] = useState("");
@@ -45,23 +47,24 @@ const MemoSection = () => {
     setOneMemo(newTodo);
 
     //보내자~~~
-    patchOneMemo(OneMemo,setOneMemo);
+    patchOneMemo(OneMemo, setOneMemo);
     setMemoIsEdit(false);
 
     // 전송완료 된 다음 입력창을 초기화 하자
     setOneMemo(OneMemo);
-
   };
 
   useEffect(() => {
     getMemo(setOneMemo);
   }, []);
-  
+
   if (MemoIsEdit) {
     //수정중인 상태
     return (
       <div>
-        <MemoSectionTitle>한줄메모</MemoSectionTitle>
+        <MemoSectionTitle>
+          <FontAwesomeIcon icon={faPenToSquare} /> 한줄메모
+        </MemoSectionTitle>
         <MemoSectionWrap>
           <MemoForm>
             <input
@@ -73,13 +76,13 @@ const MemoSection = () => {
             />
             <input
               onClick={handleMemoSaveClick}
-              className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
+              className="py-2 px-4 mx-1 bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
               type="submit"
               value="확인"
             />
             <input
               onClick={handleMemoCancelClick}
-              className="py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
+              className="py-2 px-4 mx-1 bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
               type="submit"
               value="취소"
             />
@@ -91,13 +94,15 @@ const MemoSection = () => {
     // 평소상태
     return (
       <div>
-        <MemoSectionTitle>한줄메모</MemoSectionTitle>
+        <MemoSectionTitle>
+          <FontAwesomeIcon icon={faPenToSquare} /> 한줄메모
+        </MemoSectionTitle>
         <MemoSectionWrap>
           <MemoDiv>{OneMemo}</MemoDiv>
           {/* 입력버튼 만들기 */}
           <button
             onClick={handleMemoEditClick}
-            className="py-2 px-4 mr-10 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            className="py-2 px-4 mr-10 bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           >
             입력
           </button>

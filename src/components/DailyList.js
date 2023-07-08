@@ -19,17 +19,6 @@ const DailyList = ({ todoData, setTodoData}) => {
   return (
     <>
       {todayList.map(item => (
-        // <div key={item.useListId}>
-        // <DailyListItem
-        //   key={item.useListId}
-        //   item={item}
-        //   name={item.name}
-        //   cost={item.cost}
-        //   costCategory={item.costCategory}
-        //   todayList={todayList}
-        //   todoData={todoData}
-        //   setTodoData={setTodoData}
-        // />
         <DailyListItem
           key={item.goalId}
           item={item}

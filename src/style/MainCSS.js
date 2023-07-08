@@ -23,8 +23,8 @@ export const MainFlex = styled.div`
   margin: 20px 0px;
 `;
 export const MainLeft = styled.div`
-  height: 100%;
-  max-height: 800px;
+  height: 780px;
+  max-height: 780px;
   width: 50%;
   background: #f1f5f9;
   border-radius: 10px;

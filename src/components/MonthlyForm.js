@@ -15,6 +15,8 @@ import {
   FormLabel,
   SaveBtn,
 } from "../style/MonthlyAddCSS";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
   // state 변수
@@ -166,7 +168,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
               }
             >
               <FormLabel>한달목표</FormLabel>
-              <Input size="large" value={strValue} onChange={handleStrChange} />
+              <Input size="large" value={strValue} onChange={handleStrChange} style={{width:"200px"}} />
             </Form.Item>
           </AddFormTitle>
           <div>
@@ -212,14 +214,17 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
                 size="large"
                 value={goalNumValue}
                 onChange={handleNumChange}
+                style={{width:"100px"}}
+                
               />
             </Form.Item>
           </div>
           <div>
             <Form.Item>
               <SaveBtn>
-                <Button htmlType="submit" size="large">
-                  SAVE
+                <Button htmlType="submit" size="large" style={{background:"#3b82f6", color:"#fff"}}>
+                <FontAwesomeIcon icon={faPlus} style={{marginRight:"5px"}} /> 
+                  Add
                 </Button>
               </SaveBtn>
             </Form.Item>

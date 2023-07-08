@@ -66,8 +66,6 @@ const DailyListItem = ({ todoData, setTodoData, todayList, item }) => {
     return (
       <DailyEditListTr>
         <DailyEditListTitle>{item.notTodo}</DailyEditListTitle>
-        {/* <DailyEditListNumber>{dailyEdit.goalNumber}0000</DailyEditListNumber> */}
-        {/* <DailyEditListNumber>누적숫자</DailyEditListNumber> */}
           {/* 오늘의 비용 수정 */}
           <>(오늘의 비용 추가)</>
         <DailyEditListNumber>
@@ -76,20 +74,20 @@ const DailyListItem = ({ todoData, setTodoData, todayList, item }) => {
             defaultValue={dailyEditTodayNum}
             onChange={handleDailyNumEditChange}
           />
-        </DailyEditListNumber>
         <DailyEditListTdUnit>{item.costCategory}</DailyEditListTdUnit>
+        </DailyEditListNumber>
         <DailyEditListBtn>
           <button
             onClick={() => {
               handleDailySaveClick(item.goalId);
             }}
-            className="w-12 p-2 my-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            className="w-12 p-2 my-1 bg-amber-500 hover:bg-amber-400 focus:ring-amber-600 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           >
             저장
           </button>
           <button
             onClick={handleDailyCancelClick}
-            className="w-12 p-2 my-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            className="w-12 p-2 my-1 bg-amber-500 hover:bg-amber-400 focus:ring-amber-600 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           >
             취소
           </button>
@@ -105,12 +103,9 @@ const DailyListItem = ({ todoData, setTodoData, todayList, item }) => {
         {/* <DailyListTdUnit>{item.costCategory}</DailyListTdUnit> */}
         {/* 누적수량 */}
         <DailyListNumber>{item.useCostSum}{item.costCategory}</DailyListNumber>
-        {/* 오늘수량 */}
-        {/* <DailyListNumber>{item.useCost}0000</DailyListNumber> */}
-        {/* <DailyListTdUnit>{item.costCategory}</DailyListTdUnit> */}
         <DailyListBtn
           onClick={() => handleEditClick(item.goalId)}
-          className="p-2 m-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          className="p-2 m-1 bg-amber-500 hover:bg-amber-400 focus:ring-amber-600 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
         >
           입력
         </DailyListBtn>

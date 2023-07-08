@@ -27,7 +27,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
   };
   useEffect(() => {
     getCalendarTodoData(moment(day).format("YYYY-MM"));
-    console.log("페이지 리랜더링")
+    console.log("페이지 리랜더링");
   }, [isModalOpen]);
   // const DefalutMonth = moment(day).format("YYYY-MM");
 
@@ -82,11 +82,18 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     });
     // console.log("results", results);
     if (results.length > 0) {
-      return results.map((result, index) => (
-        <div key={index} className="bg-slate-500 border-dotted rounded-md my-1">
-          <div className="text-slate-50">{result.name}</div>
+      return (
+        <div style={{height: "110px", maxHeight:"110px", overflowY:"auto"}}>
+          {results.map((result, index) => (
+            <div
+              key={index}
+              className="bg-slate-500 border-dotted rounded-md my-0.5"
+            >
+              <div className="text-slate-50">{result.name}</div>
+            </div>
+          ))}
         </div>
-      ));
+      );
     }
   };
   return (
@@ -99,7 +106,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           style={{
             content: {
               width: "60%",
-              maxWidth: "800px",
+              maxWidth: "750px",
               height: "600px",
               margin: "auto",
               borderRadius: "20px",
@@ -107,18 +114,18 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           }}
         >
           <div>
-            <h2>daily 상세내역 출력 {clickDate}</h2>
+            <h2>Daily 상세내역 : {clickDate}</h2>
             <CalendarDayList
               clickItems={clickItems}
               clickDate={clickDate}
               todoData={todoData}
-              setTodoData={setTodoData}      
+              setTodoData={setTodoData}
             />
           </div>
           <div className="flex justify-center items-center">
             <button
               type="button"
-              className="py-2 px-4 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              className="py-2 px-4 bg-amber-500 hover:bg-amber-400 focus:ring-amber-500 focus:ring-offset-amber-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               onClick={handleCancel}
             >
               CLOSE

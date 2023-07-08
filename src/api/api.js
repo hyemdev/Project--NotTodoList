@@ -222,10 +222,12 @@ export const putCalListEdit = async (_useListId, _goalId, editCostNumber) => {
 export const patchOneMemo = async OneMemo => {
   try {
     const res = await axios.patch("/api/memo", {
+      memberId: 1,
       memo: OneMemo,
     });
     const data = await res.data;
     console.log(data);
+    return data
   } catch (error) {
     console.log(error);
   }

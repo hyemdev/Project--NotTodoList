@@ -3,18 +3,21 @@ import Modal from "react-modal";
 import moment from "moment";
 import MonthlyAdd from "../pages/MonthlyAdd";
 import {
+  DailyDate,
   DailyListWrap,
+  DailyScroll,
   DailySectionTitle,
   DailyTable,
   DailyTableThBtn,
   DailyTableThNumber,
   DailyTableThTitle,
-  DailyTableThUnit,
   DailyTableThead,
   DailyTableTr,
 } from "../style/DailySectionCSS";
 import DailyList from "./DailyList";
 import { AddModalClose } from "../style/MonthlyAddCSS";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserXmark } from "@fortawesome/free-solid-svg-icons";
 
 const DailySection = ({ todoData, setTodoData }) => {
   //월간목표 추가하기용 모달창
@@ -32,25 +35,22 @@ const DailySection = ({ todoData, setTodoData }) => {
     setIsModalOpen(false);
   };
 
-
   useEffect(() => {
-    console.log("페이지 리랜더링")
-  }, [isModalOpen,setTodoData]);
+    console.log("페이지 리랜더링");
+  }, [isModalOpen, setTodoData]);
 
   //  평소상태
   return (
     <div>
-      <DailySectionTitle>DailyNotTodo</DailySectionTitle>
-      <span> today :{isToday}</span>
+      <DailySectionTitle><FontAwesomeIcon icon={faUserXmark} /> 오늘의 Not Todo List</DailySectionTitle>
+      <DailyDate> today : {isToday}</DailyDate>
         <DailyTable>
           <DailyTableThead>
-            <DailyTableTr>
-              <DailyTableThTitle>목표</DailyTableThTitle>
-              <DailyTableThNumber>목표수량</DailyTableThNumber>
-              <DailyTableThNumber>누적수량</DailyTableThNumber>
+              <DailyTableThTitle> 오늘의 나쁜행동 </DailyTableThTitle>
+              <DailyTableThNumber>Dead Line</DailyTableThNumber>
+              <DailyTableThNumber>Bad Gauge</DailyTableThNumber>
               {/* <DailyTableThNumber>오늘수량</DailyTableThNumber> */}
               <DailyTableThBtn></DailyTableThBtn>
-            </DailyTableTr>
           </DailyTableThead>
           <DailyListWrap>
             {/* today list 출력창 */}
@@ -66,7 +66,7 @@ const DailySection = ({ todoData, setTodoData }) => {
           contentLabel="모달"
           style={{
             content: {
-              width: "1000px",
+              width: "800px",
               height: "700px",
               margin: "auto",
               borderRadius: "20px",
@@ -77,7 +77,7 @@ const DailySection = ({ todoData, setTodoData }) => {
           <AddModalClose>
             <button
               type="button"
-              className="mt-5 py-2 px-4 mx-1 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              className="mt-5 py-2 px-4 mx-1 bg-amber-400 hover:bg-amber-500 focus:ring-yellow-500 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               onClick={closeModal}
             >
               CLOSE
@@ -85,10 +85,10 @@ const DailySection = ({ todoData, setTodoData }) => {
           </AddModalClose>
         </Modal>
       </div>
-      <div className="flex flex-col items-center justify-end mt-10">
+      <div className="flex flex-col items-center justify-end mt-12">
         <button
           onClick={openModal}
-          className="w-80 py-3 px-3 mb-4 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center font-bold text-xl shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          className="w-80 py-3 px-3 mb-4 bg-amber-400 hover:bg-amber-500 focus:ring-yellow-500 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center font-bold text-xl shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
         >
           월간목표 설정하기
         </button>
