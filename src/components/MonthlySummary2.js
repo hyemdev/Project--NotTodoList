@@ -1,120 +1,60 @@
 import { ResponsiveLine } from "@nivo/line";
 import React from "react";
 
-const MonthlySummary2 = () => {
-  const data = {
-    monthTime: [
-      {
-        month: "2023-01",
-        saveTime: "0",
-      },
-      {
-        month: "2023-02",
-        saveTime: "0",
-      },
-      {
-        month: "2023-03",
-        saveTime: "0",
-      },
-      {
-        month: "2023-04",
-        saveTime: "0",
-      },
-      {
-        month: "2023-05",
-        saveTime: "0",
-      },
-      {
-        month: "2023-06",
-        saveTime: "-450",
-      },
-      {
-        month: "2023-07",
-        saveTime: "100,660",
-      },
-      {
-        month: "2023-08",
-        saveTime: "60",
-      },
-      {
-        month: "2023-09",
-        saveTime: "0",
-      },
-      {
-        month: "2023-10",
-        saveTime: "0",
-      },
-      {
-        month: "2023-11",
-        saveTime: "0",
-      },
-      {
-        month: "2023-12",
-        saveTime: "0",
-      },
-    ],
-  };
+const MonthlySummary2 = ({ analystic, setAnalystic }) => {
+  console.log("analystic.monthTime", analystic.monthTime);
 
-  const generateRandomData = () => {
-    const randomData = data.monthTime.map((item) => ({
-      month: item.month,
-      saveTime: Math.floor(Math.random() * 100000).toLocaleString(),
-    }));
-    return randomData;
-  };
-
-
-
-  const chartData = [
+  const transformMonthTime= [
     {
-      id: "동년",
-      data: data.monthTime.map((item) => ({
+      id: "MonthTime",
+      data: analystic.monthTime.map(item => ({
         x: item.month,
-        y: parseInt(item.saveTime.replace(",", "")),
-      })),
-    },
-    {
-      id: "전년",
-      data: generateRandomData().map((item) => ({
-        x: item.month,
-        y: parseInt(item.saveTime.replace(",", "")),
+        y: parseInt(item.saveCost.replace(/,/g, ""), 10),
       })),
     },
   ];
 
+  console.log("transformMonthMoney", transformMonthTime);
+
   return (
-    <div style={{ height: 400 }}>
-      <h2>Monthly 금액</h2>
+    <div style={{ width: "500px", height: "300px" }}>
+      <h2>monthly Summary(time)</h2>
       <ResponsiveLine
-        data={chartData}
-        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+        data={transformMonthTime}
+        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
         xScale={{ type: "point" }}
-        yScale={{ type: "linear", min: "auto", max: "auto", stacked: true, reverse: false }}
+        yScale={{
+          type: "linear",
+          min: "auto",
+          max: "auto",
+          stacked: true,
+          reverse: false,
+        }}
+        yFormat=" >-.2f"
         axisTop={null}
         axisRight={null}
         axisBottom={{
-          orient: "bottom",
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
+          legend: "transportation",
           legendOffset: 36,
-          legendPosition: "middle"
+          legendPosition: "middle",
         }}
         axisLeft={{
-          orient: "left",
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
+          legend: "count",
           legendOffset: -40,
-          legendPosition: "middle"
+          legendPosition: "middle",
         }}
-        colors={{ scheme: "category10" }}
-        lineWidth={2}
-        pointSize={4}
-        pointColor={{ theme: "background" }}
+        colors={{ scheme: 'nivo' }}
+        pointSize={10}
+        pointColor={{ theme: "grid.line.stroke" }}
         pointBorderWidth={2}
         pointBorderColor={{ from: "serieColor" }}
-        pointLabel="y"
+        enablePointLabel={true}
         pointLabelYOffset={-12}
         useMesh={true}
         legends={[
@@ -122,9 +62,9 @@ const MonthlySummary2 = () => {
             anchor: "bottom-right",
             direction: "column",
             justify: false,
-            translateX: 120,
+            translateX: 100,
             translateY: 0,
-            itemsSpacing: 2,
+            itemsSpacing: 0,
             itemDirection: "left-to-right",
             itemWidth: 80,
             itemHeight: 20,
@@ -137,11 +77,11 @@ const MonthlySummary2 = () => {
                 on: "hover",
                 style: {
                   itemBackground: "rgba(0, 0, 0, .03)",
-                  itemOpacity: 1
-                }
-              }
-            ]
-          }
+                  itemOpacity: 1,
+                },
+              },
+            ],
+          },
         ]}
       />
     </div>

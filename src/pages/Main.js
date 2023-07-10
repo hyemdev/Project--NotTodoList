@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MemoSection from "../components/MemoSection";
 import BriefSection from "../components/BriefSection";
 import DailySection from "../components/DailySection";
@@ -12,14 +12,24 @@ import {
   Profile,
 } from "../style/MainCSS";
 import ProfileSection from "../components/ProfileSection";
+import { getTodo } from "../api/api";
 
-const Main = ({ todoData, setTodoData, nickName, setNickname }) => {
+const Main = ({
+  todoData,
+  setTodoData,
+  nickName,
+  setNickname,
+}) => {
+
   return (
     <MainWrap>
       <MainFlex>
         <MainLeft>
           {/*  컴포넌트 */}
-          <DailySection todoData={todoData} setTodoData={setTodoData} />
+          <DailySection
+            todoData={todoData}
+            setTodoData={setTodoData}
+          />
         </MainLeft>
         <MainRight>
           <Profile>

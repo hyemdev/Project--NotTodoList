@@ -12,8 +12,6 @@ const MonthlyList = ({ todoData, setTodoData }) => {
           notTodo={item.notTodo}
           costCategory={item.costCategory}
           goalCost={item.goalCost}
-          // startDate={item.startDateFormat}
-          // endDate={item.startDateFormat}
           monthYear={item.monthYear}
           todoData={todoData}
           setTodoData={setTodoData}

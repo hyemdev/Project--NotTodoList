@@ -1,67 +1,65 @@
 import { ResponsiveBar } from "@nivo/bar";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
+const WeeklySummary2 = ({ analystic, setAnalystic }) => {
+  const transformWeekTime = analystic.weeklyTime.map(item => ({
+    name: item.name,
+    cost: parseInt(item.cost.replace(/,/g, ""), 10),
+  }));
 
-const WeeklySummary2 = () => {
-  const [weekData, setWeekData] = useState([
-    { week: "과자", cost: 0 },
-    { week: "담배", cost: 0 },
-    { week: "라면", cost: 2500 },
-    { week: "술", cost: 2000 },
-    { week: "여가생활", cost: 7000 },
-    { week: "커피", cost: 0 },
-  ])
-
-  const updateData = () => {
-    const nextWeekData = [
-      { week: "과자", cost: 500 },
-      { week: "담배", cost: 1000 },
-      { week: "라면", cost: 3000 },
-      { week: "술", cost: 400 },
-      { week: "여가생활", cost: 1000 },
-      { week: "커피", cost: 500 },
-      { week: "사탕", cost: 3000 },
-    ]
-
-    const updatedData = weekData.map((item) => {
-      const newItem = nextWeekData.find((nextItem) => nextItem.week === item.week)
-      if (newItem) {
-        return {
-          week: item.week,
-          cost: item.cost + newItem.cost
-        }
-      }
-      return item
-    })
-
-    nextWeekData.forEach((newItem) => {
-      const existingItem = updatedData.find((item) => item.week === item.week)
-      if (!existingItem) {
-        updatedData.push(newItem)
-      }
-    })
-    setWeekData(updatedData)
-  }
-
+  console.log("");
 
   return (
     <div className="flex flex-col">
       <div>
-        <h2>Weekly 금액<button className="float-right mr-32 bg-white" onClick={updateData}>데이터 업데이트</button></h2>
-        
+        <h2>WeeklySummary(time)</h2>
         <div style={{ height: 400 }}>
           <ResponsiveBar
-            data={weekData}
+            data={transformWeekTime}
             keys={["cost"]}
-            indexBy="week"
+            indexBy="name"
             margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
             padding={0.2}
             valueScale={{ type: "linear" }}
             indexScale={{ type: "band", round: true }}
             colors={{ scheme: "nivo" }}
+            defs={[
+              {
+                id: "dots",
+                type: "patternDots",
+                background: "inherit",
+                color: "#38bcb2",
+                size: 4,
+                padding: 1,
+                stagger: true,
+              },
+              {
+                id: "lines",
+                type: "patternLines",
+                background: "inherit",
+                color: "#eed312",
+                rotation: -45,
+                lineWidth: 6,
+                spacing: 10,
+              },
+            ]}
+            fill={[
+              {
+                match: {
+                  id: "fries",
+                },
+                id: "dots",
+              },
+              {
+                match: {
+                  id: "sandwich",
+                },
+                id: "lines",
+              },
+            ]}
             borderColor={{
               from: "color",
-              modifiers: [["darker", 1.6]]
+              modifiers: [["darker", 1.6]],
             }}
             axisTop={null}
             axisRight={null}
@@ -69,25 +67,27 @@ const WeeklySummary2 = () => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "week",
+              legend: "name",
               legendPosition: "middle",
-              legendOffset: 32
+              legendOffset: 32,
             }}
             axisLeft={{
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legendPositimon: "middle",
-              legendOffset: 32
+              legend: "cost",
+              legendPosition: "middle",
+              legendOffset: -40,
             }}
             labelSkipWidth={12}
             labelSkipHeight={12}
             labelTextColor={{
               from: "color",
-              modifiers: [["darker", 1.6]]
+              modifiers: [["darker", 1.6]],
             }}
             legends={[
               {
+                dataFrom: "keys",
                 anchor: "bottom-right",
                 direction: "column",
                 justify: false,
@@ -103,11 +103,11 @@ const WeeklySummary2 = () => {
                   {
                     on: "hover",
                     style: {
-                      itemOpacity: 1
-                    }
-                  }
-                ]
-              }
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
             ]}
             role="application"
             ariaLabel="Nivo bar chart demo"

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Select from "react-select";
-import { deleteTodo, putTitleTodo } from "../api/api";
+import { deleteTodo, putMonthlyTodo } from "../api/api";
 import {
   AddListBtnDiv,
-  AddListTbody,
   AddListTdDate,
   AddListTdNumber,
   AddListTdTitle,
@@ -13,16 +11,15 @@ import {
   ListEditUnit,
   ListNumEdit,
   ListNumEditDiv,
-  ListSelectEdit,
-  ListTitleEdit,
 } from "../style/MonthlyAddCSS";
 
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
+  console.log("item.month", )
   //state
   const [isEdit, setIsEdit] = useState(false);
-  const [editTitle, setEditTitle] = useState(item.notTodo);
+  // const [editTitle, setEditTitle] = useState(item.notTodo);
   const [editGoalNumber, setEditGoalNumber] = useState(item.goalCost);
-  const [editSelect, setEditSelect] = useState(item.costCategory);
+  // const [editSelect, setEditSelect] = useState(item.costCategory);
 
   // 선택창 옵션(추후에 따로 빼내야 함)
   const selectTimePrice = [
@@ -77,10 +74,10 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     setTodoData(newTodoData);
 
     // putTitleTodo(_goalId, { ...item });
-    putTitleTodo(_goalId, editTitle, editSelect, editGoalNumber);
+    putMonthlyTodo(_goalId, editGoalNumber, setTodoData);
     console.log("newTodoData", newTodoData);
     console.log("_goalId", _goalId);
-    console.log("editTitle", editTitle);
+    console.log("editGoalNumber", editGoalNumber);
     setIsEdit(false);
   };
 
@@ -139,7 +136,6 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     return (
       <AddListTr>
         <AddListTdDate>
-          {/* {item.startDate}~{item.endDate} */}
           {item.monthYear}
         </AddListTdDate>
         <AddListTdTitle>{item.notTodo}</AddListTdTitle>

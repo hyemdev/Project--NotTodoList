@@ -72,8 +72,8 @@ export const CalListTbody = styled.div`
   font-size: 14px;
   color: #475569;
   padding: 0 3px;
-  width: 688px;
-  height: 350px;
+  width: 635px;
+  height: 320px;
   overflow-y: auto;
 `;
 
@@ -103,7 +103,7 @@ export const CalListTdUnit = styled.div`
   margin-right: 25px;
 `;
 export const CalListTdBtnDiv = styled.div`
-  width: 200px;
+  width: 160px;
 `;
 
 export const CalListButton = styled.button`

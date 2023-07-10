@@ -28,7 +28,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
   const [dailyAddNumber, setDailyAddNumber] = useState(0);
 
   // console.log("nickId",nickId)
-  
+
   //모달관련 state
   // const [modalMessage, setModalMessage] = useState(""); // 메세지
   // const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,7 +76,6 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
     console.log("e.target.value", e.target.value);
   };
 
-  
   // ant form 전송
   const onFinish = values => {
     console.log("Success:", values);
@@ -112,7 +111,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
     // }
 
     //Post
-    postTodo(newTodo);
+    postTodo(newTodo, setTodoData);
 
     // 전송완료 된 다음 입력창을 초기화 하자(제대로 안됨, 수정필요)
     setStrValue("");
@@ -150,35 +149,38 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
             />
           </div>
           <AddFormTitle>
+            <FormLabel>한달목표</FormLabel>
             <Form.Item
               // label="한달 목표"
               name="notTodo"
-              rules={
-                [
-                  // {
-                  //   required: true,
-                  //   message: "목표를 입력하세요",
-                  // },
-                  // { max: 10, message: '목표를 10자이내로 입력하세요' },
-                  // {
-                  //   pattern: /^\S/,
-                  //   message: '목표를 입력하세요',
-                  // },
-                ]
-              }
+              rules={[
+                {
+                  required: true,
+                  message: "항목을 입력하세요",
+                },
+                { max: 20, message: "항목을 20자이내로 입력하세요" },
+                {
+                  pattern: /^\S/,
+                  message: "항목을 입력하세요",
+                },
+              ]}
             >
-              <FormLabel>한달목표</FormLabel>
-              <Input size="large" value={strValue} onChange={handleStrChange} style={{width:"200px"}} />
+              <Input
+                size="large"
+                value={strValue}
+                onChange={handleStrChange}
+                style={{ width: "200px" }}
+              />
             </Form.Item>
           </AddFormTitle>
           <div>
+            <FormLabel>단위</FormLabel>
             <Form.Item
               // label="목표 단위"
               name="costCategory"
               options={selectTimePrice}
               onChange={handleSelectedOption}
             >
-              <FormLabel>단위</FormLabel>
               <Radio.Group style={{ display: "inline-block" }} size="large">
                 <div>
                   <Radio.Button value="TIME">TIME</Radio.Button>
@@ -188,42 +190,46 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
             </Form.Item>
           </div>
           <div>
+            <FormLabel>목표수량</FormLabel>
             <Form.Item
               // label="목표수량"
               name="goalCost"
-              rules={
-                [
-                  // {
-                  //   type: 'number',
-                  //   message: "수량을 입력하세요",
-                  // },
-                  // { max: 10, message: '목표수량을 10자이내로 입력하세요' },
-                  // {
-                  //   required: true,
-                  //   message: "수량을 입력하세요",
-                  // },
-                  // {
-                  //   pattern: /^\S/,
-                  //   message: '수량을 입력하세요',
-                  // },
-                ]
-              }
+              rules={[
+                {
+                  type: "number",
+                  message: "수량을 입력하세요",
+                },
+                { max: 10, message: "수량을 10자이내로 입력하세요" },
+                {
+                  required: true,
+                  message: "수량을 입력하세요",
+                },
+                {
+                  pattern: /^\S/,
+                  message: "수량을 입력하세요",
+                },
+              ]}
             >
-              <FormLabel>목표수량</FormLabel>
               <Input
                 size="large"
                 value={goalNumValue}
                 onChange={handleNumChange}
-                style={{width:"100px"}}
-                
+                style={{ width: "100px" }}
               />
             </Form.Item>
           </div>
           <div>
             <Form.Item>
               <SaveBtn>
-                <Button htmlType="submit" size="large" style={{background:"#3b82f6", color:"#fff"}}>
-                <FontAwesomeIcon icon={faPlus} style={{marginRight:"5px"}} /> 
+                <Button
+                  htmlType="submit"
+                  size="large"
+                  style={{ background: "#3b82f6", color: "#fff" }}
+                >
+                  <FontAwesomeIcon
+                    icon={faPlus}
+                    style={{ marginRight: "5px" }}
+                  />
                   Add
                 </Button>
               </SaveBtn>

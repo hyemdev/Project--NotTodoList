@@ -5,19 +5,18 @@ import MonthlyAdd from "../pages/MonthlyAdd";
 import {
   DailyDate,
   DailyListWrap,
-  DailyScroll,
   DailySectionTitle,
   DailyTable,
   DailyTableThBtn,
   DailyTableThNumber,
   DailyTableThTitle,
   DailyTableThead,
-  DailyTableTr,
 } from "../style/DailySectionCSS";
 import DailyList from "./DailyList";
 import { AddModalClose } from "../style/MonthlyAddCSS";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserXmark } from "@fortawesome/free-solid-svg-icons";
+import { getTodaylist } from "../api/api";
 
 const DailySection = ({ todoData, setTodoData }) => {
   //월간목표 추가하기용 모달창
@@ -35,30 +34,45 @@ const DailySection = ({ todoData, setTodoData }) => {
     setIsModalOpen(false);
   };
 
+  // get관련 useState
+  const [todayList, setTodayList] = useState([]);
+
+  // 오늘날짜 계산하기
+  const todayDate = moment().format("YYYY-MM-DD");
+
+  //Today not List get
   useEffect(() => {
+    getTodaylist(setTodayList, todayDate);
     console.log("페이지 리랜더링");
-  }, [isModalOpen, setTodoData]);
+  }, [isModalOpen, setTodoData, setTodayList, todayDate]);
 
   //  평소상태
   return (
     <div>
-      <DailySectionTitle><FontAwesomeIcon icon={faUserXmark} /> 오늘의 Not Todo List</DailySectionTitle>
+      <DailySectionTitle>
+        <FontAwesomeIcon icon={faUserXmark} /> 오늘의 Not Todo List
+      </DailySectionTitle>
       <DailyDate> today : {isToday}</DailyDate>
-        <DailyTable>
-          <DailyTableThead>
-              <DailyTableThTitle> 오늘의 나쁜행동 </DailyTableThTitle>
-              <DailyTableThNumber>Dead Line</DailyTableThNumber>
-              <DailyTableThNumber>Bad Gauge</DailyTableThNumber>
-              {/* <DailyTableThNumber>오늘수량</DailyTableThNumber> */}
-              <DailyTableThBtn></DailyTableThBtn>
-          </DailyTableThead>
-          <DailyListWrap>
-            {/* today list 출력창 */}
-            {/* <DailyListDiv> */}
-            <DailyList todoData={todoData} setTodoData={setTodoData} />
-            {/* </DailyListDiv> */}
-          </DailyListWrap>
-        </DailyTable>
+      <DailyTable>
+        <DailyTableThead>
+          <DailyTableThTitle> 오늘의 나쁜행동 </DailyTableThTitle>
+          <DailyTableThNumber>Dead Line</DailyTableThNumber>
+          <DailyTableThNumber>Bad Gauge</DailyTableThNumber>
+          {/* <DailyTableThNumber>오늘수량</DailyTableThNumber> */}
+          <DailyTableThBtn></DailyTableThBtn>
+        </DailyTableThead>
+        <DailyListWrap>
+          {/* today list 출력창 */}
+          {/* <DailyListDiv> */}
+          <DailyList
+            todoData={todoData}
+            setTodoData={setTodoData}
+            todayList={todayList}
+            setTodayList={setTodayList}
+          />
+          {/* </DailyListDiv> */}
+        </DailyListWrap>
+      </DailyTable>
       <div>
         <Modal
           isOpen={isModalOpen}
