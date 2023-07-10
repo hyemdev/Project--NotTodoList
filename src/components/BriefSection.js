@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getBriefData } from "../api/api";
-import { DatePicker, Space } from "antd";
+import { DatePicker, Form, Space } from "antd";
 import koKR from "antd/lib/locale/ko_KR";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +16,8 @@ const BriefSection = () => {
 
   const [selectedRange, setSelectedRange] = useState([]);
 
+  // form 초기화용
+  const [form] = Form.useForm();
   const { RangePicker } = DatePicker;
   const dateFormat = "YYYY/MM";
 
@@ -56,6 +58,10 @@ const BriefSection = () => {
 
   //이벤트 핸들러
   const handleRangeChange = dates => {
+    // form.setFieldsValue({
+    //   dateRange: [moment("2023/06", dateFormat), moment("2023/07", dateFormat)],
+    // });
+
     setSelectedRange(dates);
     console.log("dates", dates);
     setStartMonth(moment(dates[0].$d).format("YYYY-MM"));
@@ -82,8 +88,10 @@ const BriefSection = () => {
           {/* <p>{startMonth}~{endMonth}까지 통계를 알려드려요</p> */}
           <div className="mb-4 mr-2">
             <RangePicker
+              form={form}
+              name="dateRange"
               picker="month"
-              size="small"
+              size="middle"
               allowClear={false}
               bordered={true}
               locale={moment.locale("ko")}

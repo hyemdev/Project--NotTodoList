@@ -19,4 +19,20 @@ export const MonthlyCalendarDiv = styled.div`
   background: #f1f5f9;
   border-radius: 10px;
   padding: 10px;
+  padding-top: 20px;
+  @media screen and (max-width: 1200px) {
+    width: 700px;
+    max-width: 700px;
+  }
+`;
+
+export const MonthlyCalSpan = styled.span`
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 700;
+`;
+export const CalendarSquareDiv = styled.div`
+  height: "95px";
+  max-height: "95px";
+  overflow-y: "auto";
 `;

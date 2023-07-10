@@ -17,8 +17,12 @@ import { AddModalClose } from "../style/MonthlyAddCSS";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserXmark } from "@fortawesome/free-solid-svg-icons";
 import { getTodaylist } from "../api/api";
+import { useMediaQuery } from "react-responsive";
 
 const DailySection = ({ todoData, setTodoData }) => {
+  //반응형
+  const isResponsive = useMediaQuery({ maxWidth: 1200 });
+
   //월간목표 추가하기용 모달창
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -74,30 +78,57 @@ const DailySection = ({ todoData, setTodoData }) => {
         </DailyListWrap>
       </DailyTable>
       <div>
-        <Modal
-          isOpen={isModalOpen}
-          onRequestClose={closeModal}
-          contentLabel="모달"
-          style={{
-            content: {
-              width: "800px",
-              height: "700px",
-              margin: "auto",
-              borderRadius: "20px",
-            },
-          }}
-        >
-          <MonthlyAdd todoData={todoData} setTodoData={setTodoData} />
-          <AddModalClose>
-            <button
-              type="button"
-              className="mt-5 py-2 px-4 mx-1 bg-amber-400 hover:bg-amber-500 focus:ring-yellow-500 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-              onClick={closeModal}
-            >
-              CLOSE
-            </button>
-          </AddModalClose>
-        </Modal>
+        {isResponsive ? (
+          <Modal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="모달"
+            style={{
+              content: {
+                width: "690px",
+                height: "650px",
+                margin: "auto",
+                borderRadius: "20px",
+              },
+            }}
+          >
+            <MonthlyAdd todoData={todoData} setTodoData={setTodoData} />
+            <AddModalClose>
+              <button
+                type="button"
+                className="mt-5 py-2 px-4 mx-1 bg-amber-400 hover:bg-amber-500 focus:ring-yellow-500 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                onClick={closeModal}
+              >
+                CLOSE
+              </button>
+            </AddModalClose>
+          </Modal>
+        ) : (
+          <Modal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="모달"
+            style={{
+              content: {
+                width: "800px",
+                height: "700px",
+                margin: "auto",
+                borderRadius: "20px",
+              },
+            }}
+          >
+            <MonthlyAdd todoData={todoData} setTodoData={setTodoData} />
+            <AddModalClose>
+              <button
+                type="button"
+                className="mt-5 py-2 px-4 mx-1 bg-amber-400 hover:bg-amber-500 focus:ring-yellow-500 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                onClick={closeModal}
+              >
+                CLOSE
+              </button>
+            </AddModalClose>
+          </Modal>
+        )}
       </div>
       <div className="flex flex-col items-center justify-end mt-12">
         <button

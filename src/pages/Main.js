@@ -21,6 +21,7 @@ import ProfileSection from "../components/ProfileSection";
 import { useMediaQuery } from "react-responsive";
 
 const Main = ({ todoData, setTodoData, nickName, setNickname }) => {
+  // 반응형
   const isResponsive = useMediaQuery({ maxWidth: 1200 });
 
   return (
@@ -65,8 +66,7 @@ const Main = ({ todoData, setTodoData, nickName, setNickname }) => {
             </MainRight>
           </MainFlex>
         </MainWrap>
-      )}{" "}
-      ;
+      )}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import Modal from "react-modal";
 
 import "../style/CalendarCSS.css";
 import {
+  MonthlyCalSpan,
   MonthlyCalendarDiv,
   MonthlyCalendarWrap,
 } from "../style/MonthlyCalendarCSS";
@@ -85,7 +86,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     // console.log("results", results);
     if (results.length > 0) {
       return (
-        <div style={{height: "95px", maxHeight:"95px", overflowY:"auto"}}>
+        <div style={{ height: "95px", maxHeight: "95px", overflowY: "auto" }}>
           {results.map((result, index) => (
             <div
               key={index}
@@ -107,7 +108,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           contentLabel="모달"
           style={{
             content: {
-              width: "60%",
+              width: "700px",
               maxWidth: "700px",
               height: "600px",
               margin: "auto",
@@ -138,7 +139,9 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
 
       <MonthlyCalendarWrap>
         <MonthlyCalendarDiv>
-        <span className="text-base font-semibold p-1 bg-slate-5"><FontAwesomeIcon icon={faFaceSadTear} /> 못지킨 항목들이 표시되요</span>
+          <MonthlyCalSpan>
+            <FontAwesomeIcon icon={faFaceSadTear} /> 못지킨 항목들이 표시되요
+          </MonthlyCalSpan>
           <Calendar
             //날짜 클릭했을 때 이벤트핸들러
             onClickDay={(value, event) => handleClickDay(value, event)}

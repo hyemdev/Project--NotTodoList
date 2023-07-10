@@ -19,4 +19,20 @@ export const SummaryDiv = styled.div`
   background: #f1f5f9;
   border-radius: 10px;
   padding: 10px;
+  @media screen and (max-width: 1200px) {
+    width: 700px;
+    max-height: 100%;
+    max-width: 700px;
+    padding-bottom: 100px;
+  }
 `;
+export const SummarySubDiv = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-top: 20px;
+gap: 20px;
+`
+
+

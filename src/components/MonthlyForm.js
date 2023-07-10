@@ -13,6 +13,7 @@ import {
   AddFormTitle,
   AddFormWrap,
   FormLabel,
+  OptionDiv,
   SaveBtn,
 } from "../style/MonthlyAddCSS";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -78,6 +79,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
     postTodo(newTodo, setTodoData);
 
     // 전송완료 된 다음 입력창을 초기화 하자
+    form.resetFields();
 
   };
   const onFinishFailed = errorInfo => {
@@ -137,7 +139,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
               />
             </Form.Item>
           </AddFormTitle>
-          <div>
+          <OptionDiv>
             <FormLabel>단위</FormLabel>
             <Form.Item
               // label="목표 단위"
@@ -152,7 +154,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
                 </div>
               </Radio.Group>
             </Form.Item>
-          </div>
+          </OptionDiv>
           <div>
             <FormLabel>목표수량</FormLabel>
             <Form.Item
