@@ -2,23 +2,27 @@ import { ResponsiveLine } from "@nivo/line";
 import React from "react";
 
 const MonthlySummary = ({ analystic, setAnalystic }) => {
-  console.log("analystic.monthTime", analystic.monthTime);
+  console.log("analystic.monthMoney", analystic.monthMoney);
 
-  const timeData = [
+  const transformMonthMoney = [
     {
-      id: "saveMonthlyTime",
-      color: "hsl(80, 70%, 50%)",
-      data: [analystic.monthTime],
+      id: "Monthcost",
+      data: analystic.monthMoney.map(item => ({
+        x: item.month,
+        y: parseInt(item.saveCost.replace(/,/g, ""), 10),
+      })),
     },
   ];
-  console.log("timeData", timeData);
+
+  console.log("transformMonthMoney", transformMonthMoney);
+
   return (
-    <div className="flex flex-col">
+    <div style={{ width: "500px", height: "300px" }}>
+      <h2>monthly Summary(cost)</h2>
       <ResponsiveLine
-        // data={analystic.monthTime}
-        data={timeData}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-        xScale={{ type: "linear" }}
+        data={transformMonthMoney}
+        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+        xScale={{ type: "point" }}
         yScale={{
           type: "linear",
           min: "auto",
@@ -33,7 +37,7 @@ const MonthlySummary = ({ analystic, setAnalystic }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "transportation",
+          legend: "month",
           legendOffset: 36,
           legendPosition: "middle",
         }}
@@ -41,10 +45,11 @@ const MonthlySummary = ({ analystic, setAnalystic }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "count",
+          legend: "cost",
           legendOffset: -40,
           legendPosition: "middle",
         }}
+        colors={{ scheme: 'nivo' }}
         pointSize={10}
         pointColor={{ theme: "background" }}
         pointBorderWidth={2}

@@ -241,7 +241,8 @@ export const getBriefData = async (startMonth, endMonth) => {
   console.log("api-endMonth", endMonth);
   try {
     const res = await axios.get(
-      `/api/save-data?memberId=1&startMonth=${startMonth}&endMonth=${endMonth}`);
+      `/api/save-data?memberId=1&startMonth=${startMonth}&endMonth=${endMonth}`,
+    );
     const result = await res.data;
     console.log("result", result);
     // setTextData(result);
@@ -251,14 +252,14 @@ export const getBriefData = async (startMonth, endMonth) => {
   }
 };
 // statistics Section Get
-export const getAnalysisData = async (setAnalystic) => {
+export const getAnalysisData = async setAnalystic => {
   try {
     const res = await axios.get("/api/data?memberId=1");
     const result = await res.data;
     // const { weeklyMoney, weeklyTime, monthMoney, monthTime } = result;
     console.log("result", result);
-    setAnalystic(result)
-    return result
+    setAnalystic(result);
+    return result;
   } catch (error) {
     console.log(error);
   }

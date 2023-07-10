@@ -13,7 +13,7 @@ console.log("")
   return (
     <div className="flex flex-col">
       <div>
-        <h2>WeeklySummary</h2>
+        <h2>WeeklySummary(cost)</h2>
         <div style={{ height: 400 }}>
           <ResponsiveBar
             data={transformWeekMoney}
@@ -117,10 +117,6 @@ console.log("")
             }
           />
         </div>
-      </div>
-      <div>
-        <h2>monthly 시간(전월 / 당월 비교)</h2>
-        <div>챠트</div>
       </div>
     </div>
   );

@@ -6,13 +6,13 @@ const WeeklySummary2 = ({ analystic, setAnalystic }) => {
     name: item.name,
     cost: parseInt(item.cost.replace(/,/g, ""), 10),
   }));
-  
-console.log("")
+
+  console.log("");
 
   return (
     <div className="flex flex-col">
       <div>
-        <h2>WeeklySummary</h2>
+        <h2>WeeklySummary(time)</h2>
         <div style={{ height: 400 }}>
           <ResponsiveBar
             data={transformWeekTime}
@@ -116,10 +116,6 @@ console.log("")
             }
           />
         </div>
-      </div>
-      <div>
-        <h2>monthly 시간(전월 / 당월 비교)</h2>
-        <div>챠트</div>
       </div>
     </div>
   );
