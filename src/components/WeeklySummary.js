@@ -1,3 +1,6 @@
+import { faClock, faW } from "@fortawesome/free-regular-svg-icons";
+import { faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ResponsiveBar } from "@nivo/bar";
 import React, { useEffect, useState } from "react";
 
@@ -13,8 +16,10 @@ console.log("")
   return (
     <div className="flex flex-col">
       <div>
-        <h2>WeeklySummary(cost)</h2>
-        <div style={{ height: 400 }}>
+        <h2 className="text-md font-semibold"> <FontAwesomeIcon icon={faHandHoldingDollar} /> 1주일 간 아낀 비용</h2>
+        <div 
+        style={{ width: "600px", height: "400px" }}
+        >
           <ResponsiveBar
             data={transformWeekMoney}
             keys={["cost"]}
@@ -24,6 +29,7 @@ console.log("")
             valueScale={{ type: "linear" }}
             indexScale={{ type: "band", round: true }}
             colors={{ scheme: "nivo" }}
+            colorBy="indexValue" // indexBy로 묵인 인덱스별로 각각 적용
             defs={[
               {
                 id: "dots",
@@ -68,7 +74,7 @@ console.log("")
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "name",
+              // legend: "name",
               legendPosition: "middle",
               legendOffset: 32,
             }}
@@ -76,7 +82,7 @@ console.log("")
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "cost",
+              // legend: "cost",
               legendPosition: "middle",
               legendOffset: -40,
             }}
@@ -86,30 +92,30 @@ console.log("")
               from: "color",
               modifiers: [["darker", 1.6]],
             }}
-            legends={[
-              {
-                dataFrom: "keys",
-                anchor: "bottom-right",
-                direction: "column",
-                justify: false,
-                translateX: 120,
-                translateY: 0,
-                itemsSpacing: 2,
-                itemWidth: 100,
-                itemHeight: 20,
-                itemDirection: "left-to-right",
-                itemOpacity: 0.85,
-                symbolSize: 20,
-                effects: [
-                  {
-                    on: "hover",
-                    style: {
-                      itemOpacity: 1,
-                    },
-                  },
-                ],
-              },
-            ]}
+            // legends={[
+            //   {
+            //     dataFrom: "keys",
+            //     anchor: "bottom-right",
+            //     direction: "column",
+            //     justify: false,
+            //     translateX: 120,
+            //     translateY: 0,
+            //     itemsSpacing: 2,
+            //     itemWidth: 100,
+            //     itemHeight: 20,
+            //     itemDirection: "left-to-right",
+            //     itemOpacity: 0.85,
+            //     symbolSize: 20,
+            //     effects: [
+            //       {
+            //         on: "hover",
+            //         style: {
+            //           itemOpacity: 1,
+            //         },
+            //       },
+            //     ],
+            //   },
+            // ]}
             role="application"
             ariaLabel="Nivo bar chart demo"
             barAriaLabel={e =>

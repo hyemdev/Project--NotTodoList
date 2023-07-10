@@ -27,36 +27,14 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
   const [selectedMonth, setSelectedMonth] = useState(new Date());
   const [dailyAddNumber, setDailyAddNumber] = useState(0);
 
-  // console.log("nickId",nickId)
-
-  //모달관련 state
-  // const [modalMessage, setModalMessage] = useState(""); // 메세지
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // 모달창
-  // const showModal = () => {
-  //   setIsModalOpen(true);
-  // };
-  // const handleOk = () => {
-  //   setIsModalOpen(false);
-  // };
-
-  // const handleCancel = () => {
-  //   setIsModalOpen(false);
-  // };
-
   // 셀렉트 옵션
   const selectTimePrice = [
     { value: "time", label: "time" },
     { value: "price", label: "price" },
   ];
 
-  // 만약 당월이라면 현재날짜부터 말일까지
-  // 만약 다음달이라면 1일부터 말일까지(제대로 구현안됨. 수정필요)
-
   const selectedMonthYYYYMM = format(selectedMonth, "yyyy-MM");
 
-  // console.log(selectedMonthYYYYMM);
 
   // 목표명
   const handleStrChange = e => {
@@ -76,6 +54,9 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
     console.log("e.target.value", e.target.value);
   };
 
+  // form 초기화용
+  const [form] = Form.useForm();
+
   // ant form 전송
   const onFinish = values => {
     console.log("Success:", values);
@@ -87,35 +68,17 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
       costCategory: selectedOption,
       goalCost: goalNumValue,
       monthYear: selectedMonthYYYYMM,
-      // dailyAddNumber: dailyAddNumber,
     };
     console.log("selectedOption.value", selectedOption.value);
     console.log("newTodo", newTodo);
 
     setTodoData([...todoData, newTodo]);
 
-    // if (!values.title) {
-    //   showModal();
-    //   setModalMessage("목표를 입력해야 합니다");
-    //   return false;
-    // }
-    // if (!values.options) {
-    //   showModal();
-    //   setModalMessage("단위를 입력해야 합니다");
-    //   return false;
-    // }
-    // if (!values.goalNumber) {
-    //   showModal();
-    //   setModalMessage("목표수량을 선택해야 합니다");
-    //   return false;
-    // }
-
     //Post
     postTodo(newTodo, setTodoData);
 
-    // 전송완료 된 다음 입력창을 초기화 하자(제대로 안됨, 수정필요)
-    setStrValue("");
-    setGoalNumValue("");
+    // 전송완료 된 다음 입력창을 초기화 하자
+
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
@@ -135,6 +98,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
           onFinishFailed={onFinishFailed}
           autoComplete="on"
           layout="vertical"
+          form={form}
         >
           <div>
             <FormLabel>월 선택</FormLabel>
@@ -195,10 +159,10 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
               // label="목표수량"
               name="goalCost"
               rules={[
-                {
-                  type: "number",
-                  message: "수량을 입력하세요",
-                },
+                // {
+                //   type: "number",
+                //   message: "수량을 입력하세요",
+                // },
                 { max: 10, message: "수량을 10자이내로 입력하세요" },
                 {
                   required: true,
@@ -237,23 +201,6 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
           </div>
         </Form>
       </AddFormWrap>
-
-      {/* 경고모달 */}
-      {/* <Modal
-        // title="로그인 실패..."
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        centered
-        footer={
-          <Button key="back" onClick={handleOk}>
-            Return
-          </Button>
-        }
-      >
-        <p>안내!</p>
-        <p>{modalMessage}</p>
-      </Modal> */}
     </div>
   );
 };

@@ -25,6 +25,13 @@ const DailyListItem = ({
   const [dailyEdit, setDailyEdit] = useState(false);
   const [dailyEditTodayNum, setDailyEditTodayNum] = useState(0);
 
+  // pay 관련(추가금액)
+  const [pay, setPay] = useState(0);
+  useEffect(() => {
+    console.log("받아옴", item.useCostSum);
+    setDailyEditTodayNum(item.useCostSum);
+  }, []);
+
   // 이벤트 핸들러
   //선택편집(버튼활성화하기)
   const handleEditClick = goalId => {
@@ -34,7 +41,7 @@ const DailyListItem = ({
 
   // 일일수량 변경
   const handleDailyNumEditChange = e => {
-    setDailyEditTodayNum(e.target.value);
+    setPay(parseInt(e.target.value));
   };
 
   // 일일수량 변경 취소
@@ -44,15 +51,19 @@ const DailyListItem = ({
 
   // 일일수량 변경 저장하기
   const handleDailySaveClick = _goalId => {
+    console.log("pay", pay);
     let newTodoData = todayList.map(item => {
       if (item.goalId === _goalId) {
-        item.useCost = dailyEditTodayNum;
+        item.useCost = pay;
+        item.useCostSum = pay + item.useCostSum
       }
       return item;
     });
+    console.log("item", item)
+    console.log("item.useCostSum", item.useCostSum)
     setTodoData(newTodoData);
 
-    patchDailyAddNum(_goalId, dailyEditTodayNum, setTodayList);
+    patchDailyAddNum(_goalId, pay, setTodayList);
     console.log("newTodoData", newTodoData);
     setDailyEdit(false);
     setDailyEditTodayNum("");
@@ -75,8 +86,8 @@ const DailyListItem = ({
         <DailyEditListNumber>
           <DailyEditNumberInput
             type="number"
-            value={item.useCost}
-            defaultValue={dailyEditTodayNum}
+            value={pay}
+            // defaultValue={0}
             onChange={handleDailyNumEditChange}
           />
           <DailyEditListTdUnit>{item.costCategory}</DailyEditListTdUnit>
@@ -105,13 +116,13 @@ const DailyListItem = ({
         <DailyListTitle>{item.notTodo}</DailyListTitle>
         {/* 목표수량 */}
         <DailyListNumber>
-          {item.goalCost}
+          {(item.goalCost).toLocaleString()}
           {item.costCategory}
         </DailyListNumber>
         {/* <DailyListTdUnit>{item.costCategory}</DailyListTdUnit> */}
         {/* 누적수량 */}
         <DailyListNumber>
-          {item.useCostSum}
+          {(item.useCostSum).toLocaleString()}
           {item.costCategory}
         </DailyListNumber>
         <DailyListBtn

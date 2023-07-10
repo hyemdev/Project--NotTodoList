@@ -11,6 +11,8 @@ import {
 } from "../style/MonthlyCalendarCSS";
 import CalendarDayList from "./CalenderDayList";
 import { getCalendarTodo } from "../api/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaceSadTear } from "@fortawesome/free-regular-svg-icons";
 
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -136,6 +138,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
 
       <MonthlyCalendarWrap>
         <MonthlyCalendarDiv>
+        <span className="text-base font-semibold p-1 bg-slate-5"><FontAwesomeIcon icon={faFaceSadTear} /> 못지킨 항목들이 표시되요</span>
           <Calendar
             //날짜 클릭했을 때 이벤트핸들러
             onClickDay={(value, event) => handleClickDay(value, event)}

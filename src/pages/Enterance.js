@@ -1,7 +1,6 @@
 import { Button, Form, Input } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getId, postNickname } from "../api/api";
 
 const Enterance = ({ nickName, setNickname, nickId, setNickId }) => {
   const [user, setUser] = useState("");
@@ -52,14 +51,13 @@ const Enterance = ({ nickName, setNickname, nickId, setNickId }) => {
   return (
     <div className="w-full relative bg-slate-800 flex items-center justify-center h-screen">
       <div>
-        <p className="text-center text-3xl font-bold text-slate-100">Not Todo List!</p>
+        <p className="text-center text-3xl font-bold text-slate-100" >Not Todo List!</p>
         <div
           style={{
             // backgroundImage: `URL(${path}/${bgImg})`,
             width: "100%",
             height: "100%",
-            backgroundSize: "cover",
-            opacity: "0.6",
+            backgroundSize: "cover"
           }}
         >
           <div>
@@ -69,6 +67,7 @@ const Enterance = ({ nickName, setNickname, nickId, setNickId }) => {
                 direction="vertical"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
+                autoComplete="off"
                 layout="vertical"
                 style={{
                   display: "flex",

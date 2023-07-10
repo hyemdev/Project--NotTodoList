@@ -31,11 +31,12 @@ const Summary = () => {
     <SummaryWrap>
       <SummaryDiv>
         <div className="flex flex-wrap">
-          <div className="w-1/2 p-2">
-            <WeeklySummary analystic={analystic} setAnalystic={setAnalystic} />
-          </div>
+         
           <div className="w-1/2 p-2">
             <WeeklySummary2 analystic={analystic} setAnalystic={setAnalystic} />{" "}
+          </div>
+          <div className="w-1/2 p-2">
+            <WeeklySummary analystic={analystic} setAnalystic={setAnalystic} />
           </div>
           <div className="w-1/2 p-2">
             <MonthlySummary2

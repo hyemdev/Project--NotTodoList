@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { deleteTodo, putMonthlyTodo } from "../api/api";
 import {
   AddListBtnDiv,
@@ -14,7 +14,7 @@ import {
 } from "../style/MonthlyAddCSS";
 
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
-  console.log("item.month", )
+
   //state
   const [isEdit, setIsEdit] = useState(false);
   // const [editTitle, setEditTitle] = useState(item.notTodo);
@@ -43,17 +43,10 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     setIsEdit(true);
   };
 
-  //수정 입력창 생성하기
-  // const handleStrEditChange = e => {
-  //   setEditTitle(e.target.value);
-  // };
+
   const handleNumEditChange = e => {
     setEditGoalNumber(e.target.value);
   };
-  // const handleSelectEditChange = selectedOption => {
-  //   setEditSelect(selectedOption.value);
-  //   console.log("selectedOption", selectedOption);
-  // };
 
   //수정 취소하기
   const handleCancelClick = () => {
@@ -75,11 +68,10 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
     // putTitleTodo(_goalId, { ...item });
     putMonthlyTodo(_goalId, editGoalNumber, setTodoData);
-    console.log("newTodoData", newTodoData);
-    console.log("_goalId", _goalId);
-    console.log("editGoalNumber", editGoalNumber);
+
     setIsEdit(false);
   };
+
 
   if (isEdit) {
     //수정중인 상태

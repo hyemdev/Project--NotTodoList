@@ -52,7 +52,7 @@ const BriefSection = () => {
 
   useEffect(() => {
     summaryStats(startMonth, endMonth); // 메인 데이터 호출
-  }, []);
+  }, [startMonth, endMonth]);
 
   //이벤트 핸들러
   const handleRangeChange = dates => {
@@ -61,13 +61,12 @@ const BriefSection = () => {
     setStartMonth(moment(dates[0].$d).format("YYYY-MM"));
     setEndMonth(moment(dates[1].$d).format("YYYY-MM"));
   };
-  console.log("sm", startMonth);
-  console.log("em", endMonth);
 
   useEffect(() => {
     getBriefData(startMonth, endMonth);
   }, [startMonth, endMonth]);
 
+  console.log("maxStats", maxStats);
   return (
     <div>
       <div className="text-lg font-semibold mb-4">
@@ -85,6 +84,7 @@ const BriefSection = () => {
             <RangePicker
               picker="month"
               size="small"
+              allowClear={false}
               bordered={true}
               locale={moment.locale("ko")}
               defaultValue={[
@@ -103,51 +103,53 @@ const BriefSection = () => {
                 총 절약하신 금액은
                 <span className="font-semibold">
                   {" "}
-                  {totalStats.sumSaveMoney || "0"}
+                  {totalStats.sumSaveMoney || "0"}원
                 </span>
                 입니다{" "}
               </p>
               <p>
                 총 절약하신 시간은
                 <span className="font-semibold">
-                  {totalStats.sumSaveTime || "0"}
+                  {" "}
+                  {totalStats.sumSaveTime || "0"}시간
                 </span>
                 입니다{" "}
               </p>
             </div>
           )}
-          <div>
-            <p className="text-lg font-semibold my-4">
-              {" "}
-              <FontAwesomeIcon icon={faThumbsUp} /> 최고기록!{" "}
-            </p>
-            {maxStats && (
-              <div className="ml-2 mb-4">
-                <p>
-                  <span className="font-semibold">
-                    {" "}
-                    {maxStats.maxSaveMoneyMonthYear || "0"}월
-                  </span>
-                  에
-                  <span className="font-semibold">
-                    {" "}
-                    {maxStats.maxSaveMoney || "0"}원
-                  </span>
-                  을 아끼셨어요!
-                </p>
-                <p>
-                  <span className="font-semibold">
-                    {maxStats.maxSaveTimeMonthYear || "0"}월
-                  </span>
-                  에
-                  <span className="font-semibold">
-                    {maxStats.maxSaveTime || "0"}시간
-                  </span>
-                  을 아끼셨어요!
-                </p>
-              </div>
-            )}
-          </div>
+        </div>
+        <div>
+          <p className="text-lg font-semibold my-4">
+            {" "}
+            <FontAwesomeIcon icon={faThumbsUp} /> 최고기록!{" "}
+          </p>
+          {maxStats && (
+            <div className="ml-8 mb-4">
+              <p>
+                <span className="font-semibold">
+                  {" "}
+                  {maxStats.maxSaveMoneyMonthYear || "0"}월
+                </span>
+                에
+                <span className="font-semibold">
+                  {" "}
+                  {maxStats.maxSaveMoney || "0"}원
+                </span>
+                을 아끼셨어요!
+              </p>
+              <p>
+                <span className="font-semibold">
+                  {maxStats.maxSaveTimeMonthYear || "0"}월
+                </span>
+                에
+                <span className="font-semibold">
+                  {" "}
+                  {maxStats.maxSaveTime || "0"}시간
+                </span>
+                을 아끼셨어요!
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

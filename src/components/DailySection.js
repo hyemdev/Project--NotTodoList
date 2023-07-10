@@ -55,9 +55,9 @@ const DailySection = ({ todoData, setTodoData }) => {
       <DailyDate> today : {isToday}</DailyDate>
       <DailyTable>
         <DailyTableThead>
-          <DailyTableThTitle> 오늘의 나쁜행동 </DailyTableThTitle>
+          <DailyTableThTitle> 오늘의 Not Todo </DailyTableThTitle>
           <DailyTableThNumber>Dead Line</DailyTableThNumber>
-          <DailyTableThNumber>Bad Gauge</DailyTableThNumber>
+          <DailyTableThNumber>Pay</DailyTableThNumber>
           {/* <DailyTableThNumber>오늘수량</DailyTableThNumber> */}
           <DailyTableThBtn></DailyTableThBtn>
         </DailyTableThead>

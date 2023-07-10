@@ -64,6 +64,10 @@ export const DailyListWrap = styled.div`
   max-height: 500px;
   overflow-y: auto;
   border-radius: 10px;
+/* 1200px 이하 화면에서 적용되는 스타일 */
+@media screen and (max-width: 1200px) {
+  height: 350px;
+}
 `;
 
 export const DailyListTr = styled.div`

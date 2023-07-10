@@ -18,4 +18,5 @@ export const MonthlyCalendarDiv = styled.div`
   margin: 30px;
   background: #f1f5f9;
   border-radius: 10px;
+  padding: 10px;
 `;

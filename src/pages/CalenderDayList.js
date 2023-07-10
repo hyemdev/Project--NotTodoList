@@ -31,9 +31,9 @@ const CalendarDayList = ({ todoData, setTodoData, clickItems, clickDate}) => {
         </DailyTitleDiv>
         <DailyCalTable>
             <DailyCalTableTr>
-              <CalendarTableThTitle>월간목표</CalendarTableThTitle>
+              <CalendarTableThTitle>Not Todo</CalendarTableThTitle>
               {/* <CalendarTableThNumber>단위</CalendarTableThNumber> */}
-              <CalendarTableThNumber>일일수량</CalendarTableThNumber>
+              <CalendarTableThNumber>Pay</CalendarTableThNumber>
               <CalendarTableThBtn></CalendarTableThBtn>
               <CalendarTableThBtn></CalendarTableThBtn>
             </DailyCalTableTr>
