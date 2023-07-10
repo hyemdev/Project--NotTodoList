@@ -50,9 +50,9 @@ const Enterance = ({ nickName, setNickname, nickId, setNickId }) => {
   };
 
   return (
-    <div className="w-full relative bg-slate-200 flex items-center justify-center h-screen">
+    <div className="w-full relative bg-slate-800 flex items-center justify-center h-screen">
       <div>
-        <p className="text-center text-3xl font-bold">Not Todo List!</p>
+        <p className="text-center text-3xl font-bold text-slate-100">Not Todo List!</p>
         <div
           style={{
             // backgroundImage: `URL(${path}/${bgImg})`,

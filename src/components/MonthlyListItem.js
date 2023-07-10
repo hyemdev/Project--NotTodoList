@@ -14,11 +14,12 @@ import {
 } from "../style/MonthlyAddCSS";
 
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
+  console.log("item.month", )
   //state
   const [isEdit, setIsEdit] = useState(false);
-  const [editTitle, setEditTitle] = useState(item.notTodo);
+  // const [editTitle, setEditTitle] = useState(item.notTodo);
   const [editGoalNumber, setEditGoalNumber] = useState(item.goalCost);
-  const [editSelect, setEditSelect] = useState(item.costCategory);
+  // const [editSelect, setEditSelect] = useState(item.costCategory);
 
   // 선택창 옵션(추후에 따로 빼내야 함)
   const selectTimePrice = [
@@ -135,7 +136,6 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     return (
       <AddListTr>
         <AddListTdDate>
-          {/* {item.startDate}~{item.endDate} */}
           {item.monthYear}
         </AddListTdDate>
         <AddListTdTitle>{item.notTodo}</AddListTdTitle>

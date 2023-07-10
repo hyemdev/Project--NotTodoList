@@ -1,60 +1,24 @@
 import { ResponsiveBar } from "@nivo/bar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const WeeklySummary = () => {
-  const [weekData, setWeekData] = useState([
-    { week: "게임", time: 999 },
-    { week: "담배", time: 0 },
-    { week: "유튜브", time: 2000 },
-    { week: "술", time: 2000 },
-    { week: "여가생활", time: 7000 },
-    { week: "커피", time: 0 },
-  ])
+const WeeklySummary = ({ analystic, setAnalystic }) => {
 
-  // 수정할 코드는 여기서 관리
-  const updateData = () => {
-    const nextWeekData = [
-      { week: "게임", time: 500 },
-      { week: "담배", time: 1000 },
-      { week: "유튜브", time: 3000 },
-      { week: "술", time: 400 },
-      { week: "여가생활", time: 1000 },
-      { week: "운동", time: 1000 },
-    ];
+  const transformWeekMoney = analystic.weeklyMoney.map(item => ({
+    name: item.name,
+    cost: parseInt(item.cost.replace(/,/g, ""), 10),
+  }));
   
-    // 삭제할 항목은 여기서 관리
-    const itemsToDelte = ["커피" , "게임"]
-    const filteredData = weekData.filter((item) =>!itemsToDelte.includes(item.week)); 
-  
-    const updatedData = filteredData.map((item) => {
-      const newItem = nextWeekData.find((nextItem) => nextItem.week === item.week);
-      if (newItem) {
-        return {
-          week: item.week,
-          time: item.time + newItem.time,
-        };
-      }
-      return item;
-    });
-  
-    nextWeekData.forEach((newItem) => {
-      const existingItem = updatedData.find((item) => item.week === newItem.week);
-      if (!existingItem) {
-        updatedData.push(newItem);
-      }
-    });
-    setWeekData(updatedData);
-  };
+console.log("")
+
   return (
     <div className="flex flex-col">
       <div>
-        <h2>Weekly 시간<button className="float-right mr-32 bg-white" onClick={updateData}>데이터 업데이트</button></h2>
-        
-        <div style={{ height: "400px" }}>
+        <h2>WeeklySummary</h2>
+        <div style={{ height: 400 }}>
           <ResponsiveBar
-            data={weekData}
-            keys={["time"]}
-            indexBy="week"
+            data={transformWeekMoney}
+            keys={["cost"]}
+            indexBy="name"
             margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
             padding={0.2}
             valueScale={{ type: "linear" }}
@@ -104,7 +68,7 @@ const WeeklySummary = () => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: "week",
+              legend: "name",
               legendPosition: "middle",
               legendOffset: 32,
             }}
@@ -112,6 +76,7 @@ const WeeklySummary = () => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
+              legend: "cost",
               legendPosition: "middle",
               legendOffset: -40,
             }}
@@ -152,6 +117,10 @@ const WeeklySummary = () => {
             }
           />
         </div>
+      </div>
+      <div>
+        <h2>monthly 시간(전월 / 당월 비교)</h2>
+        <div>챠트</div>
       </div>
     </div>
   );

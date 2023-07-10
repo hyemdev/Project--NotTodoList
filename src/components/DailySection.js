@@ -5,14 +5,12 @@ import MonthlyAdd from "../pages/MonthlyAdd";
 import {
   DailyDate,
   DailyListWrap,
-  DailyScroll,
   DailySectionTitle,
   DailyTable,
   DailyTableThBtn,
   DailyTableThNumber,
   DailyTableThTitle,
   DailyTableThead,
-  DailyTableTr,
 } from "../style/DailySectionCSS";
 import DailyList from "./DailyList";
 import { AddModalClose } from "../style/MonthlyAddCSS";

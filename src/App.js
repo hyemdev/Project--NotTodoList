@@ -1,7 +1,6 @@
 import Header from "./components/Header";
 import MemoSection from "./components/MemoSection";
 import DailySection from "./components/DailySection";
-import BriefSection from "./components/BriefSection";
 
 import Main from "./pages/Main";
 import MonthlyCalendar from "./pages/MonthlyCalendar";
@@ -17,7 +16,7 @@ import MonthlyAdd from "./pages/MonthlyAdd";
 import { getTodo } from "./api/api";
 import CalendarDayList from "./pages/CalenderDayList";
 import ProfileSection from "./components/ProfileSection";
-import BriefSection2 from "./components/BriefSection2";
+import BriefSection from "./components/BriefSection";
 
 function App() {
   const [todoData, setTodoData] = useState([]);
@@ -74,7 +73,7 @@ function App() {
             <Route path="*" element={<NotFound />}></Route>{" "}
             <Route path="/profilesection" element={<ProfileSection />} />
             <Route path="/memosection" element={<MemoSection />} />
-            <Route path="/briefsection2" element={<BriefSection2 />} />
+            <Route path="/briefsection" element={<BriefSection />} />
             <Route
               path="/dailysection"
               element={

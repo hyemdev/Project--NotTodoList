@@ -1,39 +1,12 @@
 import axios from "axios";
 
-// login id
-//GET
-// export const getId = async (setNickname, nickId) => {
-//   try {
-//     const res = await axios.get(`/api/member?memberId=${nickId}`);
-//     const result = await res.data;
-//     console.log("result", result);
-//     console.log("nickId", nickId);
-//     setNickname(result);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-//post
-//nickname post
-// export const postNickname = async (setNickId, inputNickname) => {
-//   try {
-//     const res = await axios.post("/api/member", inputNickname);
-//     const data = await res.data;
-//     console.log(data);
-//     setNickId(data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 //////////////GET
 // todo Add data get
-export const getTodo = async (setTodoData, nickId) => {
+export const getTodo = async setTodoData => {
   try {
     const res = await axios.get(`/api/monthly-goal?memberId=1`);
     const result = await res.data;
     console.log("result", result);
-
     setTodoData(result);
   } catch (error) {
     console.log(error);
@@ -80,28 +53,28 @@ export const getCalendarDaylist = async (setDailyList, clickDate) => {
   }
 };
 
-// 가장 많이 절약한 금액의 달 data 가져오기
-export const getMostSavedMonth = async (_startMonth, _endMonth) => {
-  try {
-    const startMonth = _startMonth;
-    const endMonth = _endMonth;
-    const res = await axios.get(
-      `/api/save-data?memberId=1&startMonth=${startMonth}&endMonth=${endMonth}`);
-    // 데이터가 조금 복잡하게 들어옴. 주의할 것
-    const data = res.data;
-    return data;
-  } catch (err) {
-    console.log(err);
-    // return {
-    //   maxMoneyMonth: "2023-07",
-    //   maxSaveMoney: 326000,
-    //   maxTimeMonth: "2023-07",
-    //   maxSaveTime: 170,
-    //   sumSaveMoney: 524000,
-    //   sumSaveTime: 220,
-    // };
-  }
-};
+// // 가장 많이 절약한 금액의 달 data 가져오기
+// export const getMostSavedMonth = async (_startMonth, _endMonth) => {
+//   try {
+//     const startMonth = _startMonth;
+//     const endMonth = _endMonth;
+//     const res = await axios.get(
+//       `/api/save-data?memberId=1&startMonth=${startMonth}&endMonth=${endMonth}`);
+//     // 데이터가 조금 복잡하게 들어옴. 주의할 것
+//     const data = res.data;
+//     return data;
+//   } catch (err) {
+//     console.log(err);
+//     // return {
+//     //   maxMoneyMonth: "2023-07",
+//     //   maxSaveMoney: 326000,
+//     //   maxTimeMonth: "2023-07",
+//     //   maxSaveTime: 170,
+//     //   sumSaveMoney: 524000,
+//     //   sumSaveTime: 220,
+//     // };
+//   }
+// };
 
 // 주간 총 절약 시간
 // export const getMostSaveWeeklyMoney = async () => {
@@ -114,23 +87,15 @@ export const getMostSavedMonth = async (_startMonth, _endMonth) => {
 // }
 // 주간 총 절약 금액
 
-// 오늘의 List get
-// export const getTodaylist = async (setTodayList, todayDate, nickId) => {
-//   try {
-//     const res = await axios.get(`/api/daily?date=${todayDate}&memberId=1`);
-//     const result = await res.data;
-//     console.log("result", result);
-//     setTodayList(result);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-export const getTodaylist = async (setTodayList, todayDate, nickId) => {
+export const getTodaylist = async setTodayList => {
   try {
     const res = await axios.get(`/api/today-not-todo?memberId=1`);
     const result = await res.data;
     console.log("result", result);
     setTodayList(result);
+    if (res.ok) {
+      setTodayList(); // 요청이 성공한 후 GET 요청을 보냄
+    }
   } catch (error) {
     console.log(error);
   }
@@ -270,27 +235,31 @@ export const deleteCalList = async _useListId => {
   }
 };
 
-
 // briefSection Get
-export const getBriefData = async (startMonth, endMonth,setTextData) => {
+export const getBriefData = async (startMonth, endMonth) => {
+  console.log("api-startMonth", startMonth);
+  console.log("api-endMonth", endMonth);
   try {
-    const res = await axios.get(`/api/save-data?memberId=1&startMonth=${startMonth}&endMonth=${endMonth}`);
+    const res = await axios.get(
+      `/api/save-data?memberId=1&startMonth=${startMonth}&endMonth=${endMonth}`);
     const result = await res.data;
     console.log("result", result);
-    setTextData({result});
+    // setTextData(result);
+    return result;
   } catch (error) {
     console.log(error);
-    // return {
-    //   "maxSaveMoney": {
-    //     "monthYear": "2023-06",
-    //     "maxSaveMoney": "0"
-    //   },
-    //   "maxSaveTime": {
-    //     "monthYear": "2023-07",
-    //     "maxSaveTime": "110,765"
-    //   },
-    //   "sumSaveMoney": "-1,210,052",
-    //   "sumSaveTime": "110,375"
-    // }
+  }
+};
+// statistics Section Get
+export const getAnalysisData = async (setAnalystic) => {
+  try {
+    const res = await axios.get("/api/data?memberId=1");
+    const result = await res.data;
+    // const { weeklyMoney, weeklyTime, monthMoney, monthTime } = result;
+    console.log("result", result);
+    setAnalystic(result)
+    return result
+  } catch (error) {
+    console.log(error);
   }
 };

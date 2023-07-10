@@ -13,7 +13,6 @@ import {
 } from "../style/MainCSS";
 import ProfileSection from "../components/ProfileSection";
 import { getTodo } from "../api/api";
-import BriefSection2 from "../components/BriefSection2";
 
 const Main = ({
   todoData,
@@ -42,7 +41,7 @@ const Main = ({
           </Memo>
           <BriefData>
             {/* 컴포넌트 */}
-            <BriefSection2 />
+            <BriefSection />
           </BriefData>
         </MainRight>
       </MainFlex>

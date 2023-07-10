@@ -63,7 +63,7 @@ const DailyListItem = ({
     // 화면을 갱신하는 코드 작성
 
     console.log("페이지 리랜더링");
-  }, [todayList, dailyEdit, todoData]);
+  }, [todayList, dailyEdit, todoData, setTodayList]);
 
   if (dailyEdit) {
     // 수정중인 상태

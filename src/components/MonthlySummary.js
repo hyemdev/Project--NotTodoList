@@ -1,120 +1,54 @@
 import { ResponsiveLine } from "@nivo/line";
 import React from "react";
 
-const MonthlySummary = () => {
-  const data = {
-    monthTime: [
-      {
-        month: "2023-01",
-        saveCost: "0",
-      },
-      {
-        month: "2023-02",
-        saveCost: "0",
-      },
-      {
-        month: "2023-03",
-        saveCost: "0",
-      },
-      {
-        month: "2023-04",
-        saveCost: "0",
-      },
-      {
-        month: "2023-05",
-        saveCost: "0",
-      },
-      {
-        month: "2023-06",
-        saveCost: "-450",
-      },
-      {
-        month: "2023-07",
-        saveCost: "100,660",
-      },
-      {
-        month: "2023-08",
-        saveCost: "60",
-      },
-      {
-        month: "2023-09",
-        saveCost: "0",
-      },
-      {
-        month: "2023-10",
-        saveCost: "0",
-      },
-      {
-        month: "2023-11",
-        saveCost: "0",
-      },
-      {
-        month: "2023-12",
-        saveCost: "0",
-      },
-    ],
-  };
+const MonthlySummary = ({ analystic, setAnalystic }) => {
+  console.log("analystic.monthTime", analystic.monthTime);
 
-  const generateRandomData = () => {
-    const randomData = data.monthTime.map((item) => ({
-      month: item.month,
-      saveCost: Math.floor(Math.random() * 100000).toLocaleString(),
-    }));
-    return randomData;
-  };
-
-
-
-  const chartData = [
+  const timeData = [
     {
-      id: "동년",
-      data: data.monthTime.map((item) => ({
-        x: item.month,
-        y: parseInt(item.saveCost.replace(",", "")),
-      })),
-    },
-    {
-      id: "전년",
-      data: generateRandomData().map((item) => ({
-        x: item.month,
-        y: parseInt(item.saveCost.replace(",", "")),
-      })),
+      id: "saveMonthlyTime",
+      color: "hsl(80, 70%, 50%)",
+      data: [analystic.monthTime],
     },
   ];
-
+  console.log("timeData", timeData);
   return (
-    <div style={{ height: 400 }}>
-      <h2>Monthly 시간</h2>
+    <div className="flex flex-col">
       <ResponsiveLine
-        data={chartData}
-        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-        xScale={{ type: "point" }}
-        yScale={{ type: "linear", min: "auto", max: "auto", stacked: true, reverse: false }}
+        // data={analystic.monthTime}
+        data={timeData}
+        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        xScale={{ type: "linear" }}
+        yScale={{
+          type: "linear",
+          min: "auto",
+          max: "auto",
+          stacked: true,
+          reverse: false,
+        }}
+        yFormat=" >-.2f"
         axisTop={null}
         axisRight={null}
         axisBottom={{
-          orient: "bottom",
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
+          legend: "transportation",
           legendOffset: 36,
-          legendPosition: "middle"
+          legendPosition: "middle",
         }}
         axisLeft={{
-          orient: "left",
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
+          legend: "count",
           legendOffset: -40,
-          legendPosition: "middle"
+          legendPosition: "middle",
         }}
-        colors={{ scheme: "category10" }}
-        lineWidth={2}
-        pointSize={4}
+        pointSize={10}
         pointColor={{ theme: "background" }}
         pointBorderWidth={2}
         pointBorderColor={{ from: "serieColor" }}
-        pointLabel="y"
         pointLabelYOffset={-12}
         useMesh={true}
         legends={[
@@ -122,9 +56,9 @@ const MonthlySummary = () => {
             anchor: "bottom-right",
             direction: "column",
             justify: false,
-            translateX: 120,
+            translateX: 100,
             translateY: 0,
-            itemsSpacing: 2,
+            itemsSpacing: 0,
             itemDirection: "left-to-right",
             itemWidth: 80,
             itemHeight: 20,
@@ -137,11 +71,11 @@ const MonthlySummary = () => {
                 on: "hover",
                 style: {
                   itemBackground: "rgba(0, 0, 0, .03)",
-                  itemOpacity: 1
-                }
-              }
-            ]
-          }
+                  itemOpacity: 1,
+                },
+              },
+            ],
+          },
         ]}
       />
     </div>
