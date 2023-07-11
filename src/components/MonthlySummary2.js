@@ -20,7 +20,7 @@ const MonthlySummary2 = ({ analystic, setAnalystic }) => {
     <div
     style={{ width: "550px", height: "300px" }}
     >
-      <h2 className="text-md font-semibold"><FontAwesomeIcon icon={faClock} /> 지난 한달간 아낀 시간</h2>
+      <h2 className="text-md font-semibold"><FontAwesomeIcon icon={faClock} />  올해 월간 절약시간</h2>
       <ResponsiveLine
         data={transformMonthTime}
         margin={{ top: 50, right: 50, bottom: 30, left: 50 }}

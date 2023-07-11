@@ -22,7 +22,7 @@ const MonthlySummary = ({ analystic, setAnalystic }) => {
      style={{ width: "550px", height: "300px" }}
     >
       <h2 className="text-md font-semibold">
-        <FontAwesomeIcon icon={faHandHoldingDollar} /> 지난 한달간 아낀 비용
+        <FontAwesomeIcon icon={faHandHoldingDollar} /> 올해 월간 절약비용
       </h2>
       <ResponsiveLine
         data={transformMonthMoney}
