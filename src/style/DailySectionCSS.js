@@ -8,8 +8,8 @@ export const DailySectionTitle = styled.h2`
   font-size: 20px;
 `;
 export const DailyDate = styled.div`
-text-align: right;
-`
+  text-align: right;
+`;
 
 export const DailyTable = styled.div`
   width: 100%;
@@ -29,6 +29,9 @@ export const DailyTableThead = styled.div`
   margin-top: 5px;
   display: flex;
   justify-content: space-between;
+  /* > div {
+    flex-basis: 25%;
+  } */
 `;
 export const DailyTableThTitle = styled.div`
   display: inline-block;
@@ -64,10 +67,14 @@ export const DailyListWrap = styled.div`
   max-height: 500px;
   overflow-y: auto;
   border-radius: 10px;
+  /* 1200px 이하 화면에서 적용되는 스타일 */
+  @media screen and (max-width: 1200px) {
+    height: 340px;
+  }
 `;
 
 export const DailyListTr = styled.div`
-  width: 530px;
+  width: 560px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,14 +82,24 @@ export const DailyListTr = styled.div`
   border-radius: 10px;
   margin: 2px 0;
   border-bottom: 1px dotted #e2e2e2;
+  /* > div {
+    flex-basis: 25%;
+  } */
+  @media screen and (max-width: 1200px) {
+    width: 600px;
+  }
 `;
 export const DailyListTitle = styled.div`
   display: inline-block;
   font-size: 12px;
   font-weight: 500;
   padding: 12px 3px;
-  width: 10.8rem;
+  width: 180px;
   text-align: center;
+  @media screen and (max-width: 1200px) {
+    width: 240px;
+    margin: 0 10px;
+  }
 `;
 export const DailyListNumber = styled.div`
   display: inline-block;
@@ -92,6 +109,9 @@ export const DailyListNumber = styled.div`
   width: 6.5rem;
   text-align: right;
   margin-right: 8px;
+  @media screen and (max-width: 1200px) {
+    width: 180px;
+  }
 `;
 export const DailyListTdUnit = styled.div`
   display: inline-block;
@@ -108,6 +128,10 @@ export const DailyListBtn = styled.div`
   margin: 0 auto;
   /* margin-right: 30px; */
   cursor: pointer;
+  @media screen and (max-width: 1200px) {
+    width: 80px;
+    margin-left: 40px;
+  }
 `;
 
 //todolist 수정중
@@ -127,20 +151,23 @@ export const DailyEditListTitle = styled.div`
   font-size: 12px;
   font-weight: 500;
   padding: 12px 3px;
-  width: 11rem;
+  width: 180px;
   text-align: center;
+  @media screen and (max-width: 1200px) {
+    width: 200px;
+  }
 `;
 export const DailyEditSub = styled.span`
-font-size: 12px;
-width: 100px;
-`
+  font-size: 12px;
+  width: 100px;
+`;
 
 export const DailyEditListNumber = styled.div`
   display: inline-block;
   font-size: 12px;
   font-weight: 500;
   padding: 0px 3px;
-  width:80px;
+  width: 80px;
   text-align: right;
 `;
 

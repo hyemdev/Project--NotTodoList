@@ -6,11 +6,14 @@ import Modal from "react-modal";
 
 import "../style/CalendarCSS.css";
 import {
+  MonthlyCalSpan,
   MonthlyCalendarDiv,
   MonthlyCalendarWrap,
 } from "../style/MonthlyCalendarCSS";
 import CalendarDayList from "./CalenderDayList";
 import { getCalendarTodo } from "../api/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaceSadTear } from "@fortawesome/free-regular-svg-icons";
 
 const MonthlyCalendar = ({ todoData, setTodoData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -83,7 +86,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
     // console.log("results", results);
     if (results.length > 0) {
       return (
-        <div style={{height: "95px", maxHeight:"95px", overflowY:"auto"}}>
+        <div style={{ height: "85px", maxHeight: "85px", overflowY: "auto" }}>
           {results.map((result, index) => (
             <div
               key={index}
@@ -105,7 +108,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
           contentLabel="모달"
           style={{
             content: {
-              width: "60%",
+              width: "700px",
               maxWidth: "700px",
               height: "600px",
               margin: "auto",
@@ -136,6 +139,9 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
 
       <MonthlyCalendarWrap>
         <MonthlyCalendarDiv>
+          <MonthlyCalSpan>
+            <FontAwesomeIcon icon={faFaceSadTear} className="text-xl"/> 못지킨 항목들이 표시되요
+          </MonthlyCalSpan>
           <Calendar
             //날짜 클릭했을 때 이벤트핸들러
             onClickDay={(value, event) => handleClickDay(value, event)}

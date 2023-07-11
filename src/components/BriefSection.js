@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getBriefData } from "../api/api";
-import { DatePicker, Space } from "antd";
+import { DatePicker, Form, Space } from "antd";
 import koKR from "antd/lib/locale/ko_KR";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +16,8 @@ const BriefSection = () => {
 
   const [selectedRange, setSelectedRange] = useState([]);
 
+  // form 초기화용
+  const [form] = Form.useForm();
   const { RangePicker } = DatePicker;
   const dateFormat = "YYYY/MM";
 
@@ -52,22 +54,25 @@ const BriefSection = () => {
 
   useEffect(() => {
     summaryStats(startMonth, endMonth); // 메인 데이터 호출
-  }, []);
+  }, [startMonth, endMonth]);
 
   //이벤트 핸들러
   const handleRangeChange = dates => {
+    // form.setFieldsValue({
+    //   dateRange: [moment("2023/06", dateFormat), moment("2023/07", dateFormat)],
+    // });
+
     setSelectedRange(dates);
     console.log("dates", dates);
     setStartMonth(moment(dates[0].$d).format("YYYY-MM"));
     setEndMonth(moment(dates[1].$d).format("YYYY-MM"));
   };
-  console.log("sm", startMonth);
-  console.log("em", endMonth);
 
   useEffect(() => {
     getBriefData(startMonth, endMonth);
   }, [startMonth, endMonth]);
 
+  console.log("maxStats", maxStats);
   return (
     <div>
       <div className="text-lg font-semibold mb-4">
@@ -83,12 +88,15 @@ const BriefSection = () => {
           {/* <p>{startMonth}~{endMonth}까지 통계를 알려드려요</p> */}
           <div className="mb-4 mr-2">
             <RangePicker
+              form={form}
+              name="dateRange"
               picker="month"
-              size="small"
+              size="middle"
+              allowClear={false}
               bordered={true}
               locale={moment.locale("ko")}
               defaultValue={[
-                moment("2023/06", dateFormat),
+                moment("2023/07", dateFormat),
                 moment("2023/07", dateFormat),
               ]}
               format={dateFormat}
@@ -96,6 +104,8 @@ const BriefSection = () => {
               onChange={handleRangeChange}
             />
             <span className="ml-2">기간동안</span>
+            <p className="w-2/3 text-right text-xs">(기간 미선택 시 당월기록)</p>
+
           </div>
           {totalStats && (
             <div className="ml-2 mt-4">
@@ -103,51 +113,53 @@ const BriefSection = () => {
                 총 절약하신 금액은
                 <span className="font-semibold">
                   {" "}
-                  {totalStats.sumSaveMoney || "0"}
+                  {totalStats.sumSaveMoney || "0"}원
                 </span>
                 입니다{" "}
               </p>
               <p>
                 총 절약하신 시간은
                 <span className="font-semibold">
-                  {totalStats.sumSaveTime || "0"}
+                  {" "}
+                  {totalStats.sumSaveTime || "0"}시간
                 </span>
                 입니다{" "}
               </p>
             </div>
           )}
-          <div>
-            <p className="text-lg font-semibold my-4">
-              {" "}
-              <FontAwesomeIcon icon={faThumbsUp} /> 최고기록!{" "}
-            </p>
-            {maxStats && (
-              <div className="ml-2 mb-4">
-                <p>
-                  <span className="font-semibold">
-                    {" "}
-                    {maxStats.maxSaveMoneyMonthYear || "0"}월
-                  </span>
-                  에
-                  <span className="font-semibold">
-                    {" "}
-                    {maxStats.maxSaveMoney || "0"}원
-                  </span>
-                  을 아끼셨어요!
-                </p>
-                <p>
-                  <span className="font-semibold">
-                    {maxStats.maxSaveTimeMonthYear || "0"}월
-                  </span>
-                  에
-                  <span className="font-semibold">
-                    {maxStats.maxSaveTime || "0"}시간
-                  </span>
-                  을 아끼셨어요!
-                </p>
-              </div>
-            )}
-          </div>
+        </div>
+        <div>
+          <p className="text-lg font-semibold my-4">
+            {" "}
+            <FontAwesomeIcon icon={faThumbsUp} /> 최고기록!{" "}
+          </p>
+          {maxStats && (
+            <div className="ml-8 mb-4">
+              <p>
+                <span className="font-semibold">
+                  {" "}
+                  {maxStats.maxSaveMoneyMonthYear || "0"}월
+                </span>
+                에
+                <span className="font-semibold">
+                  {" "}
+                  {maxStats.maxSaveMoney || "0"}원
+                </span>
+                을 아끼셨어요!
+              </p>
+              <p>
+                <span className="font-semibold">
+                  {maxStats.maxSaveTimeMonthYear || "0"}월
+                </span>
+                에
+                <span className="font-semibold">
+                  {" "}
+                  {maxStats.maxSaveTime || "0"}시간
+                </span>
+                을 아끼셨어요!
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

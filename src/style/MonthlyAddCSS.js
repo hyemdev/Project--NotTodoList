@@ -9,6 +9,9 @@ export const MonthlyAddWrap = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 1200px) {
+    width: 640px;
+  }
 `;
 
 export const ListTemp = styled.div`
@@ -18,6 +21,9 @@ export const ListTemp = styled.div`
   height: 350px;
   overflow-y: auto;
   padding: 10px 0;
+  @media screen and (max-width: 1200px) {
+    height: 300px;
+  }
 `;
 
 export const AddTitleDiv = styled.div`
@@ -157,7 +163,7 @@ export const ListEditUnit = styled.div`
   margin: 0 auto;
   text-align: center;
   padding: 8px 3px;
-  
+
   padding: 12px 7px;
   width: 50px;
   text-align: center;
@@ -169,33 +175,38 @@ export const ListNumEditDiv = styled.div`
 `;
 export const ListNumEdit = styled.input`
   padding: 8px 3px;
-  width: 100px;
+  width: 120px;
   text-align: center;
   border: 1px solid #cbd5e1;
   border-radius: 5px;
   line-height: 12px;
   height: 35px;
-  -webkit-appearance: none; /* Safari 및 Chrome 기반 브라우저 */
-  -moz-appearance: none; /* Firefox */
-  appearance: none;
 `;
 
 // 한달목표 입력 form
 export const AddFormWrap = styled.div`
   width: 700px;
-  padding: 10px;
+  padding: 0px;
   padding-top: 20px;
   margin: 0 auto;
 
   & > Form {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0 10px;
+    @media screen and (max-width: 1200px) {
+      justify-content: space-between;    }
+  }
+  @media screen and (max-width: 1200px) {
+    width: 650px;
   }
 `;
 
 export const AddFormTitle = styled.div`
   width: 200px;
+  & div > input {
+    width: 90px;
+  }
 `;
 
 export const FormLabel = styled.p`
@@ -204,8 +215,18 @@ export const FormLabel = styled.p`
   text-align: center;
   margin-bottom: 5px;
 `;
+export const OptionDiv = styled.div`
+  @media screen and (max-width: 1200px) {
+    width: 140px;
+  }
+`
+
 export const SaveBtn = styled.div`
   margin-top: 26px;
+  @media screen and (max-width: 1200px) {
+    width: 60px;
+    margin-right: 20px;
+  }
 `;
 
 export const Temp = styled.div``;

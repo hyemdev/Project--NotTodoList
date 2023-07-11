@@ -8,6 +8,7 @@ export const getTodo = async setTodoData => {
     const result = await res.data;
     console.log("result", result);
     setTodoData(result);
+    return result
   } catch (error) {
     console.log(error);
   }
@@ -53,46 +54,16 @@ export const getCalendarDaylist = async (setDailyList, clickDate) => {
   }
 };
 
-// // 가장 많이 절약한 금액의 달 data 가져오기
-// export const getMostSavedMonth = async (_startMonth, _endMonth) => {
-//   try {
-//     const startMonth = _startMonth;
-//     const endMonth = _endMonth;
-//     const res = await axios.get(
-//       `/api/save-data?memberId=1&startMonth=${startMonth}&endMonth=${endMonth}`);
-//     // 데이터가 조금 복잡하게 들어옴. 주의할 것
-//     const data = res.data;
-//     return data;
-//   } catch (err) {
-//     console.log(err);
-//     // return {
-//     //   maxMoneyMonth: "2023-07",
-//     //   maxSaveMoney: 326000,
-//     //   maxTimeMonth: "2023-07",
-//     //   maxSaveTime: 170,
-//     //   sumSaveMoney: 524000,
-//     //   sumSaveTime: 220,
-//     // };
-//   }
-// };
-
-// 주간 총 절약 시간
-// export const getMostSaveWeeklyMoney = async () => {
-//   try {
-
-//   } catch (err) {
-//     console.log(err)
-//     return{}
-//   }
-// }
-// 주간 총 절약 금액
-
 export const getTodaylist = async setTodayList => {
   try {
     const res = await axios.get(`/api/today-not-todo?memberId=1`);
     const result = await res.data;
-    console.log("result", result);
-    setTodayList(result);
+    const arr = result.map(item => {
+      item.useCostSum = parseInt(item.useCostSum.replace(/,/g, ""));
+      return item;
+    });
+    // console.log("result", arr);
+    setTodayList(arr);
     if (res.ok) {
       setTodayList(); // 요청이 성공한 후 GET 요청을 보냄
     }
@@ -161,9 +132,7 @@ export const patchDailyAddNum = async (
     });
     const result = await res.data;
     console.log(result);
-    if (res.ok) {
-      setTodayList(); // put 요청이 성공한 후 GET 요청을 보냄
-    }
+    // setTodayList(result)
     return result;
   } catch (error) {
     console.log(error);
@@ -209,7 +178,7 @@ export const deleteTodo = async _goalId => {
     const result = await res.data;
     console.log("del,result", result);
   } catch (error) {
-    console.log(error);
+    console.log("del,Err", error);
   }
 };
 
@@ -251,6 +220,7 @@ export const getBriefData = async (startMonth, endMonth) => {
     console.log(error);
   }
 };
+
 // statistics Section Get
 export const getAnalysisData = async setAnalystic => {
   try {

@@ -1,8 +1,9 @@
+import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ResponsiveLine } from "@nivo/line";
 import React from "react";
 
 const MonthlySummary2 = ({ analystic, setAnalystic }) => {
-  console.log("analystic.monthTime", analystic.monthTime);
 
   const transformMonthTime= [
     {
@@ -14,14 +15,15 @@ const MonthlySummary2 = ({ analystic, setAnalystic }) => {
     },
   ];
 
-  console.log("transformMonthMoney", transformMonthTime);
 
   return (
-    <div style={{ width: "500px", height: "300px" }}>
-      <h2>monthly Summary(time)</h2>
+    <div
+    style={{ width: "550px", height: "300px" }}
+    >
+      <h2 className="text-md font-semibold"><FontAwesomeIcon icon={faClock} />  올해 월간 절약시간</h2>
       <ResponsiveLine
         data={transformMonthTime}
-        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+        margin={{ top: 50, right: 50, bottom: 30, left: 50 }}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
@@ -37,52 +39,53 @@ const MonthlySummary2 = ({ analystic, setAnalystic }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "transportation",
+          // legend: "transportation",
           legendOffset: 36,
           legendPosition: "middle",
         }}
-        axisLeft={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "count",
-          legendOffset: -40,
-          legendPosition: "middle",
-        }}
-        colors={{ scheme: 'nivo' }}
+        axisLeft={
+          {format: value => Math.round(value),
+          tickPadding: 25,
+          tickRotation: 20,}
+      }
+        enableGridX={false}
+        colors={{ scheme: 'paired' }}
+        lineWidth={3}
         pointSize={10}
-        pointColor={{ theme: "grid.line.stroke" }}
+        pointColor={{ from: 'color', modifiers: [] }}
         pointBorderWidth={2}
         pointBorderColor={{ from: "serieColor" }}
         enablePointLabel={true}
-        pointLabelYOffset={-12}
+        labelTextColor={{ from: 'color', modifiers: [['#dc2626', 2]] }}
+        pointLabel="y"
+        pointLabelYOffset={-24}
         useMesh={true}
-        legends={[
-          {
-            anchor: "bottom-right",
-            direction: "column",
-            justify: false,
-            translateX: 100,
-            translateY: 0,
-            itemsSpacing: 0,
-            itemDirection: "left-to-right",
-            itemWidth: 80,
-            itemHeight: 20,
-            itemOpacity: 0.75,
-            symbolSize: 12,
-            symbolShape: "circle",
-            symbolBorderColor: "rgba(0, 0, 0, .5)",
-            effects: [
-              {
-                on: "hover",
-                style: {
-                  itemBackground: "rgba(0, 0, 0, .03)",
-                  itemOpacity: 1,
-                },
-              },
-            ],
-          },
-        ]}
+        // legends={[
+        //   {
+        //     anchor: "bottom-right",
+        //     direction: "column",
+        //     justify: false,
+        //     translateX: 100,
+        //     translateY: 0,
+        //     itemsSpacing: 0,
+        //     itemDirection: "left-to-right",
+        //     itemWidth: 80,
+        //     itemHeight: 20,
+        //     itemOpacity: 0.75,
+        //     symbolSize: 12,
+        //     symbolShape: "circle",
+        //     symbolBorderColor: "rgba(0, 0, 0, .5)",
+        //     effects: [
+        //       {
+        //         on: "hover",
+        //         style: {
+        //           itemBackground: "rgba(0, 0, 0, .03)",
+        //           itemOpacity: 1,
+        //         },
+        //       },
+        //     ],
+        //   },
+        // ]}
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { deleteTodo, putMonthlyTodo } from "../api/api";
 import {
   AddListBtnDiv,
@@ -14,20 +14,12 @@ import {
 } from "../style/MonthlyAddCSS";
 
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
-  console.log("item.month", )
   //state
   const [isEdit, setIsEdit] = useState(false);
-  // const [editTitle, setEditTitle] = useState(item.notTodo);
   const [editGoalNumber, setEditGoalNumber] = useState(item.goalCost);
-  // const [editSelect, setEditSelect] = useState(item.costCategory);
+  console.log("item.goalCost", item.goalCost)
+  console.log("editGoalNumber", editGoalNumber)
 
-  // 선택창 옵션(추후에 따로 빼내야 함)
-  const selectTimePrice = [
-    { value: "time", label: "time" },
-    { value: "price", label: "price" },
-  ];
-
-  // 이벤트핸들러
 
   // 선택삭제
   const handleDeleteClick = _goalId => {
@@ -39,21 +31,13 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
   //선택편집(버튼활성화하기)
   const handleEditClick = _goalId => {
-    console.log("handleEdit_id", _goalId);
     setIsEdit(true);
   };
 
-  //수정 입력창 생성하기
-  // const handleStrEditChange = e => {
-  //   setEditTitle(e.target.value);
-  // };
   const handleNumEditChange = e => {
     setEditGoalNumber(e.target.value);
+    console.log("num change_e.target.value", e.target.value)
   };
-  // const handleSelectEditChange = selectedOption => {
-  //   setEditSelect(selectedOption.value);
-  //   console.log("selectedOption", selectedOption);
-  // };
 
   //수정 취소하기
   const handleCancelClick = () => {
@@ -75,11 +59,12 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
     // putTitleTodo(_goalId, { ...item });
     putMonthlyTodo(_goalId, editGoalNumber, setTodoData);
-    console.log("newTodoData", newTodoData);
-    console.log("_goalId", _goalId);
-    console.log("editGoalNumber", editGoalNumber);
     setIsEdit(false);
   };
+
+  useEffect(() => {
+    console.log("화면 리랜더링");
+  }, [handleSaveClick, handleDeleteClick]);
 
   if (isEdit) {
     //수정중인 상태
@@ -98,8 +83,8 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
           <ListNumEditDiv>
             <ListNumEdit
-              type="number"
-              defaultValue={editGoalNumber}
+              // defaultValue={editGoalNumber}
+              value={editGoalNumber}
               onChange={handleNumEditChange}
             />
           </ListNumEditDiv>
@@ -135,9 +120,7 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     // 평소상태
     return (
       <AddListTr>
-        <AddListTdDate>
-          {item.monthYear}
-        </AddListTdDate>
+        <AddListTdDate>{item.monthYear}</AddListTdDate>
         <AddListTdTitle>{item.notTodo}</AddListTdTitle>
         <AddListTdNumber>{item.goalCost}</AddListTdNumber>
         <AddListTdUnit>{item.costCategory}</AddListTdUnit>

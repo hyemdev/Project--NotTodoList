@@ -3,15 +3,25 @@ import WeeklySummary from "../components/WeeklySummary";
 import MonthlySummary from "../components/MonthlySummary";
 import WeeklySummary2 from "../components/WeeklySummary2";
 import MonthlySummary2 from "../components/MonthlySummary2";
-import { SummaryDiv, SummaryWrap } from "../style/SummaryCSS";
+import {
+  MonthDiv,
+  SummaryDiv,
+  SummarySubDiv,
+  SummaryWrap,
+  WeekDiv,
+} from "../style/SummaryCSS";
 import { getAnalysisData } from "../api/api";
+import { useMediaQuery } from "react-responsive";
 
 const Summary = () => {
+  // state
   const [analystic, setAnalystic] = useState({});
   const [distrucData, setDistrucData] = useState({});
 
-  // 메인 출력 데이터 호출
+  // 반응형
+  const isResponsive = useMediaQuery({ maxWidth: 1200 });
 
+  // 메인 출력 데이터 호출
   const [data, setData] = useState(null); // 데이터 상태
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태
 
@@ -27,28 +37,71 @@ const Summary = () => {
   }
 
   return (
-    // 이모션 적용
-    <SummaryWrap>
-      <SummaryDiv>
-        <div className="flex flex-wrap">
-          <div className="w-1/2 p-2">
-            <WeeklySummary analystic={analystic} setAnalystic={setAnalystic} />
-          </div>
-          <div className="w-1/2 p-2">
-            <WeeklySummary2 analystic={analystic} setAnalystic={setAnalystic} />{" "}
-          </div>
-          <div className="w-1/2 p-2">
-            <MonthlySummary2
-              analystic={analystic}
-              setAnalystic={setAnalystic}
-            />
-          </div>
-          <div className="w-1/2 p-2">
-            <MonthlySummary analystic={analystic} setAnalystic={setAnalystic} />
-          </div>
-        </div>
-      </SummaryDiv>
-    </SummaryWrap>
+    <div>
+      {isResponsive ? (
+        <SummaryWrap>
+          <SummaryDiv>
+            <SummarySubDiv>
+              <WeekDiv>
+                <WeeklySummary2
+                  analystic={analystic}
+                  setAnalystic={setAnalystic}
+                />
+              </WeekDiv>
+              <WeekDiv>
+                <WeeklySummary
+                  analystic={analystic}
+                  setAnalystic={setAnalystic}
+                />
+              </WeekDiv>
+              <MonthDiv>
+                <MonthlySummary2
+                  analystic={analystic}
+                  setAnalystic={setAnalystic}
+                />
+              </MonthDiv>
+              <MonthDiv>
+                <MonthlySummary
+                  analystic={analystic}
+                  setAnalystic={setAnalystic}
+                />
+              </MonthDiv>
+            </SummarySubDiv>
+          </SummaryDiv>
+        </SummaryWrap>
+      ) : (
+        <SummaryWrap>
+          <SummaryDiv>
+            <div className="flex flex-wrap ml-4 mt-2">
+              <WeekDiv>
+                  <WeeklySummary2
+                    analystic={analystic}
+                    setAnalystic={setAnalystic}
+                  />{" "}
+              </WeekDiv>
+              <WeekDiv>
+                  <WeeklySummary
+                    analystic={analystic}
+                    setAnalystic={setAnalystic}
+                  />
+              </WeekDiv>
+              <MonthDiv>
+                  <MonthlySummary2
+                    analystic={analystic}
+                    setAnalystic={setAnalystic}
+                  />
+              </MonthDiv>
+              <MonthDiv>
+                  <MonthlySummary
+                    analystic={analystic}
+                    setAnalystic={setAnalystic}
+                  />
+              </MonthDiv>
+            </div>
+          </SummaryDiv>
+        </SummaryWrap>
+      )}
+    </div>
   );
 };
 

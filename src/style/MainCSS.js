@@ -8,14 +8,6 @@ export const MainWrap = styled.div`
   margin: 0 auto;
 `;
 
-// export const MainGrid = styled.div`
-// display: grid;
-// grid-template-rows: 1fr 1fr 1fr;
-// grid-template-columns: 1fr 1fr;
-// grid-row: 2/3;
-// grid-column: 1/3;
-// `;
-
 export const MainFlex = styled.div`
   display: flex;
   gap: 15px;
@@ -58,4 +50,58 @@ export const MainRight = styled.div`
   width: 50%;
   border-radius: 10px;
   max-height: 800px;
+`;
+
+// 반응형
+export const ResponWrap = styled.div`
+  height: 100%;
+  width: 100%;
+  /* min-width: 600px; */
+  margin: 0 auto;
+  padding: 0 20px;
+`;
+export const ResponMainFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 10px;
+  margin: 20px 0px;
+  margin-bottom: 30px;
+`;
+export const ResponProfile = styled.div`
+  width: 700px;
+  padding: 20px;
+  background: #e2e8f0;
+  height: 140px;
+  /* margin-bottom: 15px; */
+  border-radius: 10px;
+  margin: 0 auto;
+`;
+export const ResponMemo = styled.div`
+  width: 700px;
+  padding: 20px;
+  background: #e2e8f0;
+  height: 140px;
+  /* margin-bottom: 15px; */
+  border-radius: 10px;
+  margin: 0 auto;
+
+`;
+export const ResponDaily = styled.div`
+  height: 600px;
+  max-height: 600px;
+  width: 700px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0 auto;
+`;
+export const ResponBrief = styled.div`
+  width: 700px;
+  height: 420px;
+  padding: 30px 20px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  margin: 0 auto;
 `;

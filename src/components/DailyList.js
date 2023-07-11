@@ -11,9 +11,9 @@ const DailyList = ({ todoData, setTodoData,todayList, setTodayList}) => {
   const todayDate = moment().format("YYYY-MM-DD");
 
   // GET 위치
-  // useEffect(() => {
-  //   getTodaylist(setTodayList, todayDate);
-  // }, [setTodayList,todayDate]);
+  useEffect(() => {
+    console.log("화면 리랜더링")
+  }, [setTodayList]);
 
   return (
     <>
