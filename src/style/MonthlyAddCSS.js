@@ -175,15 +175,12 @@ export const ListNumEditDiv = styled.div`
 `;
 export const ListNumEdit = styled.input`
   padding: 8px 3px;
-  width: 100px;
+  width: 120px;
   text-align: center;
   border: 1px solid #cbd5e1;
   border-radius: 5px;
   line-height: 12px;
   height: 35px;
-  -webkit-appearance: none; /* Safari 및 Chrome 기반 브라우저 */
-  -moz-appearance: none; /* Firefox */
-  appearance: none;
 `;
 
 // 한달목표 입력 form

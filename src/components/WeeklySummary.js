@@ -12,7 +12,7 @@ const WeeklySummary = ({ analystic, setAnalystic }) => {
   
   return (
       <div>
-        <h2 className="text-md font-semibold"> <FontAwesomeIcon icon={faHandHoldingDollar} /> 1주일 간 아낀 비용</h2>
+        <h2 className="text-md font-semibold"> <FontAwesomeIcon icon={faHandHoldingDollar} /> 1주일 간 소비 비용</h2>
         <div 
         style={{ width: "600px", height: "400px" }}
         >

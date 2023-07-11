@@ -17,8 +17,9 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
   //state
   const [isEdit, setIsEdit] = useState(false);
   const [editGoalNumber, setEditGoalNumber] = useState(item.goalCost);
+  console.log("item.goalCost", item.goalCost)
+  console.log("editGoalNumber", editGoalNumber)
 
-  // 이벤트핸들러
 
   // 선택삭제
   const handleDeleteClick = _goalId => {
@@ -30,12 +31,12 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
   //선택편집(버튼활성화하기)
   const handleEditClick = _goalId => {
-    console.log("handleEdit_id", _goalId);
     setIsEdit(true);
   };
 
   const handleNumEditChange = e => {
     setEditGoalNumber(e.target.value);
+    console.log("num change_e.target.value", e.target.value)
   };
 
   //수정 취소하기
@@ -82,8 +83,8 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
           <ListNumEditDiv>
             <ListNumEdit
-              type="number"
-              defaultValue={editGoalNumber}
+              // defaultValue={editGoalNumber}
+              value={editGoalNumber}
               onChange={handleNumEditChange}
             />
           </ListNumEditDiv>
