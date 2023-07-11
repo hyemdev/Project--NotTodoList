@@ -19,6 +19,7 @@ export const SummaryDiv = styled.div`
   background: #f1f5f9;
   border-radius: 10px;
   padding: 10px;
+
   @media screen and (max-width: 1200px) {
     width: 700px;
     max-height: 100%;
@@ -27,12 +28,20 @@ export const SummaryDiv = styled.div`
   }
 `;
 export const SummarySubDiv = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-top: 20px;
-gap: 20px;
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 30px;
+`;
 
-
+export const WeekDiv = styled.div`
+  width: 550px;
+  height: 400px;
+`;
+export const monthDiv = styled.div`
+  width: 580px;
+  height: 300px;
+  padding: 0 10px ;
+`;

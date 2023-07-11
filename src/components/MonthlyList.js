@@ -2,7 +2,7 @@ import React from "react";
 import MonthlyListItem from "./MonthlyListItem";
 
 const MonthlyList = ({ todoData, setTodoData }) => {
-  console.log(todoData);
+  // console.log(todoData);
   return (
     <>
       {todoData.map(item => (

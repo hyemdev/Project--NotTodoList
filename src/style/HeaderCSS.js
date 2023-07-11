@@ -4,6 +4,7 @@ export const HeaderWrap = styled.div`
   position: relative;
   height: 170px;
   width: 100%;
+  min-width: 700px;
   /* max-width: 1200px; */
   margin: 0 auto;
   background: #334155;

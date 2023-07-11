@@ -207,8 +207,8 @@ export const AddFormWrap = styled.div`
 
 export const AddFormTitle = styled.div`
   width: 200px;
-  @media screen and (max-width: 1200px) {
-    width: 80px;
+  & div > input {
+    width: 90px;
   }
 `;
 
@@ -228,6 +228,7 @@ export const SaveBtn = styled.div`
   margin-top: 26px;
   @media screen and (max-width: 1200px) {
     width: 60px;
+    margin-right: 20px;
   }
 `;
 

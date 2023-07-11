@@ -30,12 +30,11 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
 
   // 셀렉트 옵션
   const selectTimePrice = [
-    { value: "time", label: "time" },
-    { value: "price", label: "price" },
+    { value: "시간", label: "time" },
+    { value: "원", label: "price" },
   ];
 
   const selectedMonthYYYYMM = format(selectedMonth, "yyyy-MM");
-
 
   // 목표명
   const handleStrChange = e => {
@@ -80,7 +79,6 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
 
     // 전송완료 된 다음 입력창을 초기화 하자
     form.resetFields();
-
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
@@ -88,6 +86,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
 
   registerLocale("ko", ko);
 
+  
   return (
     <div>
       <AddFormWrap>
@@ -149,8 +148,8 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
             >
               <Radio.Group style={{ display: "inline-block" }} size="large">
                 <div>
-                  <Radio.Button value="TIME">TIME</Radio.Button>
-                  <Radio.Button value="PRICE">PRICE</Radio.Button>
+                  <Radio.Button value="시간">TIME</Radio.Button>
+                  <Radio.Button value="원">PRICE</Radio.Button>
                 </div>
               </Radio.Group>
             </Form.Item>

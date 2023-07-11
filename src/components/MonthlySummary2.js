@@ -4,7 +4,6 @@ import { ResponsiveLine } from "@nivo/line";
 import React from "react";
 
 const MonthlySummary2 = ({ analystic, setAnalystic }) => {
-  console.log("analystic.monthTime", analystic.monthTime);
 
   const transformMonthTime= [
     {
@@ -16,10 +15,11 @@ const MonthlySummary2 = ({ analystic, setAnalystic }) => {
     },
   ];
 
-  console.log("transformMonthMoney", transformMonthTime);
 
   return (
-    <div style={{ width: "500px", height: "300px" }}>
+    <div
+    style={{ width: "550px", height: "300px" }}
+    >
       <h2 className="text-md font-semibold"><FontAwesomeIcon icon={faClock} /> 지난 한달간 아낀 시간</h2>
       <ResponsiveLine
         data={transformMonthTime}

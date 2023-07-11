@@ -1,4 +1,3 @@
-import { faClock, faW } from "@fortawesome/free-regular-svg-icons";
 import { faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ResponsiveBar } from "@nivo/bar";
@@ -11,10 +10,7 @@ const WeeklySummary = ({ analystic, setAnalystic }) => {
     cost: parseInt(item.cost.replace(/,/g, ""), 10),
   }));
   
-console.log("")
-
   return (
-    <div className="flex flex-col">
       <div>
         <h2 className="text-md font-semibold"> <FontAwesomeIcon icon={faHandHoldingDollar} /> 1주일 간 아낀 비용</h2>
         <div 
@@ -124,7 +120,6 @@ console.log("")
           />
         </div>
       </div>
-    </div>
   );
 };
 

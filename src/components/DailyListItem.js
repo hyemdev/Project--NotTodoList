@@ -28,7 +28,6 @@ const DailyListItem = ({
   // pay 관련(추가금액)
   const [pay, setPay] = useState(0);
   useEffect(() => {
-    console.log("받아옴", item.useCostSum);
     setDailyEditTodayNum(item.useCostSum);
   }, []);
 
@@ -59,12 +58,9 @@ const DailyListItem = ({
       }
       return item;
     });
-    console.log("item", item)
-    console.log("item.useCostSum", item.useCostSum)
     setTodoData(newTodoData);
 
     patchDailyAddNum(_goalId, pay, setTodayList);
-    console.log("newTodoData", newTodoData);
     setDailyEdit(false);
     setDailyEditTodayNum("");
   };
@@ -72,8 +68,6 @@ const DailyListItem = ({
   useEffect(() => {
     // todayList 또는 dailyEdit가 변경될 때마다 실행되는 로직
     // 화면을 갱신하는 코드 작성
-
-    console.log("페이지 리랜더링");
   }, [todayList, dailyEdit, todoData, setTodayList]);
 
   if (dailyEdit) {

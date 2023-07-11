@@ -140,7 +140,7 @@ const MonthlyCalendar = ({ todoData, setTodoData }) => {
       <MonthlyCalendarWrap>
         <MonthlyCalendarDiv>
           <MonthlyCalSpan>
-            <FontAwesomeIcon icon={faFaceSadTear} /> 못지킨 항목들이 표시되요
+            <FontAwesomeIcon icon={faFaceSadTear} className="text-xl"/> 못지킨 항목들이 표시되요
           </MonthlyCalSpan>
           <Calendar
             //날짜 클릭했을 때 이벤트핸들러

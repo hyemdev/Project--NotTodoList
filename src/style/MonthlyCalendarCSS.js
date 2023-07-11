@@ -14,6 +14,8 @@ export const MonthlyCalendarDiv = styled.div`
   max-height: 800px;
   width: 100%;
   max-width: 1200px;
+  min-width: 700px;
+
   /* padding-top: 10px; */
   margin: 30px;
   background: #f1f5f9;

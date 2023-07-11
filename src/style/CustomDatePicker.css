@@ -15,7 +15,7 @@
   /* Custom styles when datepicker is open */
   z-index: 9999;
 }
-  .react-datepicker__portal {
+.react-datepicker__portal {
   /* Custom styles for portal container (when datepicker is outside of root element) */
   position: fixed;
   background-color: #eff6ff;
@@ -122,4 +122,13 @@
 .react-datepicker__month {
   background: #fff;
   border: 0;
+}
+.react-datepicker__navigation-icon--next::before {
+  transform: rotate(45deg);
+  left: -7px;
+  top: 13px !important;
+}
+
+.react-datepicker__month-text:hover {
+  background: #fef08a !important;
 }

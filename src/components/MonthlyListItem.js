@@ -14,18 +14,9 @@ import {
 } from "../style/MonthlyAddCSS";
 
 const MonthlyListItem = ({ item, todoData, setTodoData }) => {
-
   //state
   const [isEdit, setIsEdit] = useState(false);
-  // const [editTitle, setEditTitle] = useState(item.notTodo);
   const [editGoalNumber, setEditGoalNumber] = useState(item.goalCost);
-  // const [editSelect, setEditSelect] = useState(item.costCategory);
-
-  // 선택창 옵션(추후에 따로 빼내야 함)
-  const selectTimePrice = [
-    { value: "time", label: "time" },
-    { value: "price", label: "price" },
-  ];
 
   // 이벤트핸들러
 
@@ -42,7 +33,6 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     console.log("handleEdit_id", _goalId);
     setIsEdit(true);
   };
-
 
   const handleNumEditChange = e => {
     setEditGoalNumber(e.target.value);
@@ -71,7 +61,6 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
     setIsEdit(false);
   };
-
 
   if (isEdit) {
     //수정중인 상태
@@ -127,9 +116,7 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
     // 평소상태
     return (
       <AddListTr>
-        <AddListTdDate>
-          {item.monthYear}
-        </AddListTdDate>
+        <AddListTdDate>{item.monthYear}</AddListTdDate>
         <AddListTdTitle>{item.notTodo}</AddListTdTitle>
         <AddListTdNumber>{item.goalCost}</AddListTdNumber>
         <AddListTdUnit>{item.costCategory}</AddListTdUnit>

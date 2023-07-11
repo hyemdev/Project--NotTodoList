@@ -96,7 +96,7 @@ const BriefSection = () => {
               bordered={true}
               locale={moment.locale("ko")}
               defaultValue={[
-                moment("2023/06", dateFormat),
+                moment("2023/07", dateFormat),
                 moment("2023/07", dateFormat),
               ]}
               format={dateFormat}
@@ -104,6 +104,8 @@ const BriefSection = () => {
               onChange={handleRangeChange}
             />
             <span className="ml-2">기간동안</span>
+            <p className="w-2/3 text-right text-xs">(기간 미선택 시 당월기록)</p>
+
           </div>
           {totalStats && (
             <div className="ml-2 mt-4">

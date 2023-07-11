@@ -9,13 +9,14 @@ const WeeklySummary2 = ({ analystic, setAnalystic }) => {
     cost: parseInt(item.cost.replace(/,/g, ""), 10),
   }));
 
-  console.log("");
-
   return (
-    <div className="flex flex-col">
-      <div style={{ width: "600px", height: "400px" }}>
+      <div 
+      style={{ width: "600px", height: "400px" }}
+      >
         <h2 className="text-md font-semibold"><FontAwesomeIcon icon={faClock} /> 1주일 간 아낀 시간</h2>
-        <div style={{ height: 400 }}>
+        <div
+         style={{ height: 400 }}
+         >
           <ResponsiveBar
             data={transformWeekTime}
             keys={["cost"]}
@@ -120,7 +121,6 @@ const WeeklySummary2 = ({ analystic, setAnalystic }) => {
           />
         </div>
       </div>
-    </div>
   );
 };
 

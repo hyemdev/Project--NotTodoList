@@ -3,7 +3,12 @@ import WeeklySummary from "../components/WeeklySummary";
 import MonthlySummary from "../components/MonthlySummary";
 import WeeklySummary2 from "../components/WeeklySummary2";
 import MonthlySummary2 from "../components/MonthlySummary2";
-import { SummaryDiv, SummarySubDiv, SummaryWrap } from "../style/SummaryCSS";
+import {
+  SummaryDiv,
+  SummarySubDiv,
+  SummaryWrap,
+  WeekDiv,
+} from "../style/SummaryCSS";
 import { getAnalysisData } from "../api/api";
 import { useMediaQuery } from "react-responsive";
 
@@ -36,53 +41,61 @@ const Summary = () => {
         <SummaryWrap>
           <SummaryDiv>
             <SummarySubDiv>
-              <WeeklySummary2
-                analystic={analystic}
-                setAnalystic={setAnalystic}
-              />
-              <WeeklySummary
-                analystic={analystic}
-                setAnalystic={setAnalystic}
-              />
-              <MonthlySummary2
-                analystic={analystic}
-                setAnalystic={setAnalystic}
-              />
-              <MonthlySummary
-                analystic={analystic}
-                setAnalystic={setAnalystic}
-              />
+              <WeekDiv>
+                <WeeklySummary2
+                  analystic={analystic}
+                  setAnalystic={setAnalystic}
+                />
+              </WeekDiv>
+              <WeekDiv>
+                <WeeklySummary
+                  analystic={analystic}
+                  setAnalystic={setAnalystic}
+                />
+              </WeekDiv>
+              <monthDiv>
+                <MonthlySummary2
+                  analystic={analystic}
+                  setAnalystic={setAnalystic}
+                />
+              </monthDiv>
+              <monthDiv>
+                <MonthlySummary
+                  analystic={analystic}
+                  setAnalystic={setAnalystic}
+                />
+              </monthDiv>
             </SummarySubDiv>
           </SummaryDiv>
         </SummaryWrap>
       ) : (
         <SummaryWrap>
           <SummaryDiv>
-            <div className="flex flex-wrap">
-              <div className="w-1/2 p-2">
-                <WeeklySummary2
-                  analystic={analystic}
-                  setAnalystic={setAnalystic}
-                />{" "}
-              </div>
-              <div className="w-1/2 p-2">
-                <WeeklySummary
-                  analystic={analystic}
-                  setAnalystic={setAnalystic}
-                />
-              </div>
-              <div className="w-1/2 p-2">
-                <MonthlySummary2
-                  analystic={analystic}
-                  setAnalystic={setAnalystic}
-                />
-              </div>
-              <div className="w-1/2 p-2">
-                <MonthlySummary
-                  analystic={analystic}
-                  setAnalystic={setAnalystic}
-                />
-              </div>
+            <div className="flex flex-wrap ml-4 mt-2">
+              <WeekDiv>
+                  <WeeklySummary2
+                    analystic={analystic}
+                    setAnalystic={setAnalystic}
+                  />{" "}
+              </WeekDiv>
+              <WeekDiv>
+                  <WeeklySummary
+                    analystic={analystic}
+                    setAnalystic={setAnalystic}
+                  />
+              </WeekDiv>
+              <monthDiv>
+                  <MonthlySummary2
+                    analystic={analystic}
+                    setAnalystic={setAnalystic}
+                  />
+              </monthDiv>
+              <monthDiv>
+                  <MonthlySummary
+                    analystic={analystic}
+                    setAnalystic={setAnalystic}
+                  />
+              </monthDiv>
             </div>
           </SummaryDiv>
         </SummaryWrap>

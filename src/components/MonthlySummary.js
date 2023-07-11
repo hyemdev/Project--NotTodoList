@@ -1,11 +1,12 @@
-import { faClock, faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faClock,
+  faHandHoldingDollar,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ResponsiveLine } from "@nivo/line";
 import React from "react";
 
 const MonthlySummary = ({ analystic, setAnalystic }) => {
-  console.log("analystic.monthMoney", analystic.monthMoney);
-
   const transformMonthMoney = [
     {
       id: "Monthcost",
@@ -16,11 +17,13 @@ const MonthlySummary = ({ analystic, setAnalystic }) => {
     },
   ];
 
-  console.log("transformMonthMoney", transformMonthMoney);
-
   return (
-    <div style={{ width: "500px", height: "300px" }}>
-      <h2 className="text-md font-semibold"><FontAwesomeIcon icon={faHandHoldingDollar} /> 지난 한달간 아낀 비용</h2>
+    <div
+     style={{ width: "550px", height: "300px" }}
+    >
+      <h2 className="text-md font-semibold">
+        <FontAwesomeIcon icon={faHandHoldingDollar} /> 지난 한달간 아낀 비용
+      </h2>
       <ResponsiveLine
         data={transformMonthMoney}
         margin={{ top: 50, right: 50, bottom: 50, left: 70 }}
@@ -43,9 +46,11 @@ const MonthlySummary = ({ analystic, setAnalystic }) => {
           legendOffset: 36,
           legendPosition: "middle",
         }}
-        axisLeft={{ format: value => Math.round(value), 
+        axisLeft={{
+          format: value => Math.round(value),
           tickPadding: 25,
-          tickRotation: 20,}}
+          tickRotation: 20,
+        }}
         enableGridX={false}
         colors={{ scheme: "set3" }}
         lineWidth={3}

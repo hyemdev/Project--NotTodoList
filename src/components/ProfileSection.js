@@ -21,10 +21,10 @@ const ProfileSection = ({ nickName, setNickname }) => {
         <span className="rounded-lg	bg-yellow-200 p-1 mx-2">{displayUser} </span> 님 반갑습니다!
       </p>
       <p className="text-md leading-loose	ml-4 mt-2">
-        이 달의 Not Todo List를 설정해보세요
+        이 달의 <b>Not Todo List</b>를 설정하고 , 오늘의 기록을 해보세요
       </p>
       <p className="text-md leading-loose	ml-4">
-        (추가설명줄)
+        
       </p>
     </div>
   );
