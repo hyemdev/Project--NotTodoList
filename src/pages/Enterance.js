@@ -52,7 +52,7 @@ const Enterance = ({ nickName, setNickname, nickId, setNickId }) => {
     <div className="w-full h-full relative bg-slate-800 flex items-center justify-center">
       <div className="text-center text-5xl font-bold text-slate-100">
         <p>Not Todo List</p>
-        <p className="text-xs font-normal leading-4">고치고 싶은 나쁜 습관을 기록해보세요</p>
+        <p className="text-xs font-normal leading-4 tracking-widest">고치고 싶은 나쁜 습관을 기록해보세요</p>
 
         <div className="w-80 h-40 bg-slate-300 rounded-md flex justify-center items-center">
           <Form

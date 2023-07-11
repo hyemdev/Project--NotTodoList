@@ -8,6 +8,7 @@ export const getTodo = async setTodoData => {
     const result = await res.data;
     console.log("result", result);
     setTodoData(result);
+    return result
   } catch (error) {
     console.log(error);
   }
@@ -177,7 +178,7 @@ export const deleteTodo = async _goalId => {
     const result = await res.data;
     console.log("del,result", result);
   } catch (error) {
-    console.log(error);
+    console.log("del,Err", error);
   }
 };
 

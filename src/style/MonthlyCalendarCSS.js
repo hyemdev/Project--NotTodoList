@@ -11,17 +11,14 @@ export const MonthlyCalendarWrap = styled.div`
 
 export const MonthlyCalendarDiv = styled.div`
   height: 100%;
-  max-height: 800px;
+  max-height: 810px;
   width: 100%;
   max-width: 1200px;
   min-width: 700px;
-
-  /* padding-top: 10px; */
-  margin: 30px;
+  margin: 20px;
   background: #f1f5f9;
   border-radius: 10px;
-  padding: 10px;
-  padding-top: 20px;
+  padding: 20px 20px 5px 20px;
   @media screen and (max-width: 1200px) {
     width: 700px;
     max-width: 700px;
@@ -29,12 +26,11 @@ export const MonthlyCalendarDiv = styled.div`
 `;
 
 export const MonthlyCalSpan = styled.span`
-  padding: 20px;
   font-size: 18px;
   font-weight: 700;
 `;
-export const CalendarSquareDiv = styled.div`
-  height: "95px";
-  max-height: "95px";
-  overflow-y: "auto";
-`;
+// export const CalendarSquareDiv = styled.div`
+//   height: 85px;
+//   max-height: 85px;
+//   overflow-y: auto;
+// `;

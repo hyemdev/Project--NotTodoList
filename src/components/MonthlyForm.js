@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { postTodo } from "../api/api";
+import React, { useEffect, useState } from "react";
+import { getTodo, postTodo } from "../api/api";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "../style/CustomDatePicker.css";
 import ko from "date-fns/locale/ko";
@@ -19,19 +19,19 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
+const MonthlyForm = ({ todoData, setTodoData }) => {
   // state 변수
   const [strValue, setStrValue] = useState("");
   const [goalNumValue, setGoalNumValue] = useState("");
   const [selectedOption, setSelectedOption] = useState([0]);
   // const [selectedMonth, setSelectedMonth] = useState(new Date());
   const [selectedMonth, setSelectedMonth] = useState(new Date());
-  const [dailyAddNumber, setDailyAddNumber] = useState(0);
+  // const [dailyAddNumber, setDailyAddNumber] = useState(0);
 
   // 셀렉트 옵션
   const selectTimePrice = [
     { value: "시간", label: "time" },
-    { value: "원", label: "price" },
+    { value: "돈", label: "price" },
   ];
 
   const selectedMonthYYYYMM = format(selectedMonth, "yyyy-MM");
@@ -51,14 +51,14 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
   // 옵션 선택
   const handleSelectedOption = e => {
     setSelectedOption(e.target.value);
-    console.log("e.target.value", e.target.value);
+    console.log("option: e.target.value", e.target.value);
   };
 
   // form 초기화용
   const [form] = Form.useForm();
 
   // ant form 전송
-  const onFinish = values => {
+  const onFinish = async values => {
     console.log("Success:", values);
 
     const newTodo = {
@@ -69,14 +69,13 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
       goalCost: goalNumValue,
       monthYear: selectedMonthYYYYMM,
     };
-    console.log("selectedOption.value", selectedOption.value);
-    console.log("newTodo", newTodo);
-
-    setTodoData([...todoData, newTodo]);
+    // setTodoData([...todoData, newTodo]);
+    setTodoData([newTodo, ...todoData]);
 
     //Post
-    postTodo(newTodo, setTodoData);
-
+    await postTodo(newTodo, setTodoData);
+    await getTodo(setTodoData);
+    console.log("todoData", todoData);
     // 전송완료 된 다음 입력창을 초기화 하자
     form.resetFields();
   };
@@ -86,7 +85,9 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
 
   registerLocale("ko", ko);
 
-  
+  useEffect(() => {
+    console.log("화면 리랜더링");
+  }, [onFinish, todoData]);
   return (
     <div>
       <AddFormWrap>
@@ -149,7 +150,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
               <Radio.Group style={{ display: "inline-block" }} size="large">
                 <div>
                   <Radio.Button value="시간">TIME</Radio.Button>
-                  <Radio.Button value="원">PRICE</Radio.Button>
+                  <Radio.Button value="돈">PRICE</Radio.Button>
                 </div>
               </Radio.Group>
             </Form.Item>
@@ -158,7 +159,7 @@ const MonthlyForm = ({ todoData, setTodoData, nickId, setNickId }) => {
             <FormLabel>목표수량</FormLabel>
             <Form.Item
               // label="목표수량"
-              name="goalCost"
+              name="goalCost"햣 
               rules={[
                 // {
                 //   type: "number",

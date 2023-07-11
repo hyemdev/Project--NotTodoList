@@ -4,6 +4,7 @@ import MonthlySummary from "../components/MonthlySummary";
 import WeeklySummary2 from "../components/WeeklySummary2";
 import MonthlySummary2 from "../components/MonthlySummary2";
 import {
+  MonthDiv,
   SummaryDiv,
   SummarySubDiv,
   SummaryWrap,
@@ -53,18 +54,18 @@ const Summary = () => {
                   setAnalystic={setAnalystic}
                 />
               </WeekDiv>
-              <monthDiv>
+              <MonthDiv>
                 <MonthlySummary2
                   analystic={analystic}
                   setAnalystic={setAnalystic}
                 />
-              </monthDiv>
-              <monthDiv>
+              </MonthDiv>
+              <MonthDiv>
                 <MonthlySummary
                   analystic={analystic}
                   setAnalystic={setAnalystic}
                 />
-              </monthDiv>
+              </MonthDiv>
             </SummarySubDiv>
           </SummaryDiv>
         </SummaryWrap>
@@ -84,18 +85,18 @@ const Summary = () => {
                     setAnalystic={setAnalystic}
                   />
               </WeekDiv>
-              <monthDiv>
+              <MonthDiv>
                   <MonthlySummary2
                     analystic={analystic}
                     setAnalystic={setAnalystic}
                   />
-              </monthDiv>
-              <monthDiv>
+              </MonthDiv>
+              <MonthDiv>
                   <MonthlySummary
                     analystic={analystic}
                     setAnalystic={setAnalystic}
                   />
-              </monthDiv>
+              </MonthDiv>
             </div>
           </SummaryDiv>
         </SummaryWrap>

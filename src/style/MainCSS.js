@@ -67,6 +67,7 @@ export const ResponMainFlex = styled.div`
   gap: 15px;
   padding-top: 10px;
   margin: 20px 0px;
+  margin-bottom: 30px;
 `;
 export const ResponProfile = styled.div`
   width: 700px;
@@ -98,7 +99,7 @@ export const ResponDaily = styled.div`
 `;
 export const ResponBrief = styled.div`
   width: 700px;
-  height: 350px;
+  height: 420px;
   padding: 30px 20px;
   background: #f1f5f9;
   border-radius: 10px;

@@ -58,9 +58,12 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
     // putTitleTodo(_goalId, { ...item });
     putMonthlyTodo(_goalId, editGoalNumber, setTodoData);
-
     setIsEdit(false);
   };
+
+  useEffect(() => {
+    console.log("화면 리랜더링");
+  }, [handleSaveClick, handleDeleteClick]);
 
   if (isEdit) {
     //수정중인 상태

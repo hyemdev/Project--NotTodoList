@@ -15,7 +15,7 @@ export const SummaryDiv = styled.div`
   width: 100%;
   max-width: 1200px;
   /* padding-top: 10px; */
-  margin: 30px;
+  margin: 20px;
   background: #f1f5f9;
   border-radius: 10px;
   padding: 10px;
@@ -32,16 +32,18 @@ export const SummarySubDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
   gap: 30px;
 `;
 
 export const WeekDiv = styled.div`
   width: 550px;
   height: 400px;
+  margin-left: 10px;
 `;
-export const monthDiv = styled.div`
+export const MonthDiv = styled.div`
   width: 580px;
-  height: 300px;
-  padding: 0 10px ;
+  height: 350px;
+  /* padding: 0 10px ; */
+  margin-top: 20px;
 `;
