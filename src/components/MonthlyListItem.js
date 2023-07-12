@@ -36,7 +36,6 @@ const MonthlyListItem = ({ item, todoData, setTodoData }) => {
 
   const handleNumEditChange = e => {
     setEditGoalNumber(e.target.value);
-    console.log("num change_e.target.value", e.target.value)
   };
 
   //수정 취소하기

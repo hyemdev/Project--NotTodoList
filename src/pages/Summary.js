@@ -31,6 +31,7 @@ const Summary = () => {
       setIsLoading(false); // 로딩 상태 변경
     });
   }, []);
+  
   // 데이터 로딩 중인 경우 로딩 표시
   if (isLoading) {
     return <div>Loading...</div>;

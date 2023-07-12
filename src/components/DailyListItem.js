@@ -50,7 +50,6 @@ const DailyListItem = ({
 
   // 일일수량 변경 저장하기
   const handleDailySaveClick = _goalId => {
-    console.log("pay", pay);
     let newTodoData = todayList.map(item => {
       if (item.goalId === _goalId) {
         item.useCost = pay;

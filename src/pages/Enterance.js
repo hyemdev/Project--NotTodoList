@@ -1,46 +1,26 @@
 import { Button, Form, Input } from "antd";
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import anime from "animejs";
+import React, { useState } from "react";
+import {  useNavigate } from "react-router-dom";
 
-const Enterance = ({ nickName, setNickname, nickId, setNickId }) => {
+const Enterance = ({ nickName, setNickname }) => {
   const [user, setUser] = useState("");
   const navigate = useNavigate();
   const path = process.env.PUBLIC_URL;
   const bgImg = "enter.jpg";
 
-  // const [isLinkHovered, setIsLinkHovered] = useState(false);
-  // const handleLinkMouseEnter = () => {
-  //   setIsLinkHovered(true);
-  // };
-
-  // const handleLinkMouseLeave = () => {
-  //   setIsLinkHovered(false);
-  // };
-
-  const items = ["N", "o", "t", "", "T", "o", "d", "o", "", "L", "i", "s", "t"];
 
   //닉네임 담기
   const handleNickChange = e => {
-    console.log("e.target.value", e.target.value);
     setNickname(e.target.value);
   };
 
   const onFinish = values => {
-    console.log("Success:", values);
 
     const inputNickname = {
       nickname: user,
     };
 
     setUser(inputNickname);
-    console.log("user", user);
-
-    //Post
-    // postNickname(setNickId, inputNickname);
-
-    // localStorage.setItem("userName", inputNickname.nickname);
-
     navigate("/main");
   };
 

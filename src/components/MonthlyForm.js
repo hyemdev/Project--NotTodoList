@@ -6,8 +6,6 @@ import ko from "date-fns/locale/ko";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment/moment";
 import { Button, Input, InputNumber, Radio, Form, Modal } from "antd";
-import getYear from "date-fns/getYear";
-import getMonth from "date-fns/getMonth";
 import { format } from "date-fns";
 import {
   AddFormTitle,
@@ -26,7 +24,6 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
   const [selectedOption, setSelectedOption] = useState([0]);
   // const [selectedMonth, setSelectedMonth] = useState(new Date());
   const [selectedMonth, setSelectedMonth] = useState(new Date());
-  // const [dailyAddNumber, setDailyAddNumber] = useState(0);
 
   // 셀렉트 옵션
   const selectTimePrice = [
@@ -38,20 +35,17 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
 
   // 목표명
   const handleStrChange = e => {
-    // console.log("str", e.target.value);
     setStrValue(e.target.value);
   };
 
   // 목표수량
   const handleNumChange = e => {
-    console.log("num", e.target.value);
     setGoalNumValue(e.target.value);
   };
 
   // 옵션 선택
   const handleSelectedOption = e => {
     setSelectedOption(e.target.value);
-    console.log("option: e.target.value", e.target.value);
   };
 
   // form 초기화용

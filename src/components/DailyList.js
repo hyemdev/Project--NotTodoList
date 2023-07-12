@@ -4,8 +4,7 @@ import React, { useEffect, useState } from "react";
 import DailyListItem from "./DailyListItem";
 
 const DailyList = ({ todoData, setTodoData,todayList, setTodayList}) => {
-  // get관련 useState
-  // const [todayList, setTodayList] = useState([]);
+
 
   // 오늘날짜 계산하기
   const todayDate = moment().format("YYYY-MM-DD");

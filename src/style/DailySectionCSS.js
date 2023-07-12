@@ -18,6 +18,7 @@ export const DailyTable = styled.div`
   color: #1e293b;
   margin: 15px 0;
   overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const DailyTableThead = styled.div`
@@ -66,6 +67,7 @@ export const DailyListWrap = styled.div`
   height: 500px;
   max-height: 500px;
   overflow-y: auto;
+  overflow-x: hidden;
   border-radius: 10px;
   /* 1200px 이하 화면에서 적용되는 스타일 */
   @media screen and (max-width: 1200px) {
@@ -74,7 +76,7 @@ export const DailyListWrap = styled.div`
 `;
 
 export const DailyListTr = styled.div`
-  width: 560px;
+  width: 550px;
   display: flex;
   justify-content: space-between;
   align-items: center;

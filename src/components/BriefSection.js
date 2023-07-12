@@ -58,9 +58,6 @@ const BriefSection = () => {
 
   //이벤트 핸들러
   const handleRangeChange = dates => {
-    // form.setFieldsValue({
-    //   dateRange: [moment("2023/06", dateFormat), moment("2023/07", dateFormat)],
-    // });
 
     setSelectedRange(dates);
     console.log("dates", dates);
@@ -72,7 +69,6 @@ const BriefSection = () => {
     getBriefData(startMonth, endMonth);
   }, [startMonth, endMonth]);
 
-  console.log("maxStats", maxStats);
   return (
     <div>
       <div className="text-lg font-semibold mb-4">

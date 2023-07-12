@@ -94,7 +94,7 @@ const Footer = () => {
           <FontAwesomeIcon icon={faHandPointer} />{" "}
         </FooterAbout>
         <FooterText>
-          <FontAwesomeIcon icon={faCopyright} /> 2023 Team-A. All rights
+          <FontAwesomeIcon icon={faCopyright} /> 2023 Team-A+. All rights
           reserved.{" "}
         </FooterText>{" "}
       </FooterContent>

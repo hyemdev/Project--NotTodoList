@@ -70,7 +70,7 @@ function App() {
               }
             ></Route>
             <Route path="/summary" element={<Summary />}></Route>
-            <Route path="*" element={<NotFound />}></Route>{" "}
+            <Route path="*" element={<NotFound />}></Route>
             <Route path="/profilesection" element={<ProfileSection />} />
             <Route path="/memosection" element={<MemoSection />} />
             <Route path="/briefsection" element={<BriefSection />} />

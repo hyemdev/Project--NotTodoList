@@ -7,7 +7,6 @@ import {
   CalendarTableThNumber,
   CalendarTableThTitle,
   DailyCalTable,
-  DailyCalTableThead,
   DailyCalTableTr,
   DailyCalTitle,
   DailyCalWrap,
@@ -22,7 +21,6 @@ const CalendarDayList = ({ todoData, setTodoData, clickItems, clickDate}) => {
   useEffect(() => {
     getCalendarDaylist(setDailyList, clickDate);
   }, []);
-  console.log("DailyList", DailyList);
   return (
     <>
       <DailyCalWrap>

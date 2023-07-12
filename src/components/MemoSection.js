@@ -42,7 +42,6 @@ const MemoSection = () => {
       memberId: 1,
       memo: OneMemo,
     };
-    console.log("newTodo", newTodo);
 
     setOneMemo(newTodo);
 
