@@ -109,7 +109,7 @@ const MonthlyForm = ({ todoData, setTodoData }) => {
             />
           </div>
           <AddFormTitle>
-            <FormLabel>한달목표</FormLabel>
+            <FormLabel>이달의 Not Todo</FormLabel>
             <Form.Item
               // label="한달 목표"
               name="notTodo"
