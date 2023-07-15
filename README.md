@@ -21,8 +21,9 @@
 <li>23-06-21 ~ 23-07-13 </li><br>
 
 🎬시연영상
+[![시연영상](https://i9.ytimg.com/vi/CzT2oGXj4t0/mqdefault.jpg?v=64b203b2&sqp=CMzIyKUG&rs=AOn4CLCuYw10Q5YzQJqmmkyJEi3sfOuCTg)](https://www.youtube.com/watch?v=CzT2oGXj4t0)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CzT2oGXj4t0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 🏃‍♀️ 멤버구성
 <h4>front-end </h4>
 - [최혜미]
