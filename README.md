@@ -20,7 +20,7 @@
 
 <li>23-06-21 ~ 23-07-13 </li><br>
 
-🎬시연영상
+🎬시연영상<br>
 [![시연영상](https://i9.ytimg.com/vi/CzT2oGXj4t0/mqdefault.jpg?v=64b203b2&sqp=CMzIyKUG&rs=AOn4CLCuYw10Q5YzQJqmmkyJEi3sfOuCTg)](https://www.youtube.com/watch?v=CzT2oGXj4t0)
 
 
