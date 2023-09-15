@@ -20,8 +20,8 @@
 
 <li>23-06-21 ~ 23-07-13 </li><br>
 
-🎬시연영상<br>
-[![시연영상](https://i9.ytimg.com/vi/CzT2oGXj4t0/mqdefault.jpg?v=64b203b2&sqp=CMzIyKUG&rs=AOn4CLCuYw10Q5YzQJqmmkyJEi3sfOuCTg)](https://www.youtube.com/watch?v=CzT2oGXj4t0)
+🎬시연영상 보러가기<br>
+https://youtu.be/CzT2oGXj4t0?si=YbmL_mkH2oKY80RZ
 
 
 🏃‍♀️ 멤버구성
@@ -32,8 +32,8 @@
 <li>front-end 전체페이지 제작</li>
 <li>발표자료 준비</li>
 <li>devdev.hyem@gmail.com</li>
-<li> GitHub : [hyemdev(🛠)](https://github.com/hyemdev/Project--NotTodoList)</li><br>
-
+<li> GitHub : [hyemdev(🛠)](https://github.com/hyemdev/Project--NotTodoList)</li>
+<li> Notion : [hyemdev(🛠)](https://www.notion.so/hyemdev/hyem-s-dev-STUDY-75ffe819c7534a049b59871e6fe17dd4)</li><br>
 <h4>back-end</h4>
 -	[하민수]
 <li>백엔드 팀장</li>
