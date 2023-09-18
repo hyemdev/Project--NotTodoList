@@ -1,7 +1,11 @@
-# Project - Not Todo List
+
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=NotTodoList&fontSize=70)
 
 <h1 align="center">Hi 👋, I am 'hyem dev.'</h1>
 <h3 align="center">we're made "NOT todo list" for studying collaboration project.</h3>
+
+🎬 <a href="https://youtu.be/CzT2oGXj4t0?si=YbmL_mkH2oKY80RZ">시연영상 보러가기 Click </a> <br />
+<img src=https://github.com/hyemdev/Project--NotTodoList/assets/131754425/af276264-9347-4d70-8e85-4807470a4e1e width=700>
 
 🔭 프로젝트 개요<br><br> -기획의도
 
@@ -19,9 +23,6 @@
 🌱 프로젝트 기간<br>
 
 <li>23-06-21 ~ 23-07-13 </li><br>
-
-🎬시연영상 보러가기<br>
-https://youtu.be/CzT2oGXj4t0?si=YbmL_mkH2oKY80RZ
 
 
 🏃‍♀️ 멤버구성
@@ -69,12 +70,12 @@ https://youtu.be/CzT2oGXj4t0?si=YbmL_mkH2oKY80RZ
 ... nivo chart  </p>
 
 🎮 프로젝트 관리<br>
-
+<p>
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
 <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
-<img src="https://img.shields.io/badge/canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white"><br>
+<img src="https://img.shields.io/badge/canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white"></p><br>
 
 🎉 주요기능<br>
 
@@ -113,4 +114,3 @@ https://youtu.be/CzT2oGXj4t0?si=YbmL_mkH2oKY80RZ
   1.  주간 소비데이터 / 월간 절약 데이터가 그래프로 출력.
   2.  Nivo chart 를 활용해, bar / line gragh로 나타남.
 
-<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=hyemdev&show_icons=true&locale=en&layout=compact" alt="hyemdev" /></p>
