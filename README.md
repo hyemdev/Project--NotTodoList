@@ -30,7 +30,7 @@
 - [최혜미]
 <li>피그마 작성</li>
 <li>레이아웃 및 페이지 구성</li>
-<li>front-end 전체페이지 제작</li>
+<li>front-end 전체페이지 제작 및 반응형 작업 </li>
 <li>발표자료 준비</li>
 <li>devdev.hyem@gmail.com</li>
 <li> GitHub : [hyemdev(🛠)](https://github.com/hyemdev/Project--NotTodoList)</li>
